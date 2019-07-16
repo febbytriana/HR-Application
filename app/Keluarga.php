@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TempKontrak extends Model
+class Keluarga extends Model
 {
-    
+    //
 }

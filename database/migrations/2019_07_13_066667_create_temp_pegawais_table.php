@@ -14,12 +14,15 @@ class CreateTempPegawaisTable extends Migration
     public function up()
     {
         Schema::create('temp_pegawais', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_temp_pegawai');
+
+            $table->integer('id_pegawai')->unsigned()->nullable();
+            $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais')->onUpdate('set null')->onDelete('set null');
+
             $table->string('nama');
             $table->enum('jk',['Laki - Laki','Perempuan']);
             $table->string('tempat');
             $table->date('tgl');
-            $table->integer('umur');
             $table->string('agama');
             
             $table->timestamps();

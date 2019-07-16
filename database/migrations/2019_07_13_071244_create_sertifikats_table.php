@@ -14,9 +14,13 @@ class CreateSertifikatsTable extends Migration
     public function up()
     {
         Schema::create('sertifikats', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_sertifikat');
+
+            $table->integer('id_pegawai')->unsigned()->nullable();
+            $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais')->onUpdate('set null')->onDelete('set null');
+
             $table->string('sertifikat');
-            $table->year('tahun');
+            $table->string('tahun');
             $table->timestamps();
         });
     }

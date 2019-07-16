@@ -14,10 +14,10 @@ class CreateTempPelatihansTable extends Migration
     public function up()
     {
         Schema::create('temp_pelatihans', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_temp_pelatihan');
 
-            $table->integer('id_pegawai')->unsigned()->nullable();
-            $table->foreign('id_pegawai')->references('id')->on('temp_pegawais')->onUpdate('set null')->onDelete('set null');
+            $table->integer('id_pelatihan')->unsigned()->nullable();
+            $table->foreign('id_pelatihan')->references('id_pelatihan')->on('pelatihans')->onUpdate('set null')->onDelete('set null');
 
             $table->string('nama_event');
             $table->string('tempat_pelatihan');

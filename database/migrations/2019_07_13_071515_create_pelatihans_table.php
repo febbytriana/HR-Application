@@ -14,7 +14,15 @@ class CreatePelatihansTable extends Migration
     public function up()
     {
         Schema::create('pelatihans', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id_pelatihan');
+
+            $table->integer('id_pegawai')->unsigned()->nullable();
+            $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais')->onUpdate('set null')->onDelete('set null');
+
+            $table->string('nama_event');
+            $table->string('tempat_pelatihan');
+            $table->string('peran');
+            $table->date('tanggal');
             $table->timestamps();
         });
     }

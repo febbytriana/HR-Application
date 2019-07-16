@@ -14,12 +14,13 @@ class CreateTempPengalamanKerjasTable extends Migration
     public function up()
     {
         Schema::create('temp_pengalaman_kerjas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_temp_pengalaman');
 
-            $table->integer('id_pegawai')->unsigned()->nullable();
-            $table->foreign('id_pegawai')->references('id')->on('temp_pegawais')->onUpdate('set null')->onDelete('set null');
+            $table->integer('id_pengalaman')->unsigned()->nullable();
+            $table->foreign('id_pengalaman')->references('id_pengalaman')->on('pengalaman_kerjas')->onUpdate('set null')->onDelete('set null');
 
             $table->string('nama_perusahaan');
+            $table->string('jabatan');
             $table->string('tahun');
             
             $table->timestamps();

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\TempPegawai;
-
+use App\Keluarga;
 use Illuminate\Http\Request;
 
-class TempPegawaiController extends Controller
+class KeluargaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class TempPegawaiController extends Controller
      */
     public function index()
     {
-        $pegawais = TempPegawai::all();
-
-        return view('pegawais/index', compact('pegawais'));
+        //
     }
 
     /**
@@ -27,7 +24,7 @@ class TempPegawaiController extends Controller
      */
     public function create()
     {
-        return view('pegawais/create');
+        //
     }
 
     /**
@@ -36,26 +33,18 @@ class TempPegawaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $request)
     {
-        $pegawai = new TempPegawai;
-        $pegawai->nama = $req->nama;
-        $pegawai->jk = $req->jk;
-        $pegawai->tempat = $req->tempat;
-        $pegawai->tgl = $req->tgl;
-        $pegawai->agama = $req->agama;
-
-        $pegawai->save();
-        return redirect('/pegawai/index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Temp_Pegawai  $temp_Pegawai
+     * @param  \App\Keluarga  $keluarga
      * @return \Illuminate\Http\Response
      */
-    public function show(Temp_Pegawai $temp_Pegawai)
+    public function show(Keluarga $keluarga)
     {
         //
     }
@@ -63,10 +52,10 @@ class TempPegawaiController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Temp_Pegawai  $temp_Pegawai
+     * @param  \App\Keluarga  $keluarga
      * @return \Illuminate\Http\Response
      */
-    public function edit(Temp_Pegawai $temp_Pegawai)
+    public function edit(Keluarga $keluarga)
     {
         //
     }
@@ -75,10 +64,10 @@ class TempPegawaiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Temp_Pegawai  $temp_Pegawai
+     * @param  \App\Keluarga  $keluarga
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Temp_Pegawai $temp_Pegawai)
+    public function update(Request $request, Keluarga $keluarga)
     {
         //
     }
@@ -86,10 +75,10 @@ class TempPegawaiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Temp_Pegawai  $temp_Pegawai
+     * @param  \App\Keluarga  $keluarga
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Temp_Pegawai $temp_Pegawai)
+    public function destroy(Keluarga $keluarga)
     {
         //
     }

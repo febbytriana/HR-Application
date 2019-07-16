@@ -14,10 +14,10 @@ class CreateTempKeluargasTable extends Migration
     public function up()
     {
         Schema::create('temp_keluargas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_temp_keluarga');
 
-            $table->integer('id_pegawai')->unsigned()->nullable();
-            $table->foreign('id_pegawai')->references('id')->on('temp_pegawais')->onUpdate('set null')->onDelete('set null');
+            $table->integer('id_keluarga')->unsigned()->nullable();
+            $table->foreign('id_keluarga')->references('id_keluarga')->on('keluargas')->onUpdate('set null')->onDelete('set null');
 
             $table->string('nama');
             $table->string('status');

@@ -14,8 +14,15 @@ class CreateNoDaruratsTable extends Migration
     public function up()
     {
         Schema::create('no_darurats', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_no_darurat');
+
+            $table->integer('id_pegawai')->unsigned()->nullable();
+            $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais')->onUpdate('set null')->onDelete('set null');
+
+            $table->string('nama');
+            $table->string('status');
             $table->string('nomor');
+
             $table->timestamps();
         });
     }

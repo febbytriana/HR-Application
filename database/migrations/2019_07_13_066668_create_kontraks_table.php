@@ -14,9 +14,13 @@ class CreateKontraksTable extends Migration
     public function up()
     {
         Schema::create('kontraks', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_kontrak'); 
+
+            $table->integer('id_pegawai')->unsigned()->nullable();
+            $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais')->onUpdate('set null')->onDelete('set null');
+
+            $table->string('kontrak');
             $table->string('tahun');
-            $table->string('tahun1');
             $table->timestamps();
         });
     }

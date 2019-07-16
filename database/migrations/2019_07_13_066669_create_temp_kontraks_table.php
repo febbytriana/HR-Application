@@ -14,9 +14,13 @@ class CreateTempKontraksTable extends Migration
     public function up()
     {
         Schema::create('temp_kontraks', function (Blueprint $table) {
-            $table->increments('id');
-            $table->year('tahun');
-            $table->year('tahun1');
+            $table->increments('id_temp_kontrak');
+
+            $table->integer('id_kontrak')->unsigned()->nullable();
+            $table->foreign('id_kontrak')->references('id_kontrak')->on('kontraks')->onUpdate('set null')->onDelete('set null');
+
+            $table->string('kontrak');
+            $table->string('tahun');
             $table->timestamps();
         });
     }

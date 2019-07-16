@@ -14,8 +14,14 @@ class CreatePendidikansTable extends Migration
     public function up()
     {
         Schema::create('pendidikans', function (Blueprint $table) {
-            $table->increments('id');
-            
+            $table->increments('id_pendidikan');
+
+            $table->integer('id_pegawai')->unsigned()->nullable();
+            $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais')->onUpdate('set null')->onDelete('set null');
+
+            $table->string('sekolah'); 
+            $table->string('tahun_lulus');
+
             $table->timestamps();
         });
     }
