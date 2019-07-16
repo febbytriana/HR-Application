@@ -18,3 +18,20 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//akun
+Route::get('/akun/index', 'AkunController@index')->name('akun.index');
+
+Route::get('/akun/create', 'AkunController@create')->name('akun.create');
+
+Route::get('/akun/print', 'AkunController@print')->name('akun.print');
+
+Route::post('/akun/store', 'AkunController@store')->name('akun.store');
+
+Route::get('/akun/edit/{id}', 'AkunController@edit')->name('akun.edit');
+
+Route::post('/akun/update', 'AkunController@update')->name('akun.update');
+
+Route::post('/akun/kelola-akun', 'AkunController@updateakun')->name('akun.update-akun');
+
+Route::get('/akun/destroy/{id}', 'AkunController@destroy')->name('akun.destroy');
