@@ -15,6 +15,13 @@ class CreateTempPendidikansTable extends Migration
     {
         Schema::create('temp_pendidikans', function (Blueprint $table) {
             $table->increments('id');
+            
+            $table->integer('id_pegawai')->unsigned()->nullable();
+            $table->foreign('id_pegawai')->references('id')->on('temp_pegawais')->onUpdate('set null')->onDelete('set null');
+
+            $table->string('sekolah'); 
+            $table->string('tahun_lulus');
+
             $table->timestamps();
         });
     }

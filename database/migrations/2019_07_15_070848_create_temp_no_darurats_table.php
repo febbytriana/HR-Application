@@ -15,6 +15,12 @@ class CreateTempNoDaruratsTable extends Migration
     {
         Schema::create('temp_no_darurats', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('id_pegawai')->unsigned()->nullable();
+            $table->foreign('id_pegawai')->references('id')->on('temp_pegawais')->onUpdate('set null')->onDelete('set null');
+
+            $table->string('nama');
+            $table->string('status');
             $table->string('nomor');
             $table->timestamps();
         });

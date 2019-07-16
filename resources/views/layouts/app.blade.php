@@ -66,7 +66,7 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Data Master</span></a>
                                 <ul class="collapse">
-                                    <li><a href="">Data Pegawai</a></li>
+                                    <li><a href="{{ route('pegawai.index') }}">Data Pegawai</a></li>
                                 </ul>
                             </li>    
                         </ul>
@@ -118,20 +118,23 @@
             </div>
             <!-- header area end -->
             <!-- page title area start -->
+
         </div>
         <!-- main content area end -->
         <!-- footer area start-->
          <div class="card-body">
             @yield('content')
+
         </div>
 
+        <!-- footer area end-->
+    </div>
+
         <footer>
-            <div class="footer-area">
+            <div class="footer-area fixed-bottom col-md-9 ml-auto">
                 <p>© Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
             </div>
         </footer>
-        <!-- footer area end-->
-    </div>
     <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}"></script>
     <!-- bootstrap 4 js -->
     <script src="{{ asset('js/popper.min.js') }}"></script>

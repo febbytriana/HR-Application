@@ -15,6 +15,14 @@ class CreateTempPelatihansTable extends Migration
     {
         Schema::create('temp_pelatihans', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('id_pegawai')->unsigned()->nullable();
+            $table->foreign('id_pegawai')->references('id')->on('temp_pegawais')->onUpdate('set null')->onDelete('set null');
+
+            $table->string('nama_event');
+            $table->string('tempat_pelatihan');
+            $table->string('peran');
+            $table->date('tanggal');
             $table->timestamps();
         });
     }

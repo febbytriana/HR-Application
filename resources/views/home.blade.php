@@ -2,29 +2,56 @@
 
 @section('content')
 
-<div class="container">
-  
+  <section role="main" class="content-body">
 
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-    <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-    <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-  </ul>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mt-3">
+            <li class="breadcrumb-item active" aria-current="page">Beranda</li>
+        </ol>
+    </nav>
 
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <h3>HOME</h3>
-      <p>www.malasngoding.com</p>
-    </div>
-    <div id="menu1" class="tab-pane fade">
-      <h3>Menu 1</h3>
-      <p>Tutorial pemrograman web, mobile dan design</p>
-    </div>
-    <div id="menu2" class="tab-pane fade">
-      <h3>Menu 2</h3>
-      <p>Membuat navigasi tabs dan pills bootstrap.</p>
-    </div>
-  </div>
+    <section class="card mt-3">
 
-</div>
+        <section class="panel">
+            @if(session()->has('success-create'))
+            <div class="row-md-5">
+                <div class="alert alert-success"> 
+                    <center>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                        &times;
+                        </button>
+                        <strong>Berhasil</strong><br>
+                        {{ session()->get('success-create') }}
+                    </center>
+                </div>
+            </div>
+            @endif
+
+            @if(session()->has('failed-create'))
+            <div class="row-md-5">
+                <div class="alert alert-danger"> 
+                    <center>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                        &times;
+                        </button>
+                        <strong>Gagal</strong><br>
+                        {{ session()->get('failed-create') }}
+                    </center>
+                </div>
+            </div>
+            @endif
+        </section>
+
+        <div class="card-header">
+                <h4>Manajemen Akun</h2>
+        </div>
+        <div class="card-body">
+          <span>Hai,{{ Auth::user()->name}}</span><br>
+          <span>Anda masuk sebagai {{ Auth::user()->status}}</span><br>
+        </div>
+    </section>
+</section>
+
+
+
 @endsection
