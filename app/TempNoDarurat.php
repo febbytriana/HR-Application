@@ -7,17 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class TempNoDarurat extends Model
 {
     protected $table = "temp_no_darurats";
-    protected $primaryKey = "id";
+    protected $primaryKey = "id_temp_no";
     protected $fillable = [
-    	'id_pegawai',
+    	'id_no_darurat',
     	'nama',
     	'status',
     	'nomor',
 
     ];
 
-    public function pegawai()
+    public function noDarurat()
     {
-        return $this->hasOne(TempPegawai::class, 'id_pegawai', 'id');
+        return $this->belongsTo(Keluarga::class, 'id_no_darurat', 'id_no_darurat');
     }
+
 }

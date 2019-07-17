@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class TempPendidikan extends Model
 {
     protected $table = "temp_pendidikans";
-    protected $primaryKey = "id";
+    protected $primaryKey = "id_temp_pendidikan";
     protected $fillable = [
-    	'id_pegawai',
+    	'id_pendidikan',
     	'sekolah',
     	'tahun_lulus',
 
     ];
 
-    public function pegawai()
+    public function pendidikan()
     {
-        return $this->hasOne(TempPegawai::class, 'id_pegawai', 'id');
+        return $this->belongsTo(Pendidikan::class, 'id_pendidikan', 'id_pendidikan');
     }
 }

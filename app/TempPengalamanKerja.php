@@ -7,17 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class TempPengalamanKerja extends Model
 {
     protected $table = "temp_pengalaman_kerjas";
-    protected $primaryKey = "id";
+    protected $primaryKey = "id_temp_pengalaman";
     protected $fillable = [
-    	'id_pegawai',
+    	'id_pengalaman',
     	'nama_perusahaan',
     	'jabatan',
     	'tahun',
 
     ];
 
-    public function pegawai()
+    public function pengalaman()
     {
-        return $this->hasOne(TempPegawai::class, 'id_pegawai', 'id');
+        return $this->belongsTo(Pengalaman::class, 'id_pengalaman', 'id_pengalaman');
     }
 }

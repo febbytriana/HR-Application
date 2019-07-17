@@ -8,16 +8,17 @@ class TempKeluarga extends Model
 {
     
 	protected $table = "temp_keluargas";
-    protected $primaryKey = "id";
+    protected $primaryKey = "id_temp_keluarga";
     protected $fillable = [
-    	'id_pegawai',
+    	'id_keluarga',
     	'nama',
     	'status',
 
     ];
-	public function pegawai()
+
+    public function keluarga()
     {
-        return $this->hasOne(TempPegawai::class, 'id_pegawai', 'id');
+        return $this->belongsTo(Keluarga::class, 'id_keluarga', 'id_keluarga');
     }
 
 }

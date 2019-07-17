@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Pegawai;
 
 use Auth;
 use Illuminate\Support\Facades\Hash;
@@ -18,8 +19,8 @@ class AkunController extends Controller
     public function index()
     {
           $akuns = User::all();
-
-        return view('akuns/index', compact('akuns'));
+          $pegawais = Pegawai::all();
+        return view('akuns/index', compact('akuns','pegawais'));
     }
 
     /**
@@ -30,7 +31,8 @@ class AkunController extends Controller
     public function create()
     {
         $akun = User::all();
-         return view('akuns/create', compact('akun'));
+        $pegawai = Pegawai::all();
+         return view('akuns/create', compact('akun','pegawai'));
     }
 
     /**
@@ -41,14 +43,24 @@ class AkunController extends Controller
      */
     public function store(Request $req)
     {
+        
            $akun = new User;
-           $akun->name = $req->name;
+           $akun->name = $nama;
            $akun->email = $req->email;
            $akun->password = Hash::make($req->password);
            $akun->status = $req->status;
            $akun->save();
 
-            session()->flash('success-create', 'Data Akun berhasil disimpan');
+            if ($req->status == "Pegawai") {
+            $akun_id = User::select('id')->whereRaw('id_user = (select max(`id`) from users)')->first();
+
+            $pegawai = Pegawai::find($req->id);
+            $pegawai->id_user = $akun_id['id'];
+            $pegawai->save();
+        } elseif ($req->id_level == 3) {
+         
+
+           session()->flash('success-create', 'Data Akun berhasil disimpan');
            return redirect('/akun/index');
     }
 
@@ -73,7 +85,8 @@ class AkunController extends Controller
     {
         $id = Auth::user()->id;
         $akun = User::find($id);
-          return view('akuns/edit', compact('akun'));
+        $pegawai = Pegawai::all();
+        return view('akuns/edit', compact('akun','pegawai'));
     }
 
     /**

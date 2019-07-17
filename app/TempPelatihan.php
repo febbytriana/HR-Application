@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class TempPelatihan extends Model
 {
     protected $table = "temp_pelatihans";
-    protected $primaryKey = "id";
+    protected $primaryKey = "id_temp_pelatihan";
     protected $fillable = [
-    	'id_pegawai',
+    	'id_pelatihan',
     	'nama_event',
     	'tempat_pelatihan',
     	'peran',
@@ -17,8 +17,8 @@ class TempPelatihan extends Model
 
     ];
 
-    public function pegawai()
+    public function pelatihan()
     {
-        return $this->hasOne(TempPegawai::class, 'id_pegawai', 'id');
+        return $this->belongsTo(Keluarga::class, 'id_pelatihan', 'id_pelatihan');
     }
 }
