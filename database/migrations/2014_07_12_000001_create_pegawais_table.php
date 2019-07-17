@@ -17,7 +17,7 @@ class CreatePegawaisTable extends Migration
             $table->increments('id_pegawai');
 
             $table->integer('id_user')->unsigned()->nullable();
-            $table->foreign('id_user')->references('id_user')->on('users')->onUpdate('set null')->onDelete('set null');
+            $table->foreign('id_user')->references('id')->on('users')->onUpdate('set null')->onDelete('set null');
 
             $table->string('nama');
             $table->enum('jk',['Laki - Laki','Perempuan']);

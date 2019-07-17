@@ -43,7 +43,7 @@
         </section>
 
         <div class="card-header">
-                <h4>Manajemen Akun</h2>
+            <h4>Dashboard</h2>
         </div>
         <div class="card-body">
           <span>Hai,{{ Auth::user()->name}}</span><br>
