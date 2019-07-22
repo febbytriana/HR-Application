@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TempKeluarga;
-use App\TempPegawai;
+use App\Keluarga;
 use Illuminate\Http\Request;
 
 class TempKeluargaController extends Controller

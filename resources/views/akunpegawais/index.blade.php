@@ -8,7 +8,7 @@
         <ol class="breadcrumb mt-3">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
             <li class="breadcrumb-item active" aria-current="page">Manajemen Akun</li>
-            <li class="breadcrumb-item active" aria-current="page">HR</li>
+            <li class="breadcrumb-item active" aria-current="page">Pegawai</li>
         </ol>
     </nav>
 
@@ -48,10 +48,10 @@
                 <h4>Manajemen Akun</h2>
         </div>
         <div class="card-body">
-            <a href="{{ route('akun.create')}}">
+            <a href="{{ route('akunpegawai.createpegawai')}}">
                 <button class="btn btn-primary"><i class="fa fa-plus"></i></button>
             </a>
-            <a href="{{ route('akun.print') }}">
+            <a href="{{ route('akunpegawai.printpegawai') }}">
                 <button class="btn btn-primary"><i class="fa fa-print"></i></button>
             </a>
             <br>
@@ -74,14 +74,13 @@
                         <td>{{ $akun->email }}</td>
                         <td>{{ $akun->status }}</td>
                         <td style="text-align: center;">
-                            <a href="{{ route('akun.edit',$akun->id)}}">
+                            <a href="{{ route('akunpegawai.editpegawai',$akun->id)}}">
                                 <button class="btn btn-info col-sm-4"><i class="fa fa-pencil"></i></button>
                             </a>
-                            <a href="{{ route('akun.destroy', $akun->id) }}">
+                            <a href="{{ route('akunpegawai.destroypegawai', $akun->id) }}">
                                 <button class="btn btn-danger col-sm-4" onclick="return confirm('Hapus data ini?')"><i class="fa fa-trash"></i></button>
                             </a>
                         </td>
-                        
                     </tr>
                     @endforeach
                 </tbody>
