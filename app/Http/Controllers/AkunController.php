@@ -1,14 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\User;
 use App\Pegawai;
-
 use Auth;
 use Illuminate\Support\Facades\Hash;
-
 class AkunController extends Controller
 {
     /**
@@ -18,11 +14,16 @@ class AkunController extends Controller
      */
     public function index()
     {
-          $akuns = User::all();
-          $pegawais = Pegawai::all();
-        return view('akuns/index', compact('akuns','pegawais'));
+        $akuns = User::where('status','=','HR')->get();
+        return view('akuns/index', compact('akuns'));
     }
-
+    public function indexpegawai()
+    {
+        $akuns = User::where('status','=','Pegawai')->get();
+        $pegawais = Pegawai::all();
+        return view('akunpegawais/index', compact('akuns','pegawais'));
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -31,10 +32,14 @@ class AkunController extends Controller
     public function create()
     {
         $akun = User::all();
-        $pegawai = Pegawai::all();
-         return view('akuns/create', compact('akun','pegawai'));
+         return view('akuns/create', compact('akun'));
     }
-
+    public function createpegawai()
+    {
+        $akun = User::all();
+        $pegawai = Pegawai::all();
+         return view('akunpegawais/create', compact('akun','pegawai'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -45,26 +50,32 @@ class AkunController extends Controller
     {
         
            $akun = new User;
-           $akun->name = $req->name;
+           $akun->name = $req->nama;
            $akun->email = $req->email;
            $akun->password = Hash::make($req->password);
            $akun->status = $req->status;
            $akun->save();
-
-            if ($req->status == "Pegawai") {
-            $akun_id = User::select('id')->whereRaw('id_user = (select max(`id`) from users)')->first();
-
+           session()->flash('success-create', 'Data Akun berhasil disimpan');
+           return redirect('/akun/index');
+    }
+    /* store-pegawai */
+    public function storepegawai(Request $req)
+    {
+           $pegawai = Pegawai::select('nama')->where('id_pegawai', $req->id)->first();
+           $nama = $pegawai['nama'];
+           $akun = new User;
+           $akun->name = $nama;
+           $akun->email = $req->email;
+           $akun->password = Hash::make($req->password);
+           $akun->status = $req->status;
+           $akun->save();
+           $akun_id = User::select('id')->whereRaw('id = (select max(`id`) from users)')->first();
             $pegawai = Pegawai::find($req->id);
             $pegawai->id_user = $akun_id['id'];
             $pegawai->save();
-        } elseif ($req->id_level == 3) {
-         
-
            session()->flash('success-create', 'Data Akun berhasil disimpan');
            return redirect('/akun/index');
-       }
     }
-
     /**
      * Display the specified resource.
      *
@@ -75,7 +86,6 @@ class AkunController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -89,7 +99,6 @@ class AkunController extends Controller
         $pegawai = Pegawai::all();
         return view('akuns/edit', compact('akun','pegawai'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -97,7 +106,6 @@ class AkunController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function updateakun(Request $req)
     {
         $akun = User::find($req->id);
@@ -121,10 +129,8 @@ class AkunController extends Controller
         $akun->status = $req->status;
   
         $akun->save();
-
         return redirect('/akun/index'); 
     }
-
     /**
      * Remove the specified resource from storage.
      *

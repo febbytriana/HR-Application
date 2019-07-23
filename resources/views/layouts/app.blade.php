@@ -5,7 +5,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Laravel</title>
+    <title>HR-App</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/icon/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
@@ -23,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}">
+
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <!-- modernizr css -->
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
@@ -57,8 +59,13 @@
                         <ul class="metismenu" id="menu">
                             <li><a href="{{ route('home') }}"><i class="ti-map-alt"></i> <span>Dashboard</span></a></li>
                             <li>
-                                <a href="{{ route('akun.index') }}"> <i class="menu-icon ti-harddrive"></i><span>Manajemen Akun</span></a>
-                            </li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-harddrive"></i>
+                                    <span>Manajemen Akun</span></a>
+                                <ul class="collapse">
+                                    <li><a href="{{ route('akun.index') }}">HR</a></li>
+                                    <li><a href="{{ route('akunpegawai.indexpegawai') }}">Pegawai</a></li>
+                                </ul>
+                            </li> 
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-user"></i>
                                     <span>Pegawai</span></a>
@@ -73,6 +80,7 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Data Master</span></a>
                                 <ul class="collapse">
+
                                     <li><a href="">Jabatan</a></li>
                                 </ul>
                             </li>
@@ -99,7 +107,6 @@
             <div class="header-area" style="background-color: #0f5b94;">
                 <div class="row align-items-center">
                     <!-- nav and search button -->
-
                     <div class="col-md-6 col-sm-8 clearfix">
                         <div class="nav-btn pull-left">
                             <span></span>
@@ -158,6 +165,7 @@
     <!-- bootstrap 4 js -->
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
     <!-- DataTables -->
     <script src="{{ asset('js/datatables.js') }}"></script>
     <script src="{{ asset('js/datatables.min.js') }}"></script>
