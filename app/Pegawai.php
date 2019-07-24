@@ -14,6 +14,7 @@ class Pegawai extends Model
     	'tempat',	
     	'tgl',
     	'agama',
+        'id_jabatan',
     ];
 
     public function tempPegawai()
@@ -54,6 +55,11 @@ class Pegawai extends Model
     public function sertifikat()
     {
         return $this->hasMany(Sertifikat::class, 'id_pegawai', 'id_pegawai');
+    }
+
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class, 'id_jabatan', 'id_jabatan');
     }
    
 }

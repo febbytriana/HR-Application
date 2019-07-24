@@ -24,6 +24,10 @@ class CreatePegawaisTable extends Migration
             $table->string('tempat');
             $table->date('tgl');
             $table->string('agama');
+
+            $table->integer('id_jabatan')->unsigned()->nullable();
+            $table->foreign('id_jabatan')->references('id_jabatan')->on('jabatans')->onUpdate('set null')->onDelete('set null');
+
             $table->timestamps();
         });
     }

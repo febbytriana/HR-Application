@@ -72,7 +72,7 @@
         </div>
         <!-- sidebar menu area end -->
         <!-- main content area start -->
-        <div class="header">
+        <div class="hesader">
            <!-- header area start -->
             <div class="header-area">
                 <div class="row align-items-center">

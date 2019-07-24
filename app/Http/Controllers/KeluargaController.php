@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Keluarga;
+use App\Pegawai;
+
 use Illuminate\Http\Request;
 
 class KeluargaController extends Controller
@@ -14,7 +16,11 @@ class KeluargaController extends Controller
      */
     public function index()
     {
-        //
+        $keluargas = Keluarga::all();
+        $pegawais = Pegawai::all();
+
+        return view('keluargas/index', compact('keluargas','pegawais'));
+
     }
 
     /**
@@ -24,7 +30,10 @@ class KeluargaController extends Controller
      */
     public function create()
     {
-        //
+        $keluarga = Keluarga::all();
+
+        return view('keluargas/create', compact('keluarga'));
+
     }
 
     /**
@@ -33,9 +42,15 @@ class KeluargaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $keluarga = new Keluarga;
+        $keluarga->id_pegawai = $req->id_pegawai;
+        $keluarga->nama = $req->nama;
+        $keluarga->status = $req->status;
+
+        $keluarga->save();
+        return redirect('/keluarga/index');
     }
 
     /**
@@ -55,9 +70,11 @@ class KeluargaController extends Controller
      * @param  \App\Keluarga  $keluarga
      * @return \Illuminate\Http\Response
      */
-    public function edit(Keluarga $keluarga)
+    public function edit($id_keluarga)
     {
-        //
+        $keluarga = Keluarga::find($id_keluarga);
+        $pegawai = Pegawai::all();
+        return view('keluargas/edit', compact('keluarga','pegawai'));
     }
 
     /**
@@ -67,9 +84,16 @@ class KeluargaController extends Controller
      * @param  \App\Keluarga  $keluarga
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Keluarga $keluarga)
+    public function update(Request $req)
     {
-        //
+        $keluarga = Keluarga::find($req->id_keluarga);
+        $keluarga->id_pegawai = $req->id_pegawai;
+        $keluarga->nama = $req->nama;
+        $keluarga->status = $req->status;
+
+        $keluarga->save();
+        return redirect('/keluarga/index');
+
     }
 
     /**
@@ -78,8 +102,11 @@ class KeluargaController extends Controller
      * @param  \App\Keluarga  $keluarga
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Keluarga $keluarga)
+    public function destroy($id_keluarga)
     {
-        //
+        $keluarga = Keluarga::find($id_keluarga);
+        $keluarga->delete();
+
+        return redirect()->back(); 
     }
 }
