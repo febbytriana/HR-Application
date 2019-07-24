@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pegawai;
+use App\Jabatan;
 use Illuminate\Http\Request;
 
 class PegawaiController extends Controller
@@ -26,7 +27,8 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        //
+        $jabatan = Jabatan::all();
+        return view('pegawais/create', compact('jabatan'));
     }
 
     public function detail()
@@ -40,9 +42,19 @@ class PegawaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $pegawai = new Pegawai;
+        $pegawai->nama = $req->nama;
+        $pegawai->jk = $req->jk;
+        $pegawai->tempat = $req->tempat;
+        $pegawai->tgl = $req->tgl;
+        $pegawai->agama = $req->agama;
+        $pegawai->id_jabatan = $req->id_jabatan;
+        
+        $pegawai->save();       
+        return redirect('/pegawai/index');
+
     }
 
     /**
@@ -62,9 +74,11 @@ class PegawaiController extends Controller
      * @param  \App\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pegawai $pegawai)
+    public function edit($id_pegawai)
     {
-        //
+        $pegawai = Pegawai::find($id_pegawai);
+        $jabatan = Jabatan::all();
+        return view('pegawai/edit',compact('pegawai','jabatan'));
     }
 
     /**
@@ -74,9 +88,21 @@ class PegawaiController extends Controller
      * @param  \App\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pegawai $pegawai)
+    public function update(Request $req)
     {
-        //
+        $pegawai = Pegawai::find($req->id_pegawai);
+
+        $pegawai->nama = $req->nama;
+        $pegawai->jk = $req->jk;
+        $pegawai->tempat = $req->tempat;
+        $pegawai->tgl = $req->tgl;
+        $pegawai->agama = $req->agama;
+        $pegawai->id_jabatan = $req->id_jabatan;
+        
+        
+        $pegawai->save();       
+        return redirect('/pegawai/index');
+
     }
 
     /**
@@ -85,8 +111,11 @@ class PegawaiController extends Controller
      * @param  \App\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pegawai $pegawai)
+    public function destroy($id_pegawai)
     {
-        //
+        $pegawai = Pegawai::find($id_pegawai);
+        $pegawai->delete();
+
+        return redirect()->back();
     }
 }

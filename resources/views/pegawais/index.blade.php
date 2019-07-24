@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb mt-3">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
         <li class="breadcrumb-item active" aria-current="page">Pegawai</li>
     </ol>
 </nav>
+
 <div class="row">
   <div class="col-md-12">
     <section class="card">
@@ -15,6 +17,7 @@
           <h2>Data Pegawai</h2>
         </div>
         <br>
+
             <div class="pull-left">
               <a href="">
                 <button class="btn btn-success btn-xs"><i class="fa fa-file"></i> Export EXCEL</button>

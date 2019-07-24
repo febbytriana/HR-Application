@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TempPegawai;
+use App\Pegawai;
 
 use Illuminate\Http\Request;
 
@@ -15,9 +16,11 @@ class TempPegawaiController extends Controller
      */
     public function index()
     {
-        $pegawais = TempPegawai::all();
+        $pegawais = Pegawai::all();
 
-        return view('pegawais/index', compact('pegawais'));
+        $temppegawais = TempPegawai::all();
+
+        return view('pegawais/index', compact('pegawais','temppegawais'));
     }
 
     /**
@@ -26,8 +29,10 @@ class TempPegawaiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('pegawais/create');
+    {   
+        $temppegawai = Pegawai::all();
+
+        return view('pegawais/create',compact('temppegawai'));
     }
 
     /**
@@ -38,14 +43,15 @@ class TempPegawaiController extends Controller
      */
     public function store(Request $req)
     {
-        $pegawai = new TempPegawai;
-        $pegawai->nama = $req->nama;
-        $pegawai->jk = $req->jk;
-        $pegawai->tempat = $req->tempat;
-        $pegawai->tgl = $req->tgl;
-        $pegawai->agama = $req->agama;
+        $temppegawai = new TempPegawai;
+        $temppegawai->id_pegawai = $req->id_pegawai;
+        $temppegawai->nama = $req->nama;
+        $temppegawai->jk = $req->jk;
+        $temppegawai->tempat = $req->tempat;
+        $temppegawai->tgl = $req->tgl;
+        $temppegawai->agama = $req->agama;
 
-        $pegawai->save();
+        $temppegawai->save();
         return redirect('/pegawai/index');
     }
 
@@ -55,7 +61,7 @@ class TempPegawaiController extends Controller
      * @param  \App\Temp_Pegawai  $temp_Pegawai
      * @return \Illuminate\Http\Response
      */
-    public function show(Temp_Pegawai $temp_Pegawai)
+public function show(Temp_Pegawai $temp_Pegawai)
     {
         //
     }
@@ -66,9 +72,11 @@ class TempPegawaiController extends Controller
      * @param  \App\Temp_Pegawai  $temp_Pegawai
      * @return \Illuminate\Http\Response
      */
-    public function edit(Temp_Pegawai $temp_Pegawai)
+    public function edit($id_temp_pegawai)
     {
-        //
+        $temppegawai = TempPegawai::find($id_temp_pegawai);
+        $pegawai = Pegawai::all();
+        return view('pegawai/edit', compact('pegawai','temppegawai'));/
     }
 
     /**
@@ -78,9 +86,21 @@ class TempPegawaiController extends Controller
      * @param  \App\Temp_Pegawai  $temp_Pegawai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Temp_Pegawai $temp_Pegawai)
+    public function update(Request $req)
     {
-        //
+        
+        $temppegawai = TempPegawai::find($req->id_temp_pegawai);
+        $temppegawai->id_pegawai = $req->id_pegawai;
+        $temppegawai->nama = $req->nama;
+        $temppegawai->jk = $req->jk;
+        $temppegawai->tempat = $req->tempat;
+        $temppegawai->tgl = $req->tgl;
+        $temppegawai->agama = $req->agama;
+
+        $temppegawai->save(); 
+        return redirect('/pegawai/index');
+    
+
     }
 
     /**
@@ -89,8 +109,11 @@ class TempPegawaiController extends Controller
      * @param  \App\Temp_Pegawai  $temp_Pegawai
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Temp_Pegawai $temp_Pegawai)
+    public function destroy($id_temp_pegawai)
     {
-        //
+        $temppegawai = TempPegawai::find($id_temp_pegawai);
+        $temppegawai->delete();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+        return redirect()->back();
     }
 }

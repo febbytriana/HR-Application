@@ -102,6 +102,7 @@
         </div>
         <!-- sidebar menu area end -->
         <!-- main content area start -->
+
         <div class="header bg-primary">
            <!-- header area start -->
             <div class="header-area" style="background-color: #0f5b94;">
