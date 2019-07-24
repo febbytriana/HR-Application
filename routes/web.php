@@ -68,3 +68,14 @@ Route::get('/pegawai/edit/{id}', 'PegawaiController@edit')->name('pegawai.edit')
 Route::post('/pegawai/update', 'PegawaiController@update')->name('pegawai.update');
 
 Route::get('/pegawai/destroy/{id}', 'PegawaiController@destroy')->name('pegawai.destroy');
+
+//Surat SP
+Route::get('/surat-sp/create', 'SPController@create')->name('sp.create');
+
+//Jabatan
+Route::get('/jabatan/index', 'JabatanController@jabatan')->name('jabatan.index');
+Route::get('/jabatan/create', 'JabatanController@create')->name('jabatan.create');
+Route::post('/jabatan/store', 'JabatanController@store')->name('jabatan.store');
+Route::get('/jabatan/edit/{id_jabatan}', 'JabatanController@edit')->name('jabatan.edit');
+Route::post('/jabatan/update/{id_jabatan}', 'JabatanController@update')->name('jabatan.update');
+Route::get('/jabatan/hapus/{id_jabatan}', 'JabatanController@destroy')->name('jabatan.hapus');

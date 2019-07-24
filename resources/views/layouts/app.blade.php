@@ -50,6 +50,15 @@
                     <nav>
                         <ul class="metismenu" id="menu">
                             <li><a href="{{ route('home') }}"><i class="ti-map-alt"></i> <span>Dashboard</span></a></li>
+                            
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
+                                    <span>Data Master</span></a>
+                                <ul class="collapse">
+                                    <li><a href="{{ route('jabatan.index') }}">Jabatan</a></li>
+                                </ul>
+                            </li> 
+                            
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-user"></i><span>Manajemen Akun</span></a>
                                 <ul class="collapse">
@@ -64,7 +73,11 @@
                                 <ul class="collapse">
                                     <li><a href="{{ route('pegawai.index') }}">Data Pegawai</a></li>
                                 </ul>
-                            </li>    
+                            </li> 
+
+                            <li><a href="{{ route('sp.create') }}"><i class="ti-map-alt"></i> <span>Surat Teguran/Peringatan</span></a></li>
+                            <li><a href="{{ route('home') }}"><i class="ti-map-alt"></i> <span>Surat Perjalanan</span></a></li>
+                               
                         </ul>
                     </nav>
                 </div>

@@ -9,11 +9,20 @@ class Pegawai extends Model
     protected $table = "pegawais";
     protected $primaryKey = "id_pegawai";
     protected $fillable = [
-    	'nama',
-    	'jk',
-    	'tempat',	
-    	'tgl',
-    	'agama',
+        'nik',
+        'nama',
+        'id_jabatan',
+        'ttl',
+        'alamat',
+        'jk',
+        'agama',
+        'warga_negara',
+        'status_kawin',
+        'goldar',
+        'penyakit',
+    	'telp',	
+    	'email',
+        'image',
     ];
 
     public function tempPegawai()
@@ -21,6 +30,10 @@ class Pegawai extends Model
         return $this->hasOne(TempPegawai::class, 'id_pegawai', 'id_pegawai');
     }
 
+    public function jabatan()
+    {
+        return $this->hasOne(Jabatan::class, 'id_jabatan', 'id_jabatan');
+    }
     public function keluarga()
     {
         return $this->hasMany(Keluarga::class, 'id_pegawai', 'id_pegawai');

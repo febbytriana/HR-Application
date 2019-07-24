@@ -14,9 +14,8 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $pegawais = Pegawai::all();
-
-        return view('pegawais/index', compact('pegawais'));
+        $pegawai = \App\Pegawai::all();
+        return view('pegawais.pegawai', compact('pegawai'));
     }
 
     /**
@@ -26,7 +25,8 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        //
+        $jabatan = \App\Jabatan::all();
+        return view('pegawais.create', compact('jabatan'));
     }
 
     /**
@@ -37,7 +37,29 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pegawai = new Pegawai;
+        $pegawai->nik = $request->nik;
+        $pegawai->nama = $request->nama;
+        $pegawai->id_jabatan = $request->id_jabatan;
+        $pegawai->ttl = $request->ttl;
+        $pegawai->alamat = $request->alamat;
+        $pegawai->jk = $request->jk;
+        $pegawai->agama = $request->agama;
+        $pegawai->warga_negara = $request->warga_negara;
+        $pegawai->status_kawin = $request->status_kawin;
+        $pegawai->goldar = $request->goldar;
+        $pegawai->penyakit = $request->penyakit;
+        $pegawai->telp = $request->telp;
+        $pegawai->email = $request->email;
+        $pegawai->image = $request->image;
+        $image = time().'.'.$request->image->getClientOriginalExtension();
+
+        $request->image->move(public_path('/public/upload'), $image);
+        $pegawai->save();
+
+        session()->flash('success-create', 'Data Akun berhasil disimpan');
+           
+        return redirect('/pegawai/index');
     }
 
     /**
