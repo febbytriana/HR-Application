@@ -2,104 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Jabatan;
 use Illuminate\Http\Request;
 
 class JabatanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function jabatan()
     {
-        $jabatans = Jabatan::all();
-        
-        return view('jabatans/index',compact('jabatans'));
+        $jabatan = \App\Jabatan::all();
+        return view('jabatan.index', compact('jabatan'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        $jataban = Jabatan::all();
-
-        return view('jabatans/create', compact('jabatan'));
+        return view('jabatan.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $req)
     {
-        $jabatan = new Jabatan;
-        $jabatan->jabatan = $req->jabatan;
-        $jabatan->gaji_pokok = $req->gaji_pokok;
+        \App\Jabatan::create($req->all());
 
-        $jabatan->save();
         return redirect('/jabatan/index');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Jabatan  $jabatan
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Jabatan $jabatan)
+    public function edit(Request $req,$id_jabatan)
     {
-        //
+       $jabatan = \App\Jabatan::find($id_jabatan);
+       return view('jabatan/edit', compact('jabatan'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Jabatan  $jabatan
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id_jabatan)
+    public function update(Request $req,$id_jabatan)
     {
-        $jabatan = Jabatan::find($id_jabatan);
-
-        return view('jabatans/edit',compact('jabatan'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Jabatan  $jabatan
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $req)
-    {
-        $jabatan = Jabaatan::find($req->id_jabatan);
-        $jabatan->jabatan = $req->jabatan;
-        $jabatan->gaji_pokok = $req->gaji_pokok;
-
-        $jabatan->save();
+        $jabatan = \App\Jabatan::find($id_jabatan);
+        $jabatan->update($req->all());
         return redirect('/jabatan/index');
-        
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Jabatan  $jabatan
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id_jabatan)
     {
-        $jabatan = Jabatan::find($id_jabatan);
-        $jabatan->delete();
-
-        return redirect()->back();
+        $jabatan = \App\Jabatan::find($id_jabatan);
+        $jabatan->delete($jabatan);
+        return redirect('/jabatan/index');
     }
 }

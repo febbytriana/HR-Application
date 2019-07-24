@@ -6,17 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jabatan extends Model
 {
-
-    protected $table = "jabatans";
-    protected $primaryKey = "id_jabatan";
+    protected $table = 'jabatans';
+    protected $primaryKey = 'id_jabatan';
     protected $fillable = [
-    	"jabatan",
-    	"gaji_pokok",
+        'jabatan',
+        'gaji_pokok'
     ];
 
-    public function pegawai()
+    public function FunctionName()
     {
-        return $this->hasOne(Pegawai::class, 'id_jabatan', 'id_jabatan');
+        return $this->belongsTo(Pegawai::class, 'id_jabatan', 'id_jabatan');
     }
-
 }

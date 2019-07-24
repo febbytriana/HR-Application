@@ -13,73 +13,127 @@
     </nav>
 
     <section class="card mt-3">
-        <section class="panel">
-            @if(session()->has('failed-create'))
-            <div class="row-md-5">
-                <div class="alert alert-danger"> 
-                    <center>
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                        &times;
-                        </button>
-                        <strong>Gagal</strong><br>
-                        {{ session()->get('failed-create') }}
-                    </center>
-                </div>
-            </div>
-            @endif
-
-            @if(session()->has('success-create'))
-            <div class="row-md-5">
-                <div class="alert alert-success"> 
-                    <center>
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                        &times;
-                        </button>
-                        <strong>Berhasil</strong><br>
-                        {{ session()->get('success-create') }}
-                    </center>
-                </div>
-            </div>
-            @endif
-        </section>
         <div class="card-header">
-            <h4>Edit Akun</h4>
+                <h4>Tambah Data Jabatan</h2>
         </div>
-
-        <div class="card-body">
-            <div class="col-md-12">              
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                              <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div><br />
-                @endif
-
-            <form method="post" action="{{ route('akun.update-akun') }}">
-                @csrf
-                <div>
-                    <input type="hidden" name="id" value="{{ $akun->id }}">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control col-md-4" name="password" required>
-                </div>
-                <div class="form-group">
-                    <label>Ketik Ulang Password</label>
-                    <input type="password" class="form-control col-md-4" name="password1" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Ubah</button>
-                </div>    
-             </form>
-
+        <div class="card-body" style="margin-left:200px;">
+            <div class="col-md-24">
+                <form action="{{ route('jabatan.store')}}" method="POST">
+                    @csrf 
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">NIK <span class="required">*</span></label>
+                             <div class="col-md-9">
+                                <input type="text" class="form-control" name="nik">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Nama<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="nama">
+                            </div>
+                        </div>   
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Tempat Tanggal Lahir<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="ttl">
+                            </div>
+                        </div>   
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Alamat<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <textarea name="alamat" id="alamat" cols="30" rows="3" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Jenis Kelamin<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <input type="radio">Laki-laki
+                                <input type="radio" style="margin-left:200px;">Perempuan
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Agama<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <select name="" id="" class="form-control">
+                                    <option value=""></option>
+                                    <option value="Islam">Islam</option>
+                                    <option value="Katholik">Katholik</option>
+                                    <option value="Protestan">Protestan</option>
+                                    <option value="Hindu">Hindu</option>
+                                    <option value="Budha">Budha</option>
+                                    <option value="Kong Hu Chu">Kong Hu Chu</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Kewarganegaraan<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <select name="" id="" class="form-control">
+                                    <option value=""></option>
+                                    <option value="WNI">Warga Negara Indonesia</option>
+                                    <option value="WNA">Warga Negara Asing</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Status Perkawinan<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <select name="" id="" class="form-control">
+                                    <option value=""></option>
+                                    <option value="Kawin">Kawin</option>
+                                    <option value="Belum kawin">Belum kawin</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Golongan Darah<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <select name="" id="" class="form-control">
+                                    <option value=""></option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="AB">AB</option>
+                                    <option value="O">O</option>
+                                </select>
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Riwayat Penyakit<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="ttl">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">No.Telepon<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="ttl">
+                            </div>
+                        </div>  
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Email<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <input type="email" class="form-control" name="ttl">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Foto<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                 <div style="width:150px; height:180px;border: 1px solid #000;">
+                                    <img src="" alt="">
+                                </div>
+                                <input type="file" class="form-control" style="margin-top:20px;">
+                            </div>
+                        </div> 
+                    </div>
+                        <div class="form-group" style="margin-left:480px;">
+                            &nbsp;<button type="submit" class="btn btn-primary">Tambah</button>
+                        </div>  
+                    </div>
+                </form>
             </div>
         </div>
     </section>
 </section>
-
 
 @endsection
