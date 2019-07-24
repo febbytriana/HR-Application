@@ -50,7 +50,7 @@
         <div class="sidebar-menu">
             <div class="sidebar-header" style="background: #0f5b94; border: none;">
                 <div class="logo">
-                    <a href="{{ route('home') }}"><img src="{{ asset('images/icon/logo.png') }}" alt="logo"></a>
+                    <a href="{{ route('home') }}"><img src="{{ asset('images/logohrapk.jpg') }}" alt="logo"></a>
                 </div>
             </div>
             <div class="main-menu">
@@ -70,7 +70,7 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-user"></i>
                                     <span>Pegawai</span></a>
                                 <ul class="collapse">
-                                    <li><a href="{[ route('pegawai.index') }}">Data Pegawai</a></li>
+                                    <li><a href="{{ route('pegawai.index') }}">Data Pegawai</a></li>
                                     <li><a href="">Absensi</a></li>
                                     <li><a href="">Gaji</a></li>
                                 </ul>

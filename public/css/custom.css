@@ -190,10 +190,3 @@ body {
     padding-bottom: 7px;
     color: #222;
 }
-.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
-    border-color: #ddd;
-    padding: 10px 15px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    background: #fff;
-}

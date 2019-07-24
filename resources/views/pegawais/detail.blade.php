@@ -32,8 +32,8 @@
         <!--<a class="nav-link link-tab active" data-toggle="tab" href="#pengalaman">Pengalaman</a>-->
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" style="color: #82df39;"><i class="fa fa-users fa-fx"></i> Keluarga</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" data-toggle="tab" href="">Orang Tua</a>
-            <a class="dropdown-item" data-toggle="tab" href="">Anak</a>
+            <a class="dropdown-item" data-toggle="tab" href="#orangtua">Orang Tua</a>
+            <a class="dropdown-item" data-toggle="tab" href="#anak">Anak</a>
             <a class="dropdown-item" data-toggle="tab" href="">Istri</a>
           </div>
       </li>
@@ -266,9 +266,67 @@
         </div>
       </div>
     </div>
-    <div id="menu2" class="container tab-pane fade"><br>
-      <h3>Menu 2</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    <div id="orangtua" class="container tab-pane fade"><br>
+      <div class="container">
+        <h4>-- Orang Tua --</h4>
+      </div>
+      <br>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="card">
+              <div class="card-body" style="border: 2px solid #898989;">
+                <div class="body-text">
+                    <span style="margin-right: 25px; font-size: 14px;">Nama Ayah</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>
+                    <br>
+                    <span style="margin-right: 58px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>  
+                    <br>
+                    <span style="margin-right: 36px;font-size: 14px;">Nama Ibu</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>  
+                    <br>
+                    <span style="margin-right: 58px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>
+                    <br>
+                    <span style="margin-right: 53px;font-size: 14px;">Alamat</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Jl. Tes Perum Test No. 99, Kec. Batujajar Kota Padalarang</span>
+                  <div class="pull-right">
+                    <a class="btn btn-success btn-xs" href=""><i class="fa fa-edit fa-fx"></i> Edit</a>
+                  </div>
+                </div>    
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="anak" class="container tab-pane fade"><br>
+      <div class="container">
+        <h4>-- Anak --</h4>
+        <div class="head-title">
+          <a class="btn btn-info btn-xs pull-right" href=""><i class="fa fa-plus fa-fx"></i> Tambah</a>
+        </div>
+      </div>
+      <br>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="card">
+              <div class="card-body" style="border: 2px solid #898989;">
+                <div class="body-text">
+                    <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>
+                    <br>
+                    <span style="margin-right: 18px;font-size: 14px;">Tempat Tanggal Lahir</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>  
+                    <br>
+                    <span style="margin-right: 98px;font-size: 14px;">Anak ke</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>  
+                    <br>
+                    <span style="margin-right: 109px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>
+                  
+                  <div class="pull-right">
+                    <a class="btn btn-success btn-xs" href=""><i class="fa fa-edit fa-fx"></i> Edit</a>
+                  </div>
+                </div>    
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   </div>
