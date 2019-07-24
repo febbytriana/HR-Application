@@ -2,36 +2,65 @@
 
 @section('content')
 
-<div class="container">
-  <h2>Toggleable Tabs</h2>
-  <br>
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
-    </li>
-  </ul>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb mt-3">
+        <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Pegawai</li>
+    </ol>
+</nav>
 
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div id="home" class="container tab-pane active"><br>
-      <h3>HOME</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-    <div id="menu1" class="container tab-pane fade"><br>
-      <h3>Menu 1</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <div id="menu2" class="container tab-pane fade"><br>
-      <h3>Menu 2</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-    </div>
+<div class="row">
+  <div class="col-md-12">
+    <section class="card">
+      <div class="card-body">
+        <div class="head-title">
+          <h2>Data Pegawai</h2>
+        </div>
+        <br>
+
+            <div class="pull-left">
+              <a href="">
+                <button class="btn btn-success btn-xs"><i class="fa fa-file"></i> Export EXCEL</button>
+              </a>
+              <a href="" style="margin-left: 7px">
+                <button class="btn btn-info btn-xs"><i class="fa fa-plus"></i> Tambah</button>
+              </a>
+            </div>
+            <br>
+            <br>
+            <br>
+            <table class="table table-striped table-hover" id="data-id" width="100%">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">No</th>
+                        <th style="text-align: center;">NIK</th>
+                        <th style="text-align: center;">Nama</th>
+                        <th style="text-align: center;">Gaji Pokok</th>
+                        <th style="text-align: center;" width="250">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center; font-size: 14px;">1</td>
+                        <td align="center" style="font-size: 14px;">1234567891112</td>
+                        <td align="center" style="font-size: 14px;">Ridwan</td>
+                        <td align="center" style="font-size: 14px;">Rp. {{ number_format(10000,0,'','.') }}</td>
+                        <td style="text-align: center;">
+                            <a href="{{ route('pegawai.detail') }}">
+                                <button class="btn btn-success btn-xs"><i class="fa fa-eye fa-fx"></i> Detail</button>
+                            </a>
+                            <a href="">
+                                <button class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fx"></i> Edit</button>
+                            </a>
+                            <a href="">
+                                <button class="btn btn-danger btn-xs" onclick="return confirm('Hapus data ini?')"><i class="fa fa-trash fa-fx"></i> Hapus</button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+      </div>
+    </section>
   </div>
 </div>
 

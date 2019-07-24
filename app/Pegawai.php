@@ -68,5 +68,6 @@ class Pegawai extends Model
     {
         return $this->hasMany(Sertifikat::class, 'id_pegawai', 'id_pegawai');
     }
-   
 }
+   
+

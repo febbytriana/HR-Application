@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\TempKeluarga;
-use App\Keluarga;
+use App\Keluarga;                                        
+
 use Illuminate\Http\Request;
 
 class TempKeluargaController extends Controller
@@ -15,10 +16,10 @@ class TempKeluargaController extends Controller
      */
     public function index()
     {
-        $keluargas = TempKeluarga::all();
-        $pegawais = TempPegawai::all();
+        $tempkeluargas = TempKeluarga::all();
+        $keluargas = Keluarga::all();
 
-        return view('keluargas/index', compact('keluargas','pegawais'));
+        return view('keluargas/index', compact('tempkeluargas','keluarga'));
     }
 
     /**
@@ -28,8 +29,8 @@ class TempKeluargaController extends Controller
      */
     public function create()
     {
-         $pegawai = TempPegawai::all(); 
-         return view('keluargas/create',compact('pegawai'));
+         $tempkeluarga = TempKeluarga::all(); 
+         return view('keluargas/create',compact('tempkeluarga'));
     }
 
     /**
@@ -40,12 +41,12 @@ class TempKeluargaController extends Controller
      */
     public function store(Request $req)
     {
-        $keluargas = new TempKeluarga;
-        $keluargas->id_pegawai = $req->id_pegawai;
-        $keluargas->nama = $req->nama;
-        $keluargas->status = $req->status;
+        $tempkeluargas = new TempKeluarga;
+        $tempkeluargas->id_keluarga = $req->id_keluarga;
+        $tempkeluargas->nama = $req->nama;
+        $tempkeluargas->status = $req->status;
 
-        $keluargas->save();
+        $tempkeluargas->save();
         return redirect('/keluargas/index');
 
     }
@@ -67,11 +68,11 @@ class TempKeluargaController extends Controller
      * @param  \App\TempKeluarga  $tempKeluarga
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_temp_keluarga)
     {
-        $keluarga = TempKeluarga::find($id);
-        $pegawai = TempPegawai::all();
-        return view('keluargas/edit', compact('keluarga','pegawai'));
+        $tempkeluarga = TempKeluarga::find($id_temp_keluarga);
+        $keluarga = Keluargas::all();
+        return view('keluargas/edit', compact('tempkeluarga','keluarga'));
     }
 
     /**
@@ -83,12 +84,12 @@ class TempKeluargaController extends Controller
      */
     public function update(Request $req)
     {
-        $keluarga = TempKeluarga::find($req->id);
-        $keluarga->id_pegawai = $req->id_pegawai;
-        $keluarga->nama = $req->nama;
-        $keluarga->status = $req->status;
+        $tempkeluarga = TempKeluarga::find($req->id_temp_keluarga);
+        $tempkeluarga->id_keluarga = $req->id_keluarga;
+        $tempkeluarga->nama = $req->nama;
+        $tempkeluarga->status = $req->status;
 
-        $keluarga->save();
+        $tempkeluarga->save();
 
         return redirect('/keluarga/index');
     }
@@ -99,10 +100,10 @@ class TempKeluargaController extends Controller
      * @param  \App\TempKeluarga  $tempKeluarga
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_temp_keluarga)
     {
-        $keluarga = TempKeluarga::find($id);
-        $keluarga->delete();
+        $tempkeluarga = TempKeluarga::find($id_temp_keluarga);
+        $tempkeluarga->delete();
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
         return redirect()->back();
     }

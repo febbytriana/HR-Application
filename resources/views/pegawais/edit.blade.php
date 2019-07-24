@@ -3,11 +3,12 @@
 @section('content')
 
  <section role="main" class="content-body">
+
     <nav aria-label="breadcrumb">
-      <ol class="breadcrumb mt-3">
+      <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('jabatan.index') }}">Jabatan</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Tambah</li>
+        <li class="breadcrumb-item"><a href="{{ route('akun.index') }}">Manajemen Akun</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Ubah</li>
       </ol>
     </nav>
 
