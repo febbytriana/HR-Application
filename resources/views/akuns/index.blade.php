@@ -44,19 +44,23 @@
             @endif
         </section>
 
-        <div class="card-header">
-                <h4>Manajemen Akun</h2>
-        </div>
         <div class="card-body">
-            <a href="{{ route('akun.create')}}">
-                <button class="btn btn-primary"><i class="fa fa-plus"></i></button>
-            </a>
-            <a href="{{ route('akun.print') }}">
-                <button class="btn btn-primary"><i class="fa fa-print"></i></button>
-            </a>
+            <div class="head-title">
+              <h2>Managemen Akun</h2>
+            </div>
+            <br>
+            <div class="pull-left">
+              <a href="{{ route('akun.create')}}">
+                <button class="btn btn-info btn-xs"><i class="fa fa-plus fa-fx"></i> Tambah</button>
+             </a>
+             <a href="{{ route('akun.print') }}">
+                <button class="btn btn-success btn-xs"><i class="fa fa-print fa-print"></i></button>
+             </a>
+            </div>
             <br>
             <br>
-            <table class="table table-bordered table-striped table-hover" id="data-id" width="100%">
+            <br>
+            <table class="table table-striped table-hover" id="data-id" width="100%">
                 <thead>
                     <tr>
                         <th style="text-align: center;">NO.</th>
@@ -81,12 +85,11 @@
                                 <button class="btn btn-danger col-sm-4" onclick="return confirm('Hapus data ini?')"><i class="fa fa-trash"></i></button>
                             </a>
                         </td>
-                        
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-        </div>
+      </div>
     </section>
 </section>
 @endsection

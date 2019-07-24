@@ -2,25 +2,27 @@
 
 @section('content')
 
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb mt-3">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Data Pegawai</li>
-        </ol>
-    </nav>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb mt-3">
+        <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Pegawai</li>
+    </ol>
+</nav>
 
 <div class="row">
   <div class="col-md-12">
     <section class="card">
       <div class="card-body">
         <div class="head-title">
-          <h2>Data Pegawai</h2><br>
+          <h2>Data Pegawai</h2>
         </div>
+        <br>
+
             <div class="pull-left">
               <a href="">
                 <button class="btn btn-success btn-xs"><i class="fa fa-file"></i> Export EXCEL</button>
               </a>
-              <a href="">
+              <a href="" style="margin-left: 7px">
                 <button class="btn btn-info btn-xs"><i class="fa fa-plus"></i> Tambah</button>
               </a>
             </div>
@@ -44,7 +46,7 @@
                         <td align="center" style="font-size: 14px;">Ridwan</td>
                         <td align="center" style="font-size: 14px;">Rp. {{ number_format(10000,0,'','.') }}</td>
                         <td style="text-align: center;">
-                            <a href="">
+                            <a href="{{ route('pegawai.detail') }}">
                                 <button class="btn btn-success btn-xs"><i class="fa fa-eye fa-fx"></i> Detail</button>
                             </a>
                             <a href="">

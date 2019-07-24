@@ -31,6 +31,11 @@ class PegawaiController extends Controller
         return view('pegawais/create', compact('jabatan'));
     }
 
+    public function detail()
+    {
+        return view('pegawais/detail');
+    }
+
     /**
      * Store a newly created resource in storage.
      *

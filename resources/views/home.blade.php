@@ -45,13 +45,12 @@
         <div class="card-header">
             <h4>Dashboard</h2>
         </div>
+
         <div class="card-body">
           <span>Hai,{{ Auth::user()->name}}</span><br>
           <span>Anda masuk sebagai {{ Auth::user()->status}}</span><br>
         </div>
     </section>
 </section>
-
-
 
 @endsection
