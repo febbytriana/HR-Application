@@ -1,4 +1,4 @@
-<?php
+	<?php
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,3 +41,6 @@ Route::post('/pegawai/store', 'PegawaiController@store')->name('pegawai.store');
 Route::get('/pegawai/edit/{id}', 'PegawaiController@edit')->name('pegawai.edit');
 Route::post('/pegawai/update', 'PegawaiController@update')->name('pegawai.update');
 Route::get('/pegawai/destroy/{id}', 'PegawaiController@destroy')->name('pegawai.destroy');
+Route::get('/peringatan', function () {
+    return view('peringatans/index');
+});

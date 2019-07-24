@@ -8,7 +8,7 @@
     <title>HR-App</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="{{ asset('images/icon/favicon.ico') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('images/logohrapk.jpg') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
@@ -50,7 +50,7 @@
         <div class="sidebar-menu">
             <div class="sidebar-header" style="background: #0f5b94; border: none;">
                 <div class="logo">
-                    <a href="{{ route('home') }}"><img src="{{ asset('images/logohrapk.jpg') }}" alt="logo"></a>
+                    <a href="{{ route('home') }}"><img src="{{ asset('images/logohr.png') }}" alt="logo" width="70" height="70"></a>
                 </div>
             </div>
             <div class="main-menu">
@@ -85,13 +85,13 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href=""> <i class="menu-icon ti-email"></i><span>Teguran/Peringatan</span></a>
+                                <a href="#"> <i class="menu-icon ti-email"></i><span>Teguran/Peringatan</span></a>
                             </li> 
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-printer"></i>
                                     <span>Report</span></a>
                                 <ul class="collapse">
-                                    <li><a href="">Surat SP</a></li>
+                                    <li><a href="/peringatan">Surat SP</a></li>
                                     <li><a href="">Surat Perjalanan</a></li>
                                 </ul>
                             </li>   
@@ -126,8 +126,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <img class="avatar user-thumb" src="{{ asset('images/author/avatar.png') }}" alt="avatar">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item" style="text-align: center;" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -198,6 +197,12 @@
         $('#data-id').DataTable();
       })
     </script>
+    <script>
+      $(function () {
+        $('#data-tbl').DataTable();
+      })
+    </script>
+
 </body>
 
 </html>
