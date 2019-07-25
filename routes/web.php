@@ -38,10 +38,11 @@ Route::get('/pegawai/detail', 'PegawaiController@detail')->name('pegawai.detail'
 Route::get('/pegawai/create', 'PegawaiController@create')->name('pegawai.create');
 Route::get('/pegawai/print', 'PegawaiController@print')->name('pegawai.print');
 Route::post('/pegawai/store', 'PegawaiController@store')->name('pegawai.store');
-Route::get('/pegawai/edit/{id}', 'PegawaiController@edit')->name('pegawai.edit');
-Route::post('/pegawai/update', 'PegawaiController@update')->name('pegawai.update');
+Route::get('/pegawai/edit/{id_pegawai}', 'PegawaiController@edit')->name('pegawai.edit');
+Route::post('/pegawai/update/{id_pegawai}', 'PegawaiController@update')->name('pegawai.update');
 
-Route::get('/pegawai/destroy/{id}', 'PegawaiController@destroy')->name('pegawai.destroy');
+Route::get('/pegawai/destroy/{id_pegawai}', 'PegawaiController@destroy')->name('pegawai.destroy');
+Route::get('/pegawai/profil/{id_pegawai}', 'PegawaiController@profil')->name('pegawai.profil');
 
 //Surat SP
 Route::get('/surat-sp/create', 'SPController@create')->name('sp.create');
@@ -56,3 +57,7 @@ Route::get('/jabatan/hapus/{id_jabatan}', 'JabatanController@destroy')->name('ja
 Route::get('/peringatan', function () {
     return view('peringatans/index');
 });
+
+//Pendidikan
+Route::get('/pegawai/pendidikan/{id_pegawai}', 'PendidikanController@index')->name('pegawai.pendidikan');
+Route::post('/pegawai/pendidikan/store/{id_pegawai}', 'PendidikanController@update')->name('pendidikan.store');

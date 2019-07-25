@@ -44,9 +44,9 @@
                             </div>
                         </div>   
                         <div class="form-group">
-                            <label class="col-md-3 control-label">Tempat Tanggal Lahir<span class="required">*</span></label>
+                            <label class="col-md-3 control-label">Tanggal Lahir<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="ttl">
+                                <input type="date" class="form-control" name="ttl">
                             </div>
                         </div>   
                         <div class="form-group">

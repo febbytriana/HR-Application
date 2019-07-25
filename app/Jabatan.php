@@ -13,7 +13,7 @@ class Jabatan extends Model
         'gaji_pokok'
     ];
 
-    public function FunctionName()
+    public function pegawai()
     {
         return $this->belongsTo(Pegawai::class, 'id_jabatan', 'id_jabatan');
     }
