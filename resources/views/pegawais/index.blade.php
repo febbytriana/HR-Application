@@ -52,7 +52,7 @@
                             <a href="">
                                 <button class="btn btn-warning btn-xs"><i class="fa fa-edit fa-fx"></i> Edit</button>
                             </a>
-                            <a href="">
+                            <a href="{{ route('pegawai.destroy')}}">
                                 <button class="btn btn-danger btn-xs" onclick="return confirm('Hapus data ini?')"><i class="fa fa-trash fa-fx"></i> Hapus</button>
                             </a>
                         </td>

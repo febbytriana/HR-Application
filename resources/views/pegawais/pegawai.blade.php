@@ -52,7 +52,7 @@
               <a href="">
                 <button class="btn btn-success btn-xs"><i class="fa fa-file"></i> Export EXCEL</button>
               </a>
-              <a href="" style="margin-left: 7px">
+              <a href="{{ route('pegawai.create')}}" style="margin-left: 7px">
                 <button class="btn btn-info btn-xs"><i class="fa fa-plus"></i> Tambah</button>
               </a>
             </div>
@@ -76,10 +76,10 @@
                         <td>{{$key+1}}</td>
                         <td>{{$value -> nik}}</td>
                         <td>{{$value -> nama}}</td>
+                        <td>{{$value -> jabatan['jabatan']}}</td>
                         <td>{{$value -> alamat}}</td>
-                        <td></td>
-                        <td>
-                            <a href="">
+                        <td style="text-align: center;">
+                            <a href="{{ route('pegawai.detail',$value->id_pegawai)}}">
                                 <i class="fa fa-eye btn-success" style="padding:8px;border-radius:5px;"></i>
                             </a>
                             <a href="">
@@ -96,4 +96,5 @@
         </div>
     </section>
 </section>
+
 @endsection
