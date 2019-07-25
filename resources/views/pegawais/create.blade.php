@@ -44,9 +44,16 @@
                             </div>
                         </div>   
                         <div class="form-group">
+                            <label class="col-md-3 control-label">Tempat<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="tempat">
+                            </div>
+                        </div>   
+
+                        <div class="form-group">
                             <label class="col-md-3 control-label">Tanggal Lahir<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <input type="date" class="form-control" name="ttl">
+                                <input type="date" class="form-control" name="tgl">
                             </div>
                         </div>   
                         <div class="form-group">
@@ -117,7 +124,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">No.Telepon<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="telp">
+                                <input type="text" id="cc" class="form-control" name="telp">
                             </div>
                         </div>  
                         <div class="form-group">

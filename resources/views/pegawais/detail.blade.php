@@ -1,3 +1,5 @@
+
+
 @extends('layouts.app')
 
 @section('content')
@@ -68,8 +70,10 @@
                   <img src="" width="160" height="300"></a>
               </div>
               <!-- end profile-image -->
-              <div class="m-b-10">
-                <a href="javascript:;" class="btn btn-warning btn-block btn-sm">d11122</a>
+
+                @foreach($pegawai as $data)
+                <div class="m-b-10">
+                <span class="nickname">{{ $data->nama}}</span>
               </div>
             </div>
             <!-- end profile-left -->
@@ -80,88 +84,62 @@
                 <!-- begin table -->
                 <div class="table-responsive">
                   <table class="table table-profile">
+
+                
                     <thead>
                       <tr>
                         <th><h5><span class="label label-inverse pull-right"> # Data Personal Karyawan </span></h5></th>
                         <th>
-                          <h4>Ridwan <small>Dummy Data</small></h4>
+                          <h4>{{ $data->nama }}<small>{{ $data->jabatan['jabatan']}}</small></h4>
                         </th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr class="highlight">
                         <td class="field">NIK</td>
-                        <td>d11122</td>
+                        <td>{{ $data->nik}}</td>
                       </tr>
                       <tr>
                         <td class="field">Jenis Kelamin</td>
-                        <td><i class="fa fa-male fa-lg m-r-5"></i> Laki-laki</td>
+                        <td><i class="fa fa-male fa-lg m-r-5"></i> {{ $data->jk}}</td>
                       </tr>
-                      <tr>
-                        <td class="field">Unit</td>
-                        <td>ENG / Engineering                       </td>
-                      </tr>
+                      
                       <tr>
                         <td class="field">Tanggal Masuk</td>
                         <td>13-05-2019</td>
                       </tr>
                       <tr>
                         <td class="field">Alamat</td>
-                        <td><i class="fa fa-map-marker fa-lg m-r-5"></i> sss</td>
+                        <td><i class="fa fa-map-marker fa-lg m-r-5"></i> {{ $data->alamat}}</td>
                       </tr>
-                      <tr>
-                        <td class="field">Kota</td>
-                        <td>sss</td>
-                      </tr>
-                      <tr>
-                        <td class="field">Kota Asal</td>
-                        <td>s</td>
-                      </tr>
-                      <tr>
                         <td class="field">Tempat Tanggal Lahir</td>
-                        <td>cccc, 24-07-2019</td>
+                        <td>{{ $data->tempat}}, {{ \Carbon\Carbon::parse($data->tgl)->format('d-m-Y')}}</td>
                       </tr>
                       <tr>
                         <td class="field">Umur</td>
-                        <td>0 Tahun, 0 Bulan, 7 Hari</td>
+                        <td>{{ \Carbon\Carbon::parse($data->tgl)->age}} tahun</td>
                       </tr>
                       <tr>
                         <td class="field">Agama</td>
-                        <td>Islam</td>
+                        <td>{{ $data->agama}}</td>
                       </tr>
                       <tr>
-                        <td class="field">WN</td>
-                        <td>Indonesia</td>
+                        <td class="field">Kewarganegaraan</td>
+                        <td>{{$data->warga_negara }}</td>
                       </tr>
                       <tr>
                         <td class="field">Status Perkawinan</td>
-                        <td>K/0</td>
+                        <td>{{$data->status_kawin }}</td>
                       </tr>
-                      <tr>
-                        <td class="field">Status Pph</td>
-                        <td>K/2</td>
-                      </tr>
-                      <tr>
                         <td class="field">Golongan Darah</td>
-                        <td>O</td>
+                        <td>{{ $data->goldar}}</td>
                       </tr>
                       <tr>
                         <td class="field">No. Telp</td>
-                        <td><i class="fa fa-mobile fa-lg m-r-5"></i> 00292</td>
-                      </tr>
-                      <tr>
-                        <td class="field">No. BPJS Kesehatan</td>
-                        <td>888</td>
-                      </tr>
-                      <tr>
-                        <td class="field">No. BPJS Ketenagakerjaan</td>
-                        <td>5556</td>
-                      </tr>
-                      <tr>
-                        <td class="field">No. BPJS Pensiun</td>
-                        <td>66</td>
+                        <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $data->telp}}</td>
                       </tr>
                     </tbody>
+                    @endforeach
                   </table>
                 </div>
                 <!-- end table -->
@@ -202,7 +180,7 @@
                       <span style="margin-right: 28px; font-size: 14px;">Lama Bekerja</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">2 HARI</span>
                       <br>
                       <div class="pull-right">
-                        <a class="btn btn-success btn-xs" href=""><i class="fa fa-edit fa-fx"></i> Edti</a> &nbsp<a class="btn btn-danger btn-xs" href=""><i class="fa fa-trash fa-fx"></i> Hapus</a>
+                        <a class="btn btn-success btn-xs" href=""><i class="fa fa-edit fa-fx"></i> Edit</a> &nbsp<a class="btn btn-danger btn-xs" href=""><i class="fa fa-trash fa-fx"></i> Hapus</a>
                       </div>
                   </div>
                 </section>
@@ -547,5 +525,4 @@
   </div>
   </div>
 </div>
-
 @endsection

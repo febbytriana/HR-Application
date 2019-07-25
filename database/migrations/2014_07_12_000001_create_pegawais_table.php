@@ -24,7 +24,8 @@ class CreatePegawaisTable extends Migration
 
             $table->string('nik');
             $table->string('nama');
-            $table->date('ttl');
+            $table->string('tempat');
+            $table->date('tgl');
             $table->string('alamat');
             $table->string('jk');
             $table->string('agama');

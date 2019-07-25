@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pegawai;
 use App\Jabatan;
+use DB;
 use Illuminate\Http\Request;
 
 class PegawaiController extends Controller
@@ -19,10 +20,7 @@ class PegawaiController extends Controller
         $jabatan = \App\Jabatan::all();
         return view('pegawais.index', compact('pegawai','jabatan'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
+     /**
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -40,35 +38,28 @@ class PegawaiController extends Controller
     public function store(Request $request)
     {
         $pegawai = new Pegawai;
-        $pegawai->nik = $request->nik;
-        $pegawai->nama = $request->nama;
-        $pegawai->id_jabatan = $request->id_jabatan;
-        $pegawai->ttl = $request->ttl;
-        $pegawai->alamat = $request->alamat;
-        $pegawai->jk = $request->jk;
-        $pegawai->agama = $request->agama;
-        $pegawai->warga_negara = $request->warga_negara;
-        $pegawai->status_kawin = $request->status_kawin;
-        $pegawai->goldar = $request->goldar;
-        $pegawai->penyakit = $request->penyakit;
-        $pegawai->telp = $request->telp;
-        $pegawai->email = $request->email;
+        $pegawai->nik = $req->nik;
+        $pegawai->nama = $req->nama;
+        $pegawai->id_jabatan = $req->id_jabatan;
+        $pegawai->tempat = $req->tempat;
+        $pegawai->tgl = $req->tgl;
+        $pegawai->alamat = $req->alamat;
+        $pegawai->jk = $req->jk;
+        $pegawai->agama = $req->agama;
+        $pegawai->warga_negara = $req->warga_negara;
+        $pegawai->status_kawin = $req->status_kawin;
+        $pegawai->goldar = $req->goldar;
+        $pegawai->penyakit = $req->penyakit;
+        $pegawai->telp = $req->telp;
+        $pegawai->email = $req->email;
+        $pegawai->image = $req->image;
+        $image = time().'.'.$req->image->getClientOriginalExtension();
 
-        if($request->hasfile('image')){
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move('uploads', $filename);
-            $pegawai->image = $filename;
-        }else{
-            return $request;
-            $highlights->image = '';
-        }
-
+        $req->image->move(public_path('/public/upload'), $image);
         $pegawai->save();
 
         session()->flash('success-create', 'Data Akun berhasil disimpan');
-           
+        
         return redirect('/pegawai/index');
     }
 
@@ -78,7 +69,7 @@ class PegawaiController extends Controller
      * @param  \App\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function show(Pegawai $pegawai)
+    public function show($id_pegawai)
     {
         //
     }
@@ -134,7 +125,7 @@ class PegawaiController extends Controller
            
         return redirect('/pegawai/index');
 
-    }
+    }       
 
     /**
      * Remove the specified resource from storage.
@@ -156,4 +147,12 @@ class PegawaiController extends Controller
         $pendidikan = \App\Pendidikan::all();
         return view('pegawais.detail', compact('pegawai','pendidikan'));
     }
+
+    public function detail($id_pegawai)
+    {
+        $pegawai = Pegawai::where('id_pegawai','=',$id_pegawai)->get();
+
+        return view('pegawais/detail',compact('pegawai'));
+    }
+
 }
