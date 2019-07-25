@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}">
-
+    
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <!-- modernizr css -->
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
@@ -58,20 +58,38 @@
                     <nav>
                         <ul class="metismenu" id="menu">
                             <li><a href="{{ route('home') }}"><i class="ti-map-alt"></i> <span>Dashboard</span></a></li>
+
+                                @if(Auth::user()->status == "Pegawai" )
+                                <li>
+                                    <a href=""><i class=""></i> <span>Profil</span></a>
+                                </li>
+
+                                @endif
+                                @if(Auth::user()->status == "Admin" )
                                <li>
+                                
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-harddrive"></i>
                                     <span>Manajemen Akun</span></a>
                                 <ul class="collapse">
-                                    @if(Auth::user()->status == "Admin" )
+
+                                    
                                     <li><a href="{{ route('akun.index') }}">HR</a></li>
-                                    @endif
-
-                                    @if(Auth::user()->status == "HR" )
-                                    <li><a href="{{ route('akunpegawai.indexpegawai') }}">Pegawai</a></li>
-                                    @endif
+                                    
                                 </ul>
-                            </li> 
+                             </li> 
+                                @endif
 
+                                @if(Auth::user()->status == "HR" )
+
+                               <li>
+                                
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-harddrive"></i>
+                                    <span>Manajemen Akun</span></a>
+                                <ul class="collapse">
+                                    <li><a href="{{ route('akunpegawai.indexpegawai') }}">Pegawai</a></li>
+                                </ul>
+                             </li> 
+                                @endif
                         @if(Auth::user()->status == "Admin" )
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
@@ -187,6 +205,10 @@
     <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('js/jquery.slicknav.min.js') }}"></script>
 
+    <script src="{{ asset('vendors/jquery/dist/jquery.inputmask.bundle.min.js') }}"></script>
+
+    <script src="{{ asset('vendor/jquery/jquery-input-mask-phone-number.js') }}"></script>
+
     <!-- start chart js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js') }}"></script>
     <!-- start highcharts js -->
@@ -205,6 +227,7 @@
     <script src="{{ asset('js/plugins.js') }}"></script>
 
     <script src="{{ asset('js/scripts.js') }}"></script>
+
     <script>
       $(function () {
         $('#data-id').DataTable();
@@ -214,6 +237,12 @@
       $(function () {
         $('#data-tbl').DataTable();
       })
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        $('#cc').inputmask("9999-9999-9999");
+      });
     </script>
 
 </body>

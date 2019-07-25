@@ -24,7 +24,8 @@ class CreatePegawaisTable extends Migration
 
             $table->string('nik');
             $table->string('nama');
-            $table->string('ttl');
+            $table->string('tempat');
+            $table->date('tgl');
             $table->string('alamat');
             $table->string('jk');
             $table->string('agama');
@@ -34,7 +35,8 @@ class CreatePegawaisTable extends Migration
             $table->string('penyakit');
             $table->string('telp');
             $table->string('email');
-            $table->string('image');
+            $table->string('image')->nullable();
+
             $table->timestamps();
         });
     }
