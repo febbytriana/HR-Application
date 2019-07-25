@@ -15,8 +15,7 @@ class JabatanTableSeeder extends Seeder
          DB::table('jabatans')->insert([
             'id_jabatan'    => '1',
         	'jabatan'    => 'Software Tester',
-        	'gaji_pokok'    => '3.500.000,00',
-        	'remember_token' => '1',
+        	'gaji_pokok'    => '3500000',
         	'created_at'	=> Carbon::now(),
         	'updated_at'	=> Carbon::now(),
         ]);
@@ -25,8 +24,7 @@ class JabatanTableSeeder extends Seeder
          DB::table('jabatans')->insert([
             'id_jabatan'    => '2',
         	'jabatan'    => 'Manager',
-        	'gaji_pokok'    => '4.500.000,00',
-        	'remember_token' => '1',
+        	'gaji_pokok'    => '4500000',
         	'created_at'	=> Carbon::now(),
         	'updated_at'	=> Carbon::now(),
         ]);

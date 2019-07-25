@@ -46,13 +46,17 @@
         <div class="card-header">
                 <h4>Data Pegawai</h2>
         </div>
+        <br>
         <div class="card-body">
-            <a href="{{ route('pegawai.create')}}">
-                <button class="btn btn-primary"><i class="fa fa-plus"></i></button>
-            </a>
-            <a href="">
-                <button class="btn btn-primary"><i class="fa fa-print"></i></button>
-            </a>
+             <div class="pull-left">
+              <a href="">
+                <button class="btn btn-success btn-xs"><i class="fa fa-file"></i> Export EXCEL</button>
+              </a>
+              <a href="" style="margin-left: 7px">
+                <button class="btn btn-info btn-xs"><i class="fa fa-plus"></i> Tambah</button>
+              </a>
+            </div>
+            <br>
             <br>
             <br>
             <table class="table table-bordered table-striped table-hover" id="data-id" width="100%">
@@ -63,7 +67,6 @@
                         <th style="text-align: center;">Nama</th>
                         <th style="text-align: center;" width="150px">Jabatan</th>
                         <th style="text-align: center;">Alamat</th>
-                        <th style="text-align: center;">Foto</th>
                         <th style="text-align: center;" width="120px">Aksi</th>
                     </tr>
                 </thead>
@@ -73,7 +76,6 @@
                         <td>{{$key+1}}</td>
                         <td>{{$value -> nik}}</td>
                         <td>{{$value -> nama}}</td>
-                        <td><img src="{{ asset('upload/'.$value->image)  }}" alt="" style="width:100px; height:130px;"></td>
                         <td>{{$value -> alamat}}</td>
                         <td></td>
                         <td>

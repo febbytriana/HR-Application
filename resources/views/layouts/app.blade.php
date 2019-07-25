@@ -58,7 +58,21 @@
                     <nav>
                         <ul class="metismenu" id="menu">
                             <li><a href="{{ route('home') }}"><i class="ti-map-alt"></i> <span>Dashboard</span></a></li>
-                            
+                               <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-harddrive"></i>
+                                    <span>Manajemen Akun</span></a>
+                                <ul class="collapse">
+                                    @if(Auth::user()->status == "Admin" )
+                                    <li><a href="{{ route('akun.index') }}">HR</a></li>
+                                    @endif
+
+                                    @if(Auth::user()->status == "HR" )
+                                    <li><a href="{{ route('akunpegawai.indexpegawai') }}">Pegawai</a></li>
+                                    @endif
+                                </ul>
+                            </li> 
+
+                        @if(Auth::user()->status == "Admin" )
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Data Master</span></a>
@@ -66,15 +80,10 @@
                                     <li><a href="{{ route('jabatan.index') }}">Jabatan</a></li>
                                 </ul>
                             </li> 
-                            
-                            <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-harddrive"></i>
-                                    <span>Manajemen Akun</span></a>
-                                <ul class="collapse">
-                                    <li><a href="{{ route('akun.index') }}">HR</a></li>
-                                    <li><a href="{{ route('akunpegawai.indexpegawai') }}">Pegawai</a></li>
-                                </ul>
-                            </li> 
+                        @endif
+
+                        @if(Auth::user()->status == "HR" )
+             
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-user"></i>
                                     <span>Pegawai</span></a>
@@ -83,19 +92,11 @@
                                     <li><a href="">Absensi</a></li>
                                     <li><a href="">Gaji</a></li>
                                 </ul>
-                            </li> 
+                            </li>                             
+                            <li><a href="{{ route('sp.create') }}"><i class="ti-map-alt"></i> <span>Surat Teguran/Peringatan</span></a></li>
+                            <li><a href="{{ route('home') }}"><i class="ti-map-alt"></i> <span>Surat Perjalanan</span></a></li>
                             
-                            <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
-                                    <span>Data Master</span></a>
-                                <ul class="collapse">
 
-                                    <li><a href="">Jabatan</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#"> <i class="menu-icon ti-email"></i><span>Teguran/Peringatan</span></a>
-                            </li> 
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-printer"></i>
                                     <span>Report</span></a>
@@ -104,10 +105,7 @@
                                     <li><a href="">Surat Perjalanan</a></li>
                                 </ul>
                             </li> 
-
-                            <li><a href="{{ route('sp.create') }}"><i class="ti-map-alt"></i> <span>Surat Teguran/Peringatan</span></a></li>
-                            <li><a href="{{ route('home') }}"><i class="ti-map-alt"></i> <span>Surat Perjalanan</span></a></li>
-                               
+                    @endif
                         </ul>
                     </nav>
                 </div>
@@ -131,8 +129,7 @@
                     <!-- profile info & task notification -->
                     <div class="col-md-6 col-sm-4 clearfix">
                         <ul class="notification-area pull-right">
-                            <li id="full-view"><i class="ti-fullscreen"></i></li>
-                            <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                            
 
                              <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: #fff;"> Hai,
