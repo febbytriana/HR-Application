@@ -22,7 +22,7 @@
               <a href="">
                 <button class="btn btn-success btn-xs"><i class="fa fa-file"></i> Export EXCEL</button>
               </a>
-              <a href="" style="margin-left: 7px">
+              <a href="{{ route('pegawai.create') }}}" style="margin-left: 7px">
                 <button class="btn btn-info btn-xs"><i class="fa fa-plus"></i> Tambah</button>
               </a>
             </div>

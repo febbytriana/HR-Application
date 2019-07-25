@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
         	'status'    => 'Admin',
         	'remember_token' => '1',
         	'created_at'	=> Carbon::now(),
-        	'updated_at'	=> Carbon::now(),
+        	'updated_at'	=> arbon::now(),
         ]);
 
          DB::table('users')->insert([
@@ -39,7 +39,7 @@ class UsersTableSeeder extends Seeder
         	'name'    => 'Ahmad',
         	'email'    => 'ahmad@gmail.com',
         	'password' => '$2y$10$2agbYlfLenAtqluoFEcRku9e6F.1MLOwh8ATHvmI8GVOpf/HgEC/i',
-        	'status'    => 'Pegawai',
+        	'status'    => 'HR',
         	'remember_token' => '1',
         	'created_at'	=> Carbon::now(),
         	'updated_at'	=> Carbon::now(),

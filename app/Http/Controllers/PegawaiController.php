@@ -121,4 +121,9 @@ class PegawaiController extends Controller
 
         return redirect()->back();
     }
+
+    public function detail()
+    {
+        return view('pegawais/detail');
+    }
 }

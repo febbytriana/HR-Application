@@ -6,15 +6,15 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb mt-3">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Surat Teguran dan Peringatan</li>
+        <li class="breadcrumb-item active" aria-current="page">Surat Perjalanan</li>
       </ol>
     </nav>
 
     <section class="card mt-3">
         <div class="card-header">
-                <span class="title-head">Tambah Surat Teguran/Peringatan</span>
+                <span class="title-head">Tambah Surat Perjalanan</span>
                 <div class="pull-right">
-                    <a class="nav-link" href="{{ route('sp.index') }}" style="font-size: 15px;"><i class="menu-icon ti-arrow-left"></i> Back</a>
+                    <a class="nav-link" href="{{ route('perjalanan.index') }}" style="font-size: 15px;"><i class="menu-icon ti-arrow-left"></i> Back</a>
                 </div>
         </div>
         <div class="card-body" style="">
@@ -29,45 +29,40 @@
                               </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-md-3 control-label">Perihal*</label>
+                            <label class="col-md-3 control-label">Kegiatan*</label>
                             <div class="col-md-9">
                                 <select name="" id="" class="form-control">
                                     <option value=""></option>
-                                    <option value="Teguran">Teguran</option>
-                                    <option value="SP-1">SP 1</option>
-                                    <option value="SP-2">SP 2</option>
-                                    <option value="Skorsing">Skorsing</option>
+                                    <option value="Teguran">Mabar</option>
+                                    <option value="SP-1">Main PS</option>
+                                    <option value="SP-2">Cari Makan</option>
+                                    <option value="Skorsing">Ke Pasar</option>
                                 </select>
                             </div>
                           </div>
                           <div class="form-group">
-                                <label class="col-md-3 control-label">Pelanggaran<span class="required">*</span></label>
+                                <label class="col-md-3 control-label">Sponsor<span class="required">*</span></label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="">
                                 </div>
                             </div>
                           <div class="form-group">
-                                <label class="col-md-3 control-label">Tanggal Pelanggaran<span class="required">*</span></label>
+                                <label class="col-md-3 control-label">Tujuan<span class="required">*</span></label>
                                 <div class="col-md-9">
-                                    <input type="date" class="form-control" name="">
+                                    <input type="text" class="form-control" name="">
                                 </div>
-                            </div> 
+                            </div>
                       </div>
                       <div class="col-6">
-                          <div class="form-group">
-                                <label class="col-md-6 control-label">Tanggal Menghadap HRD<span class="required">*</span></label>
+                
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Tanggal Berangkat<span class="required">*</span></label>
                                 <div class="col-md-9">
                                     <input type="date" class="form-control" name="">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Mulai Skorsing<span class="required">*</span></label>
-                                <div class="col-md-9">
-                                    <input type="date" class="form-control" name="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Akhir Skorsing<span class="required">*</span></label>
+                                <label class="col-md-3 control-label">Tanggal Pulang<span class="required">*</span></label>
                                 <div class="col-md-9">
                                     <input type="date" class="form-control" name="">
                                 </div>

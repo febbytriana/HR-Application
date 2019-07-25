@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateJabatansTable extends Migration
 {
     /**
@@ -17,11 +16,9 @@ class CreateJabatansTable extends Migration
             $table->increments('id_jabatan');
             $table->string('jabatan');
             $table->integer('gaji_pokok');
-
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

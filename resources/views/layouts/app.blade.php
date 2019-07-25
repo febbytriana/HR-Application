@@ -93,16 +93,16 @@
                                     <li><a href="">Gaji</a></li>
                                 </ul>
                             </li>                             
-                            <li><a href="{{ route('sp.create') }}"><i class="ti-map-alt"></i> <span>Surat Teguran/Peringatan</span></a></li>
-                            <li><a href="{{ route('home') }}"><i class="ti-map-alt"></i> <span>Surat Perjalanan</span></a></li>
+                            <li><a href="{{ route('sp.create') }}"><i class="ti-email"></i> <span>Surat Teguran/Peringatan</span></a></li>
+                            <li><a href="{{ route('perjalanan.create') }}"><i class="ti-email"></i> <span>Surat Perjalanan</span></a></li>
                             
 
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-printer"></i>
                                     <span>Report</span></a>
                                 <ul class="collapse">
-                                    <li><a href="/peringatan">Surat SP</a></li>
-                                    <li><a href="">Surat Perjalanan</a></li>
+                                    <li><a href="{{ route('sp.index') }}">Surat SP</a></li>
+                                    <li><a href="{{ route('perjalanan.index') }}">Surat Perjalanan</a></li>
                                 </ul>
                             </li> 
                     @endif
@@ -137,10 +137,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" style="text-align: center;" href="{{ route('logout') }}"
+                                    <a class="dropdown-item" href="#"><i class="menu-icon ti-user"></i> Profile
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                                     document.getElementById('logout-form').submit();"><i class="menu-icon ti-shift-left"></i>
+                                         {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
