@@ -18,7 +18,7 @@ class PegawaiController extends Controller
     {
         $pegawai = \App\Pegawai::all();
         $jabatan = \App\Jabatan::all();
-        return view('pegawais.index', compact('pegawai','jabatan'));
+        return view('pegawais.pegawai', compact('pegawai','jabatan'));
     }
      /**
      * @return \Illuminate\Http\Response
@@ -140,6 +140,7 @@ class PegawaiController extends Controller
 
         return redirect('/pegawai/index');
     }
+<<<<<<< HEAD
     public function profil($id_pegawai)
     {
         
@@ -147,6 +148,8 @@ class PegawaiController extends Controller
         $pendidikan = \App\Pendidikan::all();
         return view('pegawais.detail', compact('pegawai','pendidikan'));
     }
+=======
+>>>>>>> origin/master
 
     public function detail($id_pegawai)
     {
