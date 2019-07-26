@@ -17,7 +17,8 @@ class PegawaiController extends Controller
     public function index()
     {
         $pegawai = \App\Pegawai::all();
-        return view('pegawais.pegawai', compact('pegawai'));
+        $jabatan = \App\Jabatan::all();
+        return view('pegawais.pegawai', compact('pegawai','jabatan'));
     }
      /**
      * @return \Illuminate\Http\Response
@@ -34,7 +35,7 @@ class PegawaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $request)
     {
         $pegawai = new Pegawai;
         $pegawai->nik = $req->nik;
@@ -83,7 +84,7 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::find($id_pegawai);
         $jabatan = Jabatan::all();
-        return view('pegawai/edit',compact('pegawai','jabatan'));
+        return view('pegawais/edit',compact('pegawai','jabatan'));
     }
 
     /**
@@ -93,19 +94,35 @@ class PegawaiController extends Controller
      * @param  \App\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req)
+    public function update(Request $request, $id_pegawai)
     {
-        $pegawai = Pegawai::find($req->id_pegawai);
+        $pegawai = Pegawai::find($id_pegawai);
+        $pegawai->nik = $request->nik;
+        $pegawai->nama = $request->nama;
+        $pegawai->id_jabatan = $request->id_jabatan;
+        $pegawai->ttl = $request->ttl;
+        $pegawai->alamat = $request->alamat;
+        $pegawai->jk = $request->jk;
+        $pegawai->agama = $request->agama;
+        $pegawai->warga_negara = $request->warga_negara;
+        $pegawai->status_kawin = $request->status_kawin;
+        $pegawai->goldar = $request->goldar;
+        $pegawai->penyakit = $request->penyakit;
+        $pegawai->telp = $request->telp;
+        $pegawai->email = $request->email;
 
-        $pegawai->nama = $req->nama;
-        $pegawai->jk = $req->jk;
-        $pegawai->tempat = $req->tempat;
-        $pegawai->tgl = $req->tgl;
-        $pegawai->agama = $req->agama;
-        $pegawai->id_jabatan = $req->id_jabatan;
-        
-        
-        $pegawai->save();       
+        if($request->hasfile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads', $filename);
+            $pegawai->image = $filename;
+        }
+
+        $pegawai->save();
+
+        session()->flash('success-create', 'Data Akun berhasil diedit');
+           
         return redirect('/pegawai/index');
 
     }       
@@ -121,7 +138,14 @@ class PegawaiController extends Controller
         $pegawai = Pegawai::find($id_pegawai);
         $pegawai->delete();
 
-        return redirect()->back();
+        return redirect('/pegawai/index');
+    }
+    public function profil($id_pegawai)
+    {
+        
+        $pegawai = \App\Pegawai::find($id_pegawai);
+        $pendidikan = \App\Pendidikan::all();
+        return view('pegawais.detail', compact('pegawai','pendidikan'));
     }
 
     public function detail($id_pegawai)

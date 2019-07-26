@@ -364,27 +364,27 @@
             <section class="card">
               <div class="card-body mb-4" style="border: 1px solid #898989;">
                 <div class="body-text">
-                    <span style="margin-right: 113px; font-size: 14px;">SD</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>
+                    <span style="margin-right: 113px; font-size: 14px;"><b>SD</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>
                     <br>
-                    <span style="margin-right: 58px;font-size: 14px;">Tahun Lulus</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>  
-                    <br>
-                    <br>
-                    <span style="margin-right: 102px;font-size: 14px;">SMP</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>  
-                    <br>
-                    <span style="margin-right: 58px;font-size: 14px;">Tahun Lulus</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>
+                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>  
                     <br>
                     <br>
-                    <span style="margin-right: 68px;font-size: 14px;">SMA/SMK</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>  
+                    <span style="margin-right: 102px;font-size: 14px;"><b>SMP</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>  
                     <br>
-                    <span style="margin-right: 58px;font-size: 14px;">Tahun Lulus</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>
+                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>
                     <br>
                     <br>
-                    <span style="margin-right: 26px;font-size: 14px;">Perguruan Tinggi</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>  
+                    <span style="margin-right: 68px;font-size: 14px;"><b>SMA/SMK</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>  
                     <br>
-                    <span style="margin-right: 58px;font-size: 14px;">Tahun Lulus</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>
+                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>
+                    <br>
+                    <br>
+                    <span style="margin-right: 26px;font-size: 14px;"><b>Perguruan Tinggi</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>  
+                    <br>
+                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>
                     <br>
                   <div class="pull-right">
-                    <a class="btn btn-success btn-xs" href=""><i class="fa fa-edit fa-fx"></i> Edit</a>
+                    <a class="btn btn-success btn-xs" href="{{ route('pegawai.pendidikan',$pegawai->id_pegawai)}}"><i class="fa fa-edit fa-fx"></i> Edit</a>
                   </div>
                 </div>    
               </div>

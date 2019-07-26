@@ -12,9 +12,11 @@ class PendidikanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id_pegawai)
     {
-        //
+        $pendidikan = \App\Pendidikan::all();
+        $pegawai = \App\Pegawai::find($id_pegawai);
+        return view('pegawais.pendidikan.edit', compact('pegawai','pendidikan'));
     }
 
     /**
@@ -35,7 +37,7 @@ class PendidikanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -67,9 +69,27 @@ class PendidikanController extends Controller
      * @param  \App\Pendidikan  $pendidikan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pendidikan $pendidikan)
+    public function update(Request $request, $id_pegawai)
     {
-        //
+        $pendidikan = new Pendidikan;
+        $pendidikan->sd = $request->sd;
+        $pendidikan->lulus_sd = $request->lulus_sd;
+        $pendidikan->smp = $request->smp;
+        $pendidikan->lulus_smp = $request->lulus_smp;
+        $pendidikan->smk = $request->smk;
+        $pendidikan->lulus_smk = $request->lulus_smk;
+        $pendidikan->nama_universitas = $request->nama_universitas;
+        $pendidikan->tingkat_pt = $request->tingkat_pt;
+        $pendidikan->lulus_pt = $request->lulus_pt;
+        $pendidikan->id_pegawai = $request->id_pegawai;
+        if($pendidikan->id_pendidikan == 0){
+            $pendidikan->save();
+        }else{
+            $pendidikan->update();
+        }
+        
+
+        return redirect('pegawai/index');
     }
 
     /**

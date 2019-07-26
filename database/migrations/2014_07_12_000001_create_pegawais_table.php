@@ -36,7 +36,6 @@ class CreatePegawaisTable extends Migration
             $table->string('telp');
             $table->string('email');
             $table->string('image')->nullable();
-
             $table->timestamps();
         });
     }
