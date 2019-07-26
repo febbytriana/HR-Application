@@ -35,7 +35,7 @@ class PegawaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
         $pegawai = new Pegawai;
         $pegawai->nik = $req->nik;
@@ -94,25 +94,25 @@ class PegawaiController extends Controller
      * @param  \App\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_pegawai)
+    public function update(Request $req, $id_pegawai)
     {
         $pegawai = Pegawai::find($id_pegawai);
-        $pegawai->nik = $request->nik;
-        $pegawai->nama = $request->nama;
-        $pegawai->id_jabatan = $request->id_jabatan;
-        $pegawai->ttl = $request->ttl;
-        $pegawai->alamat = $request->alamat;
-        $pegawai->jk = $request->jk;
-        $pegawai->agama = $request->agama;
-        $pegawai->warga_negara = $request->warga_negara;
-        $pegawai->status_kawin = $request->status_kawin;
-        $pegawai->goldar = $request->goldar;
-        $pegawai->penyakit = $request->penyakit;
-        $pegawai->telp = $request->telp;
-        $pegawai->email = $request->email;
+        $pegawai->nik = $req->nik;
+        $pegawai->nama = $req->nama;
+        $pegawai->id_jabatan = $req->id_jabatan;
+        $pegawai->ttl = $req->ttl;
+        $pegawai->alamat = $req->alamat;
+        $pegawai->jk = $req->jk;
+        $pegawai->agama = $req->agama;
+        $pegawai->warga_negara = $req->warga_negara;
+        $pegawai->status_kawin = $req->status_kawin;
+        $pegawai->goldar = $req->goldar;
+        $pegawai->penyakit = $req->penyakit;
+        $pegawai->telp = $req->telp;
+        $pegawai->email = $req->email;
 
-        if($request->hasfile('image')){
-            $file = $request->file('image');
+        if($req->hasfile('image')){
+            $file = $req->file('image');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
             $file->move('uploads', $filename);
