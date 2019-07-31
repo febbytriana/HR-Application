@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="head-title">
+<div  class="head-title">
   <h2>Detail Pegawai</h2>
   <!-- Nav tabs -->
   <nav aria-label="breadcrumb">
@@ -73,7 +73,7 @@
 
                 @foreach($pegawai as $data)
                 <div class="m-b-10">
-                <span class="nickname">{{ $data->nama}}</span>
+                <span id="panggilan"></span>
               </div>
             </div>
             <!-- end profile-left -->
@@ -84,7 +84,7 @@
                 <!-- begin table -->
                 <div class="table-responsive">
                   <table class="table table-profile">
-
+                    <input hidden="" type="text" name="nama" value="{{ $data->nama}}" id="ada">
                 
                     <thead>
                       <tr>
@@ -287,8 +287,8 @@
     <div id="anak" class="container tab-pane fade"><br>
       <div class="container">
         <span class="title-head">-- Anak --</span>
-        <div class="pull-right">
-          <a class="btn btn-info btn-xs pull-right" href=""><i class="fa fa-plus fa-fx"></i> Tambah</a>
+
+        <a class="btn btn-info btn-xs pull-right" href="{{ route('keluarga.create',$pegawais->id_pegawai)}}"><i class="fa fa-plus fa-fx"></i> Tambah</a>
         </div>
       </div>
       <br>
@@ -298,14 +298,17 @@
             <section class="card">
               <div class="card-body mb-4" style="border: 2px solid #c0c2ce;">
                 <div class="body-text">
-                    <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>
+
+                  @foreach($keluarga as $keluargas)
+        <div class="pull-right">
+                    <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->nama }}</span>
                     <br>
-                    <span style="margin-right: 18px;font-size: 14px;">Tempat Tanggal Lahir</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>  
+                    <span style="margin-right: 18px;font-size: 14px;">Tempat Tanggal Lahir</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->tempat }} , {{ $keluargas->tgl }} </span>  
                     <br>
-                    <span style="margin-right: 98px;font-size: 14px;">Anak ke</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>  
+                    <span style="margin-right: 98px;font-size: 14px;">Anak ke</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->anak_ke }} </span>  
                     <br>
-                    <span style="margin-right: 109px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>
-                  
+                    <span style="margin-right: 109px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->status }} </span>
+                  @endforeach
                   <div class="pull-right">
                     <a class="btn btn-success btn-xs" href=""><i class="fa fa-edit fa-fx"></i> Edit</a>
                   </div>
@@ -517,7 +520,7 @@
                   </tbody>
               </table>
             </div>
-            </section>
+            </section >
           </div>
         </div>
       </div>
@@ -525,4 +528,18 @@
   </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  var nick=document.getElementById("ada").value;
+  var nickname=nick.split(" ");
+  if (nickname.length>=2) {
+    document.getElementById("panggilan").innerHTML=nickname[0]+" "+nickname[1];  
+  }
+  else{
+    document.getElementById("panggilan").innerHTML=nickname[0];
+  }
+  
+
+</script>
+
 @endsection

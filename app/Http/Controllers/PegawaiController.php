@@ -18,7 +18,9 @@ class PegawaiController extends Controller
     {
         $pegawai = \App\Pegawai::all();
         $jabatan = \App\Jabatan::all();
-        return view('pegawais.pegawai', compact('pegawai','jabatan'));
+        $keluarga = \App\Keluarga::all();
+       
+        return view('pegawais.pegawai', compact('pegawai','jabatan','keluarga'));
     }
      /**
      * @return \Illuminate\Http\Response
@@ -140,20 +142,15 @@ class PegawaiController extends Controller
 
         return redirect('/pegawai/index');
     }
-    public function profil($id_pegawai)
-    {
-        
-        $pegawai = \App\Pegawai::find($id_pegawai);
-        $pendidikan = \App\Pendidikan::all();
-        return view('pegawais.detail', compact('pegawai','pendidikan'));
-    }
 
     public function detail($id_pegawai)
     {
         $pegawai = Pegawai::where('id_pegawai','=',$id_pegawai)->get();
-        $id_pegawai = Pegawai::find($id_pegawai);
+        $pegawais = Pegawai::find($id_pegawai);
+         $keluarga = \App\Keluarga::all();
+       
 
-        return view('pegawais/detail',compact('pegawai','id_pegawai'));
+        return view('pegawais/detail',compact('pegawai','keluarga','pegawais'));
     }
 
 }

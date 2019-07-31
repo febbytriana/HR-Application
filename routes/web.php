@@ -42,8 +42,6 @@ Route::get('/pegawai/edit/{id_pegawai}', 'PegawaiController@edit')->name('pegawa
 Route::post('/pegawai/update/{id_pegawai}', 'PegawaiController@update')->name('pegawai.update');
 
 Route::get('/pegawai/destroy/{id_pegawai}', 'PegawaiController@destroy')->name('pegawai.destroy');
-Route::get('/pegawai/profil/{id_pegawai}', 'PegawaiController@profil')->name('pegawai.profil');
-
 //Surat SP
 Route::get('/surat-sp/create', 'SPController@create')->name('sp.create');
 Route::get('/surat-sp/index', 'SPController@index')->name('sp.index');
@@ -63,3 +61,12 @@ Route::get('/perjalanan/create', 'PerjalananController@create')->name('perjalana
 //Pendidikan
 Route::get('/pegawai/pendidikan/{id_pegawai}', 'PendidikanController@index')->name('pegawai.pendidikan');
 Route::post('/pegawai/pendidikan/store/{id_pegawai}', 'PendidikanController@update')->name('pendidikan.store');
+
+//Keluarga
+Route::get('/keluarga/index', 'KeluargaController@index')->name('keluarga.index');
+Route::get('/keluarga/create/{id_pegawai}', 'KeluargaController@create')->name('keluarga.create');
+Route::post('/keluarga/store', 'KeluargaController@store')->name('keluarga.store');
+Route::get('/keluarga/edit', 'KeluargaController@edit')->name('keluarga.edit');
+Route::post('/keluarga/update', 'KeluargaController@update')->name('keluarga.update');
+Route::get('/keluarga/hapus/{id_pegawai}', 'KeluargaController@destroy')->name('keluarga.hapus');
+
