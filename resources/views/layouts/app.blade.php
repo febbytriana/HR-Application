@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -156,7 +155,7 @@ box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);">
 
                              <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle waves-effect" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre anim="ripple"> Hai,
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->nama }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -262,6 +261,8 @@ box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);">
       });
     </script>
     <script src="{{ asset('js/waves-effect.js') }}"></script>
+
+    
 
 </body>
 

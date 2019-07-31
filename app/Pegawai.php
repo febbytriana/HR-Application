@@ -9,6 +9,7 @@ class Pegawai extends Model
     protected $table = "pegawais";
     protected $primaryKey = "id_pegawai";
     protected $fillable = [
+        'kode_pegawai',
         'nik',
         'nama',
         'id_jabatan',

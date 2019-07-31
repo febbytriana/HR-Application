@@ -60,7 +60,7 @@
             <br>
             <br>
             <table class="table table-bordered table-striped table-hover" id="data-id" width="100%">
-                <thead>
+                <thead>x
                     <tr>
                         <th style="text-align: center;" width="50px">NO.</th>
                         <th style="text-align: center;" width="200px">NIK</th>
@@ -75,7 +75,7 @@
                     <tr>
                         <td>{{$key+1}}</td>
                         <td>{{$value -> nik}}</td>
-                        <td>{{$value -> nama}}</td>
+                    <td>{{$value -> nama}}</td>
                         <td>{{$value -> jabatan['jabatan']}}</td>
                         <td>{{$value -> alamat}}</td>
                         <td style="text-align: center;">

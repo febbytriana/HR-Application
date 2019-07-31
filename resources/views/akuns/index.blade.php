@@ -74,7 +74,7 @@
                    @foreach( $akuns as $key => $akun )
                     <tr>
                         <td style="text-align: center;">{{ $key+1 }}</td>
-                        <td>{{ $akun->name }}</td>
+                        <td>{{ $akun->nama }}</td>
                         <td>{{ $akun->email }}</td>
                         <td>{{ $akun->status }}</td>
                         <td style="text-align: center;">

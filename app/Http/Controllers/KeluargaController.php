@@ -28,11 +28,12 @@ class KeluargaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id_pegawai)
     {
+        $pegawai = Pegawai::where('id_pegawai','=',$id_pegawai)->get();
         $keluarga = Keluarga::all();
 
-        return view('keluargas/create', compact('keluarga'));
+        return view('keluargas/edit', compact('keluarga','pegawai'));
 
     }
 
@@ -45,7 +46,6 @@ class KeluargaController extends Controller
     public function store(Request $req)
     {
         $keluarga = new Keluarga;
-        $keluarga->id_pegawai = $req->id_pegawai;
         $keluarga->nama = $req->nama;
         $keluarga->status = $req->status;
 
@@ -70,9 +70,9 @@ class KeluargaController extends Controller
      * @param  \App\Keluarga  $keluarga
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_keluarga)
+    public function edit($id_pegawai)
     {
-        $keluarga = Keluarga::find($id_keluarga);
+        $keluarga = Keluarga::find($id_pegawai);
         $pegawai = Pegawai::all();
         return view('keluargas/edit', compact('keluarga','pegawai'));
     }
@@ -86,13 +86,17 @@ class KeluargaController extends Controller
      */
     public function update(Request $req)
     {
-        $keluarga = Keluarga::find($req->id_keluarga);
+        $pegawai = Pegawai::all();
+        $keluarga = Keluarga::find($req->id_pegawai);
         $keluarga->id_pegawai = $req->id_pegawai;
         $keluarga->nama = $req->nama;
+        $keluarga->tempat = $req->tempat;
+        $keluarga->tgl = $req->tgl;
+        $keluarga->anak_ke = $req->anak_ke;
         $keluarga->status = $req->status;
 
         $keluarga->save();
-        return redirect('/keluarga/index');
+        return redirect('/pegawai/detail');
 
     }
 

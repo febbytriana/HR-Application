@@ -47,7 +47,7 @@
         </div>
 
         <div class="card-body">
-          <span>Hai,{{ Auth::user()->name}}</span><br>
+          <span>Hai,{{ Auth::user()->nama}}</span><br>
           <span>Anda masuk sebagai {{ Auth::user()->status}}</span><br>
         </div>
     </section>

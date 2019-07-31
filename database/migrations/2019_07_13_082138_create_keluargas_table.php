@@ -19,8 +19,11 @@ class CreateKeluargasTable extends Migration
             $table->integer('id_pegawai')->unsigned()->nullable();
             $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais')->onUpdate('set null')->onDelete('set null');
 
-            $table->string('nama');
-            $table->string('status');
+            $table->string('nama',100)->nullable();
+            $table->string('tempat')->nullable();
+            $table->date('tgl')->nullable();
+            $table->integer('anak_ke')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
