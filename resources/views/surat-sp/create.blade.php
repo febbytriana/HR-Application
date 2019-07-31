@@ -25,7 +25,7 @@
                           <div class="form-group">
                               <label class="col-md-3 control-label">Nama Pegawai*</label>
                               <div class="col-md-9">
-                                  <input type="text" class="form-control" name="nik" >
+                                  <input type="text" class="form-control" name="nik">
                               </div>
                           </div>
                           <div class="form-group">

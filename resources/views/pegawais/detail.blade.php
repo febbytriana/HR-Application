@@ -384,7 +384,7 @@
                     <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>
                     <br>
                   <div class="pull-right">
-                    <a class="btn btn-success btn-xs" href="{{ route('pegawai.pendidikan',$pegawai->id_pegawai)}}"><i class="fa fa-edit fa-fx"></i> Edit</a>
+                    <a class="btn btn-success btn-xs" href="{{ route('pegawai.pendidikan',$id_pegawai->id_pegawai)}}"><i class="fa fa-edit fa-fx"></i> Edit</a>
                   </div>
                 </div>    
               </div>

@@ -34,7 +34,7 @@ Route::post('/akunpegawai/kelola-akunpegawai', 'AkunController@updateakunpegawai
 Route::get('/akunpegawai/destroypegawai/{id}', 'AkunController@destroypegawai')->name('akunpegawai.destroypegawai');
 //pegawai
 Route::get('/pegawai/index', 'PegawaiController@index')->name('pegawai.index');
-Route::get('/pegawai/detail/{id}', 'PegawaiController@detail')->name('pegawai.detail');
+Route::get('/pegawai/detail/{id_pegawai}', 'PegawaiController@detail')->name('pegawai.detail');
 Route::get('/pegawai/create', 'PegawaiController@create')->name('pegawai.create');
 Route::get('/pegawai/print', 'PegawaiController@print')->name('pegawai.print');
 Route::post('/pegawai/store', 'PegawaiController@store')->name('pegawai.store');

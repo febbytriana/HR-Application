@@ -151,8 +151,9 @@ class PegawaiController extends Controller
     public function detail($id_pegawai)
     {
         $pegawai = Pegawai::where('id_pegawai','=',$id_pegawai)->get();
+        $id_pegawai = Pegawai::find($id_pegawai);
 
-        return view('pegawais/detail',compact('pegawai'));
+        return view('pegawais/detail',compact('pegawai','id_pegawai'));
     }
 
 }
