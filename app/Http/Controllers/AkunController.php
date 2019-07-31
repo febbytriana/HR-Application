@@ -38,7 +38,8 @@ class AkunController extends Controller
     {
         $akun = User::all();
         $pegawai = Pegawai::all();
-         return view('akunpegawais/create', compact('akun','pegawai'));
+        $hitungpegawai = count($pegawai);
+         return view('akunpegawais/create', compact('akun','pegawai','hitungpegawai'));
     }
     /**
      * Store a newly created resource in storage.
@@ -61,18 +62,28 @@ class AkunController extends Controller
     /* store-pegawai */
     public function storepegawai(Request $req)
     {
+        $pegawai = Pegawai::all();
+        $hitungpegawai = count($pegawai);
+        if($hitungpegawai > 0){
            $pegawai = Pegawai::select('nama')->where('id_pegawai', $req->id)->first();
            $nama = $pegawai['nama'];
            $akun = new User;
-           $akun->name = $nama;
+           $akun->nama = $nama;
            $akun->email = $req->email;
            $akun->password = Hash::make($req->password);
            $akun->status = $req->status;
            $akun->save();
+
            $akun_id = User::select('id')->whereRaw('id = (select max(`id`) from users)')->first();
             $pegawai = Pegawai::find($req->id);
             $pegawai->id_user = $akun_id['id'];
             $pegawai->save();
+        }
+        else{
+            
+        
+            
+        }
            session()->flash('success-create', 'Data Akun berhasil disimpan');
            return redirect('/akun/index');
     }

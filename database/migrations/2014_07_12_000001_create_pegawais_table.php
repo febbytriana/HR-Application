@@ -23,7 +23,7 @@ class CreatePegawaisTable extends Migration
             $table->foreign('id_jabatan')->references('id_jabatan')->on('jabatans')->onUpdate('set null')->onDelete('set null');
 
             $table->string('nik');
-            $table->string('nama');
+            $table->string('nama',100);
             $table->string('tempat');
             $table->date('tgl');
             $table->string('alamat');

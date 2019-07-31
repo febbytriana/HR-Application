@@ -21,20 +21,42 @@
                     @csrf 
                     <div class="col-md-6">
                         <div class="form-group">
-                        <label class="control-label">Nama <span class="required">*</span></label>
+                        
                         <div class="tambahElemen">
-                            <select class="form-control" name="id" data-show-subtext="true">
-                                <option value="">-- Cari -- </option>
+                            @if( $hitungpegawai > 0 )
+                            <label class="control-label">Nama <span class="required">*</span></label>
+
+                            <select onchange="hilangkan(this.value)" class="form-control" id="pilih" name="id" data-show-subtext="true">
+                                <option value="cari">-- Cari -- </option>
                                
-                               
+                                
                                 <optgroup label="Pegawai">
                                     @foreach( $pegawai as $datapegawai )
                                     <option value="{{ $datapegawai->id_pegawai }}">{{ $datapegawai->nama }} </option>
                                     @endforeach
                                 </optgroup> 
-                             
+
+
+                            </select>                                                               
+                             @endif 
+                             <a id="tambah" class="btn btn-success btn-xs" onclick="ganti()"><i class="fa fa-plus"></i> Tambah Data Baru</a>
+                             <a id="back" style="display: none" class="btn btn-warning btn-xs" onclick="back()"><i class="fa fa-minus"></i> Kembali</a>
+                             <div id="nama_baru" style="display: none;" class="form-group">
+                                    <div class="col-md-9">
+                                        <input type="text"  class="form-control" name="nama">
+                                    </div>
+                                </div> 
+
+                            @if( $hitungpegawai == 0 )
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Nama <span class="required">*</span></label>
+                                    <div class="col-md-9">
+                                        <input type="text"  class="form-control" name="nama">
+                                    </div>
+                                </div>    
+                            @endif
                                 
-                            </select>
+                                
                         </div>
                     </div>
                         <div class="form-group">
@@ -73,5 +95,40 @@
         </div>
     </section>
 </section>
+
+<script type="text/javascript">
+    function ganti() {
+            var data1=document.getElementById('pilih');
+            var data2=document.getElementById('nama_baru');
+            var ada=document.getElementById('tambah');
+            var balik=document.getElementById('back');
+            data1.style.display="none";
+            ada.style.display="none";
+            data2.style.display="inline";
+            balik.style.display="inline";
+    }
+
+    function back() {
+            var data1=document.getElementById('pilih');
+            var data2=document.getElementById('nama_baru');
+            var ada=document.getElementById('tambah');
+            var balik=document.getElementById('back');
+            data1.style.display="inline";
+            ada.style.display="inline";
+            data2.style.display="none";
+            balik.style.display="none";
+    }
+
+    function hilangkan(val){
+        if (val!="cari") {
+            var ada=document.getElementById('tambah');
+            ada.style.display="none";
+        }
+        else if(val=="cari"){
+            var ada=document.getElementById('tambah');
+            ada.style.display="inline";
+        }
+    }
+</script>
 
 @endsection
