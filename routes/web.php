@@ -14,6 +14,8 @@ Route::get('/', function () {
 });
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+//absen
+Route::get('/absen/index','AbsenController@index')->name('absen.index');
 //akun
 Route::get('/akun/index', 'AkunController@index')->name('akun.index');
 Route::get('/akun/create', 'AkunController@create')->name('akun.create');

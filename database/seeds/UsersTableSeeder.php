@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
         	'status'    => 'Admin',
         	'remember_token' => '1',
         	'created_at'	=> Carbon::now(),
-        	'updated_at'	=> arbon::now(),
+        	'updated_at'	=> Carbon::now(),
         ]);
 
          DB::table('users')->insert([

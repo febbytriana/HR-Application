@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <!-- modernizr css -->
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
+
     <style type="text/css">
         body:before {
             content: "";
@@ -40,6 +41,9 @@
           height: 100%;
           filter: blur(5px) ;
           -webkit-filter: blur(5px) ;
+        }
+        .bounce {
+          animation: 4s ease-out 0s 1 slideInFromLeft;
         }
     </style>
 </head>
@@ -102,7 +106,7 @@
 
         <footer>
             <div class="footer-area fixed-bottom" style="background-color: rgba(0,0,0,0.7);">
-                <p style="color: #fff;">Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
+                <p style="color: #fff;">Copyright 2018 ini Dipersembahkan Oleh Indomie. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
             </div>
         </footer>
     <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}"></script>
@@ -137,7 +141,6 @@
     <script src="{{ asset('js/plugins.js') }}"></script>
 
     <script src="{{ asset('js/scripts.js') }}"></script>
-
     <script src="{{ asset('js/waves-effect.js') }}"></script>
 
 </body>
