@@ -1,3 +1,26 @@
+@section('js')
+<script type="text/javascript">
+
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#showgambar').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#inputgambar").change(function () {
+        readURL(this);
+    });
+
+</script>
+
+@stop
+
 @extends('layouts.app')
 
 @section('content')
@@ -7,13 +30,13 @@
       <ol class="breadcrumb mt-3">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
         <li class="breadcrumb-item"><a href="{{ route('pegawai.index') }}">Data Pegawai</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Tambah</li>
+        <li class="breadcrumb-item active" aria-current="page">Edit</li>
       </ol>
     </nav>
 
     <section class="card mt-3">
         <div class="card-header">
-                <h4>Tambah Data Pegawai</h2>
+                <h4>Ubah Data Pegawai</h2>
         </div>
         <div class="card-body" style="margin-left:200px;">
             <div class="col-md-24">
@@ -42,11 +65,17 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>   
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Tempat<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="tempat" value="{{$pegawai->tempat}}">
+                            </div>
+                        </div>    
                         <div class="form-group">
                             <label class="col-md-3 control-label">Tanggal Lahir<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <input type="date" class="form-control" name="ttl" value="{{$pegawai->ttl}}">
+                                <input type="date" class="form-control" name="tgl" value="{{$pegawai->tgl}}">
                             </div>
                         </div>   
                         <div class="form-group">
@@ -129,10 +158,10 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Foto<span class="required">*</span></label>
                             <div class="col-md-9">
-                                 <div style="width:150px; height:180px;border: 1px solid #000;">
-                                    <img src="{{ asset('uploads/'.$pegawai->image)}}" alt="" style="width:150px; height:180px;border: 1px solid #000;">
+                                 <div style="width:150px; height:180px;border: 1px solid #c0c2ce;">
+                                    <img src="{{ asset('upload/'.$pegawai->image) }}" id="showgambar" alt="" style="width: 100%; height: 100%;">
                                 </div>
-                                <input type="file" class="form-control" style="margin-top:20px;" name="image" value="{{$pegawai->image}}">
+                                <input id="inputgambar" type="file" class="form-control" style="margin-top:20px;" name="image" value="">
                             </div>
                         </div> 
                     </div>

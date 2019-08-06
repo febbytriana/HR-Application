@@ -82,7 +82,7 @@
                             <a href="{{ route('pegawai.detail',$value->id_pegawai)}}">
                                 <i class="fa fa-eye btn-success" style="padding:8px;border-radius:5px;"></i>
                             </a>
-                            <a href="{{ route('pegawai.edit', $value->id_pegawai)}}">
+                            <a href="{{ route('pegawai.edit',$value->id_pegawai)}}">
                                 <i class="fa fa-pencil btn-warning" style="padding:8px;border-radius:5px;"></i>
                             </a>
                             <a href="{{ route('pegawai.hapus', $value->id_pegawai)}}" onclick="return confirm('Yakin akan menghapus data ini?')">

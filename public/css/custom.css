@@ -1,3 +1,57 @@
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@-moz-keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@-o-keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 body {
  background:#e4e7e8;
  font-size:12px;
@@ -200,3 +254,75 @@ body {
     padding-bottom: 7px;
     color: #222;
 }
+
+[anim="ripple"] {
+  position: relative;
+  overflow: hidden;
+}
+[anim="ripple"]:before {
+  content: '';
+  position: absolute;
+  display: block;
+  background: var(--ripple-background, white);
+  border-radius: 50%;
+  pointer-events: none;
+  top: calc(var(--y) * 1px);
+  left: calc(var(--x) * 1px);
+  width: calc(var(--d) * 1px);
+  height: calc(var(--d) * 1px);
+  opacity: calc(var(--o, 1) * var(--ripple-opacity, 0.3));
+  transition: calc(var(--t, 0) * var(--ripple-duration, 600ms)) var(--ripple-easing, linear);
+  -webkit-transform: translate(-50%, -50%) scale(var(--s, 1));
+          transform: translate(-50%, -50%) scale(var(--s, 1));
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+.waves-effect {
+  --ripple-background: white;
+  --ripple-opacity: 0.3;
+  --ripple-duration: 600ms;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.sidebar-items1 {
+  animation: 1000ms ease-out 0s 1 slideInFromLeft;
+}
+.sidebar-items2 {
+  animation: 1300ms ease-out 0s 1 slideInFromLeft;
+}
+.sidebar-items3 {
+  animation: 1600ms ease-out 0s 1 slideInFromLeft;
+}
+.sidebar-items4 {
+  animation: 1900ms ease-out 0s 1 slideInFromLeft;
+}
+.sidebar-items5 {
+  animation: 2200ms ease-out 0s 1 slideInFromLeft;
+}
+.sidebar-items6 {
+  animation: 2500ms ease-out 0s 1 slideInFromLeft;
+}
+
+.card-animate {
+  animation: 3s fadein;
+}
+.items-card1 {
+  animation: 2900ms ease-out 0s 1 slideInFromLeft;
+}
+.items-card2 {
+  animation: 2900ms ease-out 0s 1 slideInFromRight;
+}
+.items-card3 {
+  animation: 2900ms ease-out 0s 1 slideInFromLeft;
+}
+.items-card4 {
+  animation: 2900ms ease-out 0s 1 slideInFromLeft;
+}
+
+

@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -28,6 +27,21 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <!-- modernizr css -->
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
+    <style type="text/css">
+        body:before {
+            content: "";
+          position: fixed;
+          z-index: -1;
+          background-size:cover;
+          background-position:center top;
+          display: block;
+          background-image: url('{{ asset('images/googleinc.jpg') }}');
+          width: 100%;
+          height: 100%;
+          filter: blur(5px) ;
+          -webkit-filter: blur(5px) ;
+        }
+    </style>
 </head>
 
 <body>
@@ -45,23 +59,23 @@
 
         <div class="header bg-primary">
            <!-- header area start -->
-            <div class="header-area" style="background-color: #0f5b94;">
+            <div class="header-area" style="background-color: #0f5b94; padding-top: 0px; padding-bottom: 7px; border:none;">
                 <div class="row align-items-center">
                     <!-- nav and search button -->
                     <div class="col-md-6 col-sm-8 clearfix">
                         <div class="nav-btn pull-left">
                             <div class="logo">
-                                <a href="{{ route('home') }}"><img src="{{ asset('images/logohr.png') }}" alt="logo" width="40" height="40"></a>
+                                <a href="/"><img src="{{ asset('images/logohr.png') }}" alt="logo" width="40" height="40"></a>
                             </div>
                         </div>
                     </div>
-                    <!-- profile info & task notification -->
+                    <!-- profile info & task -->
                     <div class="col-md-6 col-sm-4 clearfix">
-                        <ul class="notification-area pull-right">
+                        <ul class="pull-right">
                             
                             @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}" style="color: #fff;">{{ __('Login') }}</a>
+                            <li class="nav-item" style="margin-top: 8px;">
+                                <a class="nav-link" href="/" style="color: #fff;"><h6>PT. Gamma Solution</h6></a>
                             </li>
                             @else
                              <script type="text/javascript">
@@ -87,7 +101,7 @@
     </div>
 
         <footer>
-            <div class="footer-area fixed-bottom" style="background-color: #0f5b94;">
+            <div class="footer-area fixed-bottom" style="background-color: rgba(0,0,0,0.7);">
                 <p style="color: #fff;">Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
             </div>
         </footer>
@@ -123,6 +137,8 @@
     <script src="{{ asset('js/plugins.js') }}"></script>
 
     <script src="{{ asset('js/scripts.js') }}"></script>
+
+    <script src="{{ asset('js/waves-effect.js') }}"></script>
 
 </body>
 

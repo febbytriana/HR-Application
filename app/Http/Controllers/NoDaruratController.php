@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\NoDarurat;
+use App\Pegawai;
 use Illuminate\Http\Request;
 
 class NoDaruratController extends Controller
@@ -22,9 +23,11 @@ class NoDaruratController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id_pegawai)
     {
         //
+        $pegawai = \App\Pegawai::find($id_pegawai);
+        return view('no-darurat.create',compact('pegawai'));
     }
 
     /**
@@ -33,9 +36,20 @@ class NoDaruratController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req, $id_pegawai)
     {
         //
+        $darurat = new NoDarurat;
+        $darurat->id_pegawai = $id_pegawai;
+        $darurat->nama = $req->nama;
+        $darurat->nomor = $req->nomor;
+        $darurat->status = $req->status;
+
+        $darurat->save();
+
+        session()->flash('success-create', 'Nomor Darurat berhasil disimpan');
+        
+        return redirect('/pegawai/detail/'.$id_pegawai);
     }
 
     /**
@@ -55,9 +69,12 @@ class NoDaruratController extends Controller
      * @param  \App\NoDarurat  $noDarurat
      * @return \Illuminate\Http\Response
      */
-    public function edit(NoDarurat $noDarurat)
+    public function edit($id_pegawai,$id_no_darurat)
     {
         //
+        $darurat = NoDarurat::find($id_no_darurat);
+        $pegawai = Pegawai::find($id_pegawai);
+        return view('no-darurat.edit',compact('darurat','pegawai'));
     }
 
     /**
@@ -67,9 +84,19 @@ class NoDaruratController extends Controller
      * @param  \App\NoDarurat  $noDarurat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NoDarurat $noDarurat)
+    public function update(Request $req, $id_pegawai,$id_no_darurat)
     {
         //
+        $darurat = NoDarurat::find($id_no_darurat);
+        $darurat->nama = $req->nama;
+        $darurat->nomor = $req->nomor;
+        $darurat->status = $req->status;
+
+        $darurat->save();
+
+        session()->flash('success-create', 'Nomor Darurat berhasil diubah');
+        
+        return redirect('/pegawai/detail/'.$id_pegawai);
     }
 
     /**
@@ -78,8 +105,12 @@ class NoDaruratController extends Controller
      * @param  \App\NoDarurat  $noDarurat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NoDarurat $noDarurat)
+    public function destroy($id_pegawai,$id_no_darurat)
     {
         //
+        $darurat = NoDarurat::find($id_no_darurat);
+        $darurat->delete();
+
+        return redirect('/pegawai/detail/'.$id_pegawai);
     }
 }

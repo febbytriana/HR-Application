@@ -1,8 +1,43 @@
+@section('js')
+<script type="text/javascript">
+      function hapusNo(idpeg,idno) {
+        Swal({
+            title: 'Apakah Anda Yakin?',
+            text: "Tekan 'Hapus' Untuk Meneruskan Penghapusan",
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Hapus'
+        }).then((result) => {
+            if (result.value) {
+                Swal({
+                    title: 'Sukses!',
+                    text: 'Penghapusan Data Berhasil.',
+                    type: 'success'
+                }).then((result) => {
+                    if(result.value) {
+                        location.href = 'http://localhost:8000/no-darurat/delete/'+idpeg+'/'+idno;
+                    }
+                })
+            } else if (result.dismiss === swal.DismissReason.cancel) {
+                  swal(
+                    'Batal',
+                    'Anda membatalkan penghapusan',
+                    'error'
+                  )
+            }
+        })
+    }
+</script>
+@stop
+
 @extends('layouts.app')
 
 @section('content')
 
-<div  class="head-title">
+<div class="head-title">
   <h2>Detail Pegawai</h2>
   <!-- Nav tabs -->
   <nav aria-label="breadcrumb">
@@ -10,6 +45,9 @@
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
         <li class="breadcrumb-item"><a href="{{ route('pegawai.index') }}">Pegawai</a></li>
         <li class="breadcrumb-item active" aria-current="page">Detail</li>
+        @foreach($pegawai as $data)
+        <li class="breadcrumb-item active" aria-current="page">{{$data->nama}}</li>
+        @endforeach
     </ol>
   </nav>
 </div>
@@ -61,17 +99,16 @@
                 <!-- begin profile-section -->
           <div class="profile-section">
             <!-- begin profile-left -->
+          @foreach($pegawai as $data)
             <div class="profile-left">
               <!-- begin profile-image -->
               <div class="profile-image">
                 <a href="index.php?page=form-ganti-foto&amp;id_kar=16" title="ganti foto">
-                  <img src="" width="160" height="300"></a>
+                  <img src="{{ asset('upload/'.$data->image) }}" width="160" height="300"></a>
               </div>
               <!-- end profile-image -->
-
-                @foreach($pegawai as $data)
                 <div class="m-b-10">
-                <span id="panggilan"></span>
+                <span class="nickname">{{ $data->nama}}</span>
               </div>
             </div>
             <!-- end profile-left -->
@@ -82,7 +119,7 @@
                 <!-- begin table -->
                 <div class="table-responsive">
                   <table class="table table-profile">
-                    <input hidden="" type="text" name="nama" value="{{ $data->nama}}" id="ada">
+
                 
                     <thead>
                       <tr>
@@ -285,6 +322,7 @@
     <div id="anak" class="container tab-pane fade"><br>
       <div class="container">
         <span class="title-head">-- Anak --</span>
+        <div class="pull-right">
         @foreach($pegawai as $spegawais)
 
         <a class="btn btn-info btn-xs pull-right" href="{{ route('keluarga.create',$pegawais->id_pegawai) }}"><i class="fa fa-plus fa-fx"></i> Tambah</a>
@@ -298,7 +336,14 @@
             <section class="card">
               <div class="card-body mb-4" style="border: 2px solid #c0c2ce;">
                 <div class="body-text">
-
+                    <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>
+                    <br>
+                    <span style="margin-right: 18px;font-size: 14px;">Tempat Tanggal Lahir</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>  
+                    <br>
+                    <span style="margin-right: 98px;font-size: 14px;">Anak ke</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>  
+                    <br>
+                    <span style="margin-right: 109px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>
+                  
                   <div class="pull-right">
 
                             @foreach($keluarga as $keluargas)
@@ -373,34 +418,92 @@
             <section class="card">
               <div class="card-body mb-4" style="border: 1px solid #898989;">
                 <div class="body-text">
-                    <span style="margin-right: 113px; font-size: 14px;"><b>SD</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: {{$pendidikan['sd']}}</span>
+                    <span style="margin-right: 117px;font-size: 14px;"><b>SD</b></span>
+                    <span style="margin-right: 18px;font-size: 14px;">:</span>
+                    <span style="font-size: 14px;">@if(!empty($pendidikan->sd)) 
+                      {{ $pendidikan->sd }} 
+                      @else
+                      {{ __('-') }}
+                    @endif</span>  
                     <br>
-                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: {{$pendidikan['lulus_sd']}}</span>  
+                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b>
+                    </span><span style="margin-right: 18px;font-size: 14px;">:</span>
+                    <span style="font-size: 14px;">@if(!empty($pendidikan->lulus_sd)) 
+                      {{ $pendidikan->lulus_sd }}
+                      @else
+                      {{ __('-') }}
+                    @endif</span>  
                     <br>
                     <br>
-                    <span style="margin-right: 102px;font-size: 14px;"><b>SMP</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: {{$pendidikan['smp']}}</span>  
+                    <span style="margin-right: 104px;font-size: 14px;"><b>SMP</b></span>
+                    <span style="margin-right: 18px;font-size: 14px;">:</span>
+                    <span style="font-size: 14px;">@if(!empty($pendidikan->smp)) 
+                      {{ $pendidikan->smp }}
+                      @else
+                      {{ __('-') }}
+                    @endif</span>  
                     <br>
-                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: {{$pendidikan['lulus_smp']}}</span>
+                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span>
+                    <span style="margin-right: 18px;font-size: 14px;">:</span>
+                    <span style="font-size: 14px;">@if(!empty($pendidikan->lulus_smp)) 
+                      {{ $pendidikan->lulus_smp }}
+                      @else
+                      {{ __('-') }}
+                    @endif</span>
                     <br>
                     <br>
-                    <span style="margin-right: 68px;font-size: 14px;"><b>SMA/SMK</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: {{$pendidikan['smk']}}</span>  
+                    <span style="margin-right: 67px;font-size: 14px;"><b>SMA/SMK</b></span>
+                    <span style="margin-right: 18px;font-size: 14px;">:</span>
+                    <span style="font-size: 14px;">@if(!empty($pendidikan->smk)) 
+                      {{ $pendidikan->smk }}
+                      @else
+                      {{ __('-') }}
+                    @endif</span>  
                     <br>
-                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: {{$pendidikan['lulus_smk']}}</span>
+                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span>
+                    <span style="margin-right: 18px;font-size: 14px;">:</span>
+                    <span style="font-size: 14px;">@if(!empty($pendidikan->lulus_smk)) 
+                      {{ $pendidikan->lulus_smk }}
+                      @else
+                      {{ __('-') }}
+                    @endif</span>
                     <br>
                     <br>
-                    <span style="margin-right: 26px;font-size: 14px;"><b>Perguruan Tinggi</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: {{$pendidikan['nama_universitas']}} ({{$pendidikan['tingkat_pt']}})</span>  
+                    <span style="margin-right: 18px;font-size: 14px;"><b>Perguruan Tinggi</b></span>
+                    <span style="margin-right: 18px;font-size: 14px;">:</span>
+                    <span style="font-size: 14px;">@if(!empty($pendidikan->nama_universitas)) 
+                      {{ $pendidikan->nama_universitas }}
+                      @else
+                      {{ __('-') }}
+                    @endif</span>  
                     <br>
-                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: {{$pendidikan['lulus_pt']}}</span>
+                    <span style="margin-right: 84px;font-size: 14px;"><b>Tingkat</b></span>
+                    <span style="margin-right: 18px;font-size: 14px;">:</span>
+                    <span style="font-size: 14px;">@if(!empty($pendidikan->tingkat_pt)) 
+                      {{ $pendidikan->tingkat_pt }}
+                      @else
+                      {{ __('-') }}
+                    @endif</span>
+                    <br>
+                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span>
+                    <span style="margin-right: 18px;font-size: 14px;">:</span>
+                    <span style="font-size: 14px;">@if(!empty($pendidikan->lulus_pt)) 
+                      {{ $pendidikan->lulus_pt }}
+                      @else
+                      {{ __('-') }}
+                    @endif</span>
                     <br>
                   <div class="pull-right">
-                    <a class="btn btn-success btn-xs" href="{{ route('pegawai.pendidikan', $pegawais->id_pegawai )}}"><i class="fa fa-edit fa-fx"></i> Edit</a>
+                    @foreach($pegawai as $data)
+                    <a class="btn btn-success btn-xs" href="{{ route('pegawai.pendidikan',$data->id_pegawai) }}"><i class="fa fa-edit fa-fx"></i> Edit</a>
+                    @endforeach
                   </div>
                   
                 </div>    
               </div>
             </section>
           </div>
-        </div>
+        </div>  
       </div>
     </div>
     <div id="pelatihan" class="container tab-pane fade"><br>
@@ -496,9 +599,11 @@
                 </div>
                 <br>
                 <div class="pull-left">
-                  <a href="{{ route('akun.create')}}">
+                  @foreach($pegawai as $data)
+                  <a href="{{ route('darurat.create',$data->id_pegawai) }}">
                     <button class="btn btn-info btn-xs" style="width: 200px"><i class="fa fa-plus fa-fx"></i> Tambah</button>
                  </a>
+                 @endforeach
                 </div>
                 <br>
                 <br>
@@ -513,23 +618,27 @@
                       </tr>
                   </thead>
                   <tbody>
+                    @foreach($no_darurat as $key => $data)
                       <tr>
-                          <td style="text-align: center; font-size: 14px;">1</td>
-                          <td align="center" style="font-size: 14px;">Ica</td>
-                          <td align="center" style="font-size: 14px;">088928300132</td>
+                          <td style="text-align: center; font-size: 14px;">{{ $key+1 }}</td>
+                          <td align="center" style="font-size: 14px;">{{ $data->nama }}</td>
+                          <td align="center" style="font-size: 14px;">{{ $data->nomor }}</td>
                           <td align="center">
-                            <a href="#">
+      
+                            <a href="{{ route('darurat.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_no_darurat'=>$data->id_no_darurat]) }}">
                                   <button class="btn btn-success btn-xs mr-2"><i class="fa fa-edit"></i> Edit</button>
                               </a>
-                              <a href="#">
-                                  <button class="btn btn-danger btn-xs" onclick="return confirm('Hapus data ini?')"><i class="fa fa-trash"></i> Hapus</button>
+                              <a href="#" onclick="hapusNo('{{$pegawais->id_pegawai}}','{{$data->id_no_darurat}}')">
+                                  <button class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</button>
                               </a>
+                            
                           </td>
                       </tr>
+                    @endforeach
                   </tbody>
               </table>
             </div>
-            </section >
+            </section>
           </div>
         </div>
       </div>
