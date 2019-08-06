@@ -1,3 +1,26 @@
+@section('js')
+<script type="text/javascript">
+
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#showgambar').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#inputgambar").change(function () {
+        readURL(this);
+    });
+
+</script>
+
+@stop
+
 @extends('layouts.app')
 
 @section('content')
@@ -19,7 +42,7 @@
             <div class="col-md-24">
                 <form action="{{ route('pegawai.store') }}" enctype="multipart/form-data" method="POST">
                     @csrf 
-                    <div class="col-md-12">
+                    <div class="col-md-12"> 
                         <div class="form-group">
                             <label class="col-md-3 control-label">NIK <span class="required">*</span></label>
                              <div class="col-md-9">
@@ -35,7 +58,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Jabatan<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <select name="id_jabatan" id="id_jabatan" class="form-control">
+                                <select name="id_jabatan" id="id_jabatan" class="custom-select">
                                     <option value=""></option>
                                     @foreach ($jabatan as $jabatan)
                                     <option value="{{$jabatan->id_jabatan}}">{{$jabatan->jabatan}}</option>
@@ -65,14 +88,20 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Jenis Kelamin<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <input type="radio" name="jk" id="jk" value="Laki-laki">Laki-laki
-                                <input type="radio" name="jk" id="jk" value="Perempuan" style="margin-left:200px;">Perempuan
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="customRadio" name="jk" value="Laki-laki" checked="value">
+                                    <label class="custom-control-label" for="customRadio">Laki-laki</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline" style="margin-left: 150px;">
+                                    <input type="radio" class="custom-control-input" id="customRadio2" name="jk" value="Perempuan">
+                                    <label class="custom-control-label" for="customRadio2">Perempuan</label>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Agama<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <select name="agama" id="agama" class="form-control">
+                                <select name="agama" id="agama" class="custom-select">
                                     <option value=""></option>
                                     <option value="Islam">Islam</option>
                                     <option value="Katholik">Katholik</option>
@@ -86,7 +115,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Kewarganegaraan<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <select name="warga_negara" id="warga_negara" class="form-control">
+                                <select name="warga_negara" id="warga_negara" class="custom-select">
                                     <option value=""></option>
                                     <option value="WNI">Warga Negara Indonesia</option>
                                     <option value="WNA">Warga Negara Asing</option>
@@ -96,7 +125,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Status Perkawinan<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <select name="status_kawin" id="status_kawin" class="form-control">
+                                <select name="status_kawin" id="status_kawin" class="custom-select">
                                     <option value=""></option>
                                     <option value="Kawin">Kawin</option>
                                     <option value="Belum kawin">Belum kawin</option>
@@ -106,7 +135,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Golongan Darah<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <select name="goldar" id="goldar" class="form-control">
+                                <select name="goldar" id="goldar" class="custom-select">
                                     <option value=""></option>
                                     <option value="A">A</option>
                                     <option value="B">B</option>
@@ -136,10 +165,10 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Foto<span class="required">*</span></label>
                             <div class="col-md-9">
-                                 <div style="width:150px; height:180px;border: 1px solid #000;">
-                                    <img src="/images/{{ Session::get('path') }}" alt="">
+                                 <div style="width:150px; height:180px;border: 1px solid #c0c2ce;">
+                                    <img src="/images/{{ Session::get('path') }}" id="showgambar" alt="" style="width: 100%; height: 100%;">
                                 </div>
-                                <input type="file" class="form-control" style="margin-top:20px;" name="image">
+                                <input id="inputgambar" type="file" class="form-control" style="margin-top:20px;" name="image">
                             </div>
                         </div> 
                     </div>

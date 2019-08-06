@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="{{ asset('vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}">
     
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('sweetalert2-7.32.4/package/dist/sweetalert2.min.css') }}">
+    <script src="{{ asset('sweetalert2-7.32.4/package/dist/sweetalert2.all.min.js') }}"></script>
     <!-- modernizr css -->
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
     <style type="text/css">
@@ -155,7 +157,7 @@ box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);">
 
                              <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle waves-effect" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre anim="ripple"> Hai,
-                                    {{ Auth::user()->nama }} <span class="caret"></span>
+                                    {{ Auth::user()->nama }} &nbsp;<span class="caret"><small class="fa fa-angle-down"></small></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -203,8 +205,8 @@ box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);">
     </div>
 
         <footer>
-            <div class="footer-area">
-                <p style="color: #585858;">Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
+            <div class="footer-area" style="background-color: #e4e7e8;">
+                <p style="color: #585858;">&copy;2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
             </div>
         </footer>
     <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}"></script>
@@ -262,7 +264,9 @@ box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);">
     </script>
     <script src="{{ asset('js/waves-effect.js') }}"></script>
 
-    
+    @section('js')
+
+    @show
 
 </body>
 

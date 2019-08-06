@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Pegawai;
+use App\Pendidikan;
+use App\Sertifikat;
 use App\Jabatan;
+use App\NoDarurat;
 use DB;
 use Illuminate\Http\Request;
 
@@ -37,7 +40,7 @@ class PegawaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $req,$id_pegawai)
     {
         $pegawai = new Pegawai;
         $pegawai->nik = $req->nik;
@@ -54,10 +57,11 @@ class PegawaiController extends Controller
         $pegawai->penyakit = $req->penyakit;
         $pegawai->telp = $req->telp;
         $pegawai->email = $req->email;
-        $pegawai->image = $req->image;
-        $image = time().'.'.$req->image->getClientOriginalExtension();
+        $file       = $req->file('image');
+        $fileName   = $file->getClientOriginalName();
+        $req->file('image')->move("upload/", $fileName);
+        $pegawai->image = $fileName;
 
-        $req->image->move(public_path('/public/upload'), $image);
         $pegawai->save();
 
         session()->flash('success-create', 'Data Akun berhasil disimpan');
@@ -102,7 +106,8 @@ class PegawaiController extends Controller
         $pegawai->nik = $req->nik;
         $pegawai->nama = $req->nama;
         $pegawai->id_jabatan = $req->id_jabatan;
-        $pegawai->ttl = $req->ttl;
+        $pegawai->tempat = $req->tempat;
+        $pegawai->tgl = $req->tgl;
         $pegawai->alamat = $req->alamat;
         $pegawai->jk = $req->jk;
         $pegawai->agama = $req->agama;
@@ -114,11 +119,10 @@ class PegawaiController extends Controller
         $pegawai->email = $req->email;
 
         if($req->hasfile('image')){
-            $file = $req->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move('uploads', $filename);
-            $pegawai->image = $filename;
+            $file       = $req->file('image');
+            $fileName   = $file->getClientOriginalName();
+            $req->file('image')->move("upload/", $fileName);
+            $pegawai->image = $fileName;
         }
 
         $pegawai->save();
@@ -147,10 +151,12 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::where('id_pegawai','=',$id_pegawai)->get();
         $pegawais = Pegawai::find($id_pegawai);
-         $keluarga = \App\Keluarga::all();
-       
+        $keluarga = \App\Keluarga::all();
+        $pendidikan = Pendidikan::where('id_pegawai',$id_pegawai)->first();
+        $no_darurat = NoDarurat::where('id_pegawai',$id_pegawai)->get();
+        $sertifikat = Sertifikat::where('id_pegawai',$id_pegawai)->get();
 
-        return view('pegawais/detail',compact('pegawai','keluarga','pegawais'));
+        return view('pegawais/detail',compact('pegawai','keluarga','pegawais','pendidikan','no_darurat','sertifikat'));
     }
 
 }

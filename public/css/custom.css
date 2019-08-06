@@ -310,7 +310,7 @@ body {
 }
 
 .card-animate {
-  animation: 7s fadein;
+  animation: 3s fadein;
 }
 .items-card1 {
   animation: 2900ms ease-out 0s 1 slideInFromLeft;

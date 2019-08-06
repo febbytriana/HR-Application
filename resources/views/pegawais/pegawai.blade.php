@@ -60,7 +60,7 @@
             <br>
             <br>
             <table class="table table-bordered table-striped table-hover" id="data-id" width="100%">
-                <thead>x
+                <thead>
                     <tr>
                         <th style="text-align: center;" width="50px">NO.</th>
                         <th style="text-align: center;" width="200px">NIK</th>
@@ -82,7 +82,7 @@
                             <a href="{{ route('pegawai.detail',$value->id_pegawai)}}">
                                 <i class="fa fa-eye btn-success" style="padding:8px;border-radius:5px;"></i>
                             </a>
-                            <a href="">
+                            <a href="{{ route('pegawai.edit',$value->id_pegawai)}}">
                                 <i class="fa fa-pencil btn-warning" style="padding:8px;border-radius:5px;"></i>
                             </a>
                             <a href="">

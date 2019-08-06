@@ -14,7 +14,7 @@ class PendidikanController extends Controller
      */
     public function index($id_pegawai)
     {
-        $pendidikan = \App\Pendidikan::all();
+        $pendidikan = Pendidikan::where('id_pegawai',$id_pegawai)->first();
         $pegawai = \App\Pegawai::find($id_pegawai);
         return view('pegawais.pendidikan.edit', compact('pegawai','pendidikan'));
     }
@@ -71,25 +71,36 @@ class PendidikanController extends Controller
      */
     public function update(Request $request, $id_pegawai)
     {
-        $pendidikan = new Pendidikan;
-        $pendidikan->sd = $request->sd;
-        $pendidikan->lulus_sd = $request->lulus_sd;
-        $pendidikan->smp = $request->smp;
-        $pendidikan->lulus_smp = $request->lulus_smp;
-        $pendidikan->smk = $request->smk;
-        $pendidikan->lulus_smk = $request->lulus_smk;
-        $pendidikan->nama_universitas = $request->nama_universitas;
-        $pendidikan->tingkat_pt = $request->tingkat_pt;
-        $pendidikan->lulus_pt = $request->lulus_pt;
-        $pendidikan->id_pegawai = $request->id_pegawai;
-        if($pendidikan->id_pendidikan == 0){
+        $check = Pendidikan::where('id_pegawai',$id_pegawai)->count();
+        if($check > 0){
+            $pendidikan = Pendidikan::find($id_pegawai);
+            $pendidikan->sd = $request->sd;
+            $pendidikan->lulus_sd = $request->lulus_sd;
+            $pendidikan->smp = $request->smp;
+            $pendidikan->lulus_smp = $request->lulus_smp;
+            $pendidikan->smk = $request->smk;
+            $pendidikan->lulus_smk = $request->lulus_smk;
+            $pendidikan->nama_universitas = $request->nama_universitas;
+            $pendidikan->tingkat_pt = $request->tingkat_pt;
+            $pendidikan->lulus_pt = $request->lulus_pt;
+            $pendidikan->id_pegawai = $request->id_pegawai;
             $pendidikan->save();
-        }else{
-            $pendidikan->update();
+            return redirect('/pegawai/detail/'.$id_pegawai); 
+        } else {
+            $pendidikan = new Pendidikan;
+            $pendidikan->sd = $request->sd;
+            $pendidikan->lulus_sd = $request->lulus_sd;
+            $pendidikan->smp = $request->smp;
+            $pendidikan->lulus_smp = $request->lulus_smp;
+            $pendidikan->smk = $request->smk;
+            $pendidikan->lulus_smk = $request->lulus_smk;
+            $pendidikan->nama_universitas = $request->nama_universitas;
+            $pendidikan->tingkat_pt = $request->tingkat_pt;
+            $pendidikan->lulus_pt = $request->lulus_pt;
+            $pendidikan->id_pegawai = $request->id_pegawai;
+            $pendidikan->save();
+            return redirect('/pegawai/detail/'.$id_pegawai); 
         }
-        
-
-        return redirect('pegawai/index');
     }
 
     /**
