@@ -14,7 +14,7 @@ class SertifikatController extends Controller
      */
     public function index()
     {
-        //
+        return view('pegawais.sertifikat.index');
     }
 
     /**
@@ -22,9 +22,10 @@ class SertifikatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id_pegawai)
     {
-        //
+        $pegawai = \App\Pegawai::find($id_pegawai);
+        return view('pegawais.sertifikat.create', compact('pegawai'));
     }
 
     /**
@@ -33,9 +34,24 @@ class SertifikatController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req, $id_pegawai)
     {
-        //
+        $sertifikat = new Sertifikat();
+        $sertifikat->id_pegawai = $req->id_pegawai;
+        $sertifikat->nama_event = $req->nama_event;
+        $sertifikat->tahun_event = $req->tahun_event;
+        $sertifikat->ket_prestasi = $req->ket_prestasi;
+        if($req->hasfile('gambar_sertifikat')){
+            $file = $req->file('gambar_sertifikat');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/sertifikat/', $filename);
+            $sertifikat->gambar_sertifikat = $filename;
+        }
+        $sertifikat->save();
+
+
+        return redirect('pegawai/index');
     }
 
     /**
@@ -55,9 +71,11 @@ class SertifikatController extends Controller
      * @param  \App\Sertifikat  $sertifikat
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sertifikat $sertifikat)
+    public function edit($id_pegawai)
     {
-        //
+        $pegawai = \App\Pegawai::find($id_pegawai);
+        $sertifikat = \App\Sertifikat::find($id_sertifikat);
+        return view('pegawais.sertifikat.edit');
     }
 
     /**

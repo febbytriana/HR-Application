@@ -103,6 +103,7 @@ class PegawaiController extends Controller
     public function update(Request $req, $id_pegawai)
     {
         $pegawai = Pegawai::find($id_pegawai);
+        
         $pegawai->nik = $req->nik;
         $pegawai->nama = $req->nama;
         $pegawai->id_jabatan = $req->id_jabatan;

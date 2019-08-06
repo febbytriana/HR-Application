@@ -13,7 +13,6 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kode_pegawai')->nullable();
             $table->string('nama');
             $table->string('email',191)->unique();
             $table->timestamp('email_verified_at')->nullable();

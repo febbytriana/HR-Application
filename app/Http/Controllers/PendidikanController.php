@@ -32,12 +32,28 @@ class PendidikanController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\req  $req
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-
+        $pendidikan = new Pendidikan;
+        $pendidikan->sd = $req->sd;
+        $pendidikan->lulus_sd = $req->lulus_sd;
+        $pendidikan->smp = $req->smp;
+        $pendidikan->lulus_smp = $req->lulus_smp;
+        $pendidikan->smk = $req->smk;
+        $pendidikan->lulus_smk = $req->lulus_smk;
+        $pendidikan->nama_universitas = $req->nama_universitas;
+        $pendidikan->tingkat_pt = $req->tingkat_pt;
+        $pendidikan->lulus_pt = $req->lulus_pt;
+        $pendidikan->id_pegawai = $req->id_pegawai;
+        if($pendidikan->id_pendidikan == 0){
+            $pendidikan->save();
+        }else{
+            $pendidikan->update();
+        }
+        
     }
 
     /**
@@ -61,15 +77,15 @@ class PendidikanController extends Controller
     {
         //
     }
-
+ 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\req  $req
      * @param  \App\Pendidikan  $pendidikan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_pegawai)
+    public function update(Request $req, $id_pegawai)
     {
         $check = Pendidikan::where('id_pegawai',$id_pegawai)->count();
         if($check > 0){

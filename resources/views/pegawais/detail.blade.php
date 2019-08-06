@@ -323,7 +323,10 @@
       <div class="container">
         <span class="title-head">-- Anak --</span>
         <div class="pull-right">
-          <a class="btn btn-info btn-xs pull-right" href=""><i class="fa fa-plus fa-fx"></i> Tambah</a>
+        @foreach($pegawai as $spegawais)
+
+        <a class="btn btn-info btn-xs pull-right" href="{{ route('keluarga.create',$pegawais->id_pegawai) }}"><i class="fa fa-plus fa-fx"></i> Tambah</a>
+        @endforeach
         </div>
       </div>
       <br>
@@ -342,15 +345,31 @@
                     <span style="margin-right: 109px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>
                   
                   <div class="pull-right">
-                    <a class="btn btn-success btn-xs" href=""><i class="fa fa-edit fa-fx"></i> Edit</a>
-                  </div>
-                </div>    
+
+                            @foreach($keluarga as $keluargas)
+                              <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->nama }}</span>
+                              <br>
+                              <span style="margin-right: 18px;font-size: 14px;">Tempat Tanggal Lahir</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->tempat }} , {{ $keluargas->tgl }} </span>  
+                              <br>
+                              <span style="margin-right: 98px;font-size: 14px;">Anak ke</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->anak_ke }} </span>  
+                              <br>
+                              <span style="margin-right: 109px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->status }} </span>
+                            
+                            <div class="pull-right">
+                              <a class="btn btn-success btn-xs" href=""><i class="fa fa-edit fa-fx"></i> Edit</a>
+                            </div>
+
+                  @endforeach
+                  </div>  
+
               </div>
+
             </section>
+
           </div>
         </div>
       </div>
-    </div>
+
     <div id="istri" class="container tab-pane fade"><br>
       <div class="container">
         <span class="title-head">-- Istri --</span>
@@ -479,6 +498,7 @@
                     <a class="btn btn-success btn-xs" href="{{ route('pegawai.pendidikan',$data->id_pegawai) }}"><i class="fa fa-edit fa-fx"></i> Edit</a>
                     @endforeach
                   </div>
+                  
                 </div>    
               </div>
             </section>
@@ -529,15 +549,17 @@
       <div class="container">
         <span class="title-head">-- Sertifikat --</span>
         <div class="pull-right">
-          <a class="btn btn-info btn-xs pull-right" href=""><i class="fa fa-plus fa-fx"></i> Tambah</a>
+          <a class="btn btn-info btn-xs pull-right" href="{{ route('pegawai.sertifikat', $pegawais->id_pegawai)}}"><i class="fa fa-plus fa-fx"></i> Tambah</a>
         </div>
       </div>
 
+     
       <div class="container">
         <div class="row">
+
           <div class="col-md-12">
             <section class="card mt-2 mb-4">
-                @foreach($sertifikat as $data)
+                 @foreach($sertifikat as $s)
                   <div class="card-body" style="border: 1px solid #c0c2ce;">
                       <div class="profile-left">
                         <!-- begin profile-image -->
@@ -548,8 +570,8 @@
                         <!-- end profile-image -->  
                       </div>
                       <div class="profile-right-tab" style="margin-bottom: 80px;">
-                        <h4>{{$data->sertifikat}}</h4>
-                        <span style="font-size: 17px;">{{$data->tahun}}</span>
+                        <p><b style="font-size: 22px;">{{$s->nama_event}}</b><i>({{$s->tahun_event}}</i>)</p>
+                        <span style="font-size: 14px;">Prestasi yang diraih : <b>{{$s->ket_prestasi}}</b></span>
                       </div>
                       <div class="pull-right">
                         <a href="">
@@ -624,4 +646,18 @@
   </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  var nick=document.getElementById("ada").value;
+  var nickname=nick.split(" ");
+  if (nickname.length>=2) {
+    document.getElementById("panggilan").innerHTML=nickname[0]+" "+nickname[1];  
+  }
+  else{
+    document.getElementById("panggilan").innerHTML=nickname[0];
+  }
+  
+
+</script>
+
 @endsection

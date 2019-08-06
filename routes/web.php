@@ -61,6 +61,13 @@ Route::get('/jabatan/hapus/{id_jabatan}', 'JabatanController@destroy')->name('ja
 //Perjalanan
 Route::get('/perjalanan', 'PerjalananController@index')->name('perjalanan.index');
 Route::get('/perjalanan/create', 'PerjalananController@create')->name('perjalanan.create');
+Route::post('/perjalanan/store', 'PerjalananController@store')->name('perjalanan.store');
+Route::get('/perjalanan/cetak_pdf', 'PerjalananController@cetak_pdf')->name('perjalanan.cetak_pdf');
+Route::get('/perjalanan/edit/{id_surat}', 'PerjalananController@edit')->name('perjalanan.edit');
+Route::post('/perjalanan/update/{id_surat}', 'PerjalananController@update')->name('perjalanan.update');
+Route::get('/perjalanan/hapus/{id_surat}', 'PerjalananController@destroy')->name('perjalanan.hapus');
+Route::get('/perjalanan/cetak_pdf_id/{id_surat}', 'PerjalananController@cetak_pdf_id')->name('perjalanan.cetak_pdf_id');
+
 
 //Pendidikan
 Route::get('/pegawai/pendidikan/{id_pegawai}', 'PendidikanController@index')->name('pegawai.pendidikan');
@@ -72,3 +79,16 @@ Route::post('/no-darurat/store/{id_pegawai}','NoDaruratController@store')->name(
 Route::get('/no-darurat/edit/{id_pegawai}/{id_no_darurat}','NoDaruratController@edit')->name('darurat.edit');
 Route::post('/no-darurat/update/{id_pegawai}/{id_no_darurat}','NoDaruratController@update')->name('darurat.update');
 Route::get('/no-darurat/delete/{id_pegawai}/{id_no_darurat}','NoDaruratController@destroy')->name('darurat.destroy');
+//Keluarga
+Route::get('/keluarga/index', 'KeluargaController@index')->name('keluarga.index');
+Route::get('/keluarga/create/{id_pegawai}', 'KeluargaController@create')->name('keluarga.create');
+Route::post('/keluarga/store', 'KeluargaController@store')->name('keluarga.store');
+Route::get('/keluarga/edit', 'KeluargaController@edit')->name('keluarga.edit');
+Route::post('/keluarga/update', 'KeluargaController@update')->name('keluarga.update');
+Route::get('/keluarga/hapus/{id_pegawai}', 'KeluargaController@destroy')->name('keluarga.hapus');
+
+//Sertifikat
+Route::get('/pegawai/sertifikat/index/{id_pegawai}', 'SertifikatController@index')->name('pegawai.sertifikat.index');
+Route::get('/pegawai/sertifikat/{id_pegawai}', 'SertifikatController@create')->name('pegawai.sertifikat');
+Route::post('/pegawai/sertifikat/store/{id_pegawai}', 'SertifikatController@store')->name('pegawai.sertifikat.store');
+Route::get('/pegawai/sertifikat/edit/{id_pegawai}/{id_sertifikat}', 'SertifikatController@create')->name('pegawai.sertifikat.edit');

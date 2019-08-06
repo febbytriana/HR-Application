@@ -10,8 +10,10 @@ class Sertifikat extends Model
     protected $primaryKey = "id_sertifikat";
     protected $fillable = [
     	'id_pegawai',
-    	'sertifikat',
-    	'tahun',
+        'nama_event',
+        'tahun_event',
+        'ket_prestasi',
+        'gambar_sertifikat',
     ];
 
     public function tempSertifikat()
