@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSertifikatsTable extends Migration
+class CreateSuratPerjalanansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreateSertifikatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sertifikats', function (Blueprint $table) {
-            $table->increments('id_sertifikat');
+        Schema::create('surat_perjalanans', function (Blueprint $table) {
+            $table->bigIncrements('id_surat');
 
             $table->integer('id_pegawai')->unsigned()->nullable();
             $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais')->onUpdate('set null')->onDelete('set null');
 
-            $table->string('nama_event');
-            $table->date('tahun_event');
-            $table->string('ket_prestasi')->nullable();
-            $table->string('gambar_sertifikat')->nullable();
+            $table->string('kegiatan');
+            $table->string('sponsor');
+            $table->string('tujuan');
+            $table->date('tgl_berangkat');
+            $table->date('tgl_pulang');
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ class CreateSertifikatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sertifikats');
+        Schema::dropIfExists('surat_perjalanans');
     }
 }

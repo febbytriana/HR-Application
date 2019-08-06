@@ -12,13 +12,13 @@
 
     <section class="card mt-3">
         <div class="card-header">
-                <span class="title-head">Tambah Surat Perjalanan</span>
+                <span class="title-head">Edit Surat Perjalanan</span>
                 <div class="pull-right">
                     <a class="nav-link" href="{{ route('perjalanan.index') }}" style="font-size: 15px;"><i class="menu-icon ti-arrow-left"></i> Back</a>
                 </div>
         </div>
         <div class="card-body" style="">
-                <form action="{{ route('perjalanan.store') }}" method="POST">
+                <form action="{{ route('perjalanan.update', $surat_perjalanan->id_surat)}}" method="POST">
                     @csrf
                     <div class="row mb-3">
                       <div class="col-6">
@@ -26,9 +26,9 @@
                             <label class="col-md-3 control-label">Nama pegawai*</label>
                             <div class="col-md-9">
                                 <select name="id_pegawai" id="id_pegawai" class="form-control">
-                                    <option value=""></option>
-                                    @foreach($pegawai as $p)
-                                    <option value="{{$p->id_pegawai}}">{{$p->nik}}    <b>{{$p->nama}}</b></option>
+                                    <option value="{{$surat_perjalanan->id_pegawai}}">{{$surat_perjalanan-> pegawai['nama']}}</option>
+                                    @foreach($pegawai as $s)
+                                    <option value="{{$s->id_pegawai}}">{{$s->nik}}   {{$s->nama}}</option>
                                     @endforeach
                                 </select>
                           </div>
@@ -36,19 +36,19 @@
                           <div class="form-group">
                               <label class="col-md-3 control-label">Kegiatan*</label>
                               <div class="col-md-9">
-                                  <input type="text" class="form-control" name="kegiatan" >
+                                  <input type="text" class="form-control" name="kegiatan" value="{{$surat_perjalanan->kegiatan}}">
                               </div>
                           </div>
                           <div class="form-group">
                                 <label class="col-md-3 control-label">Sponsor<span class="required">*</span></label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="sponsor">
+                                    <input type="text" class="form-control" name="sponsor"  value="{{$surat_perjalanan->sponsor}}">
                                 </div>
                             </div>
                           <div class="form-group">
                                 <label class="col-md-3 control-label">Tujuan<span class="required">*</span></label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="tujuan">
+                                    <input type="text" class="form-control" name="tujuan"  value="{{$surat_perjalanan->tujuan}}">
                                 </div>
                             </div>
                       </div>
@@ -57,13 +57,13 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Tanggal Berangkat<span class="required">*</span></label>
                                 <div class="col-md-9">
-                                    <input type="date" class="form-control" name="tgl_berangkat">
+                                    <input type="date" class="form-control" name="tgl_berangkat"  value="{{$surat_perjalanan->tgl_berangkat}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Tanggal Pulang<span class="required">*</span></label>
                                 <div class="col-md-9">
-                                    <input type="date" class="form-control" name="tgl_pulang">
+                                    <input type="date" class="form-control" name="tgl_pulang"  value="{{$surat_perjalanan->tgl_pulang}}">
                                 </div>
                             </div>
                             <div class="form-group">

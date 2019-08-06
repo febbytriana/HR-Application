@@ -1,5 +1,3 @@
-
-
 @extends('layouts.app')
 
 @section('content')
@@ -287,8 +285,10 @@
     <div id="anak" class="container tab-pane fade"><br>
       <div class="container">
         <span class="title-head">-- Anak --</span>
+        @foreach($pegawai as $spegawais)
 
-        <a class="btn btn-info btn-xs pull-right" href="{{ route('keluarga.create',$pegawais->id_pegawai)}}"><i class="fa fa-plus fa-fx"></i> Tambah</a>
+        <a class="btn btn-info btn-xs pull-right" href="{{ route('keluarga.create',$pegawais->id_pegawai) }}"><i class="fa fa-plus fa-fx"></i> Tambah</a>
+        @endforeach
         </div>
       </div>
       <br>
@@ -299,26 +299,32 @@
               <div class="card-body mb-4" style="border: 2px solid #c0c2ce;">
                 <div class="body-text">
 
-                  @foreach($keluarga as $keluargas)
-        <div class="pull-right">
-                    <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->nama }}</span>
-                    <br>
-                    <span style="margin-right: 18px;font-size: 14px;">Tempat Tanggal Lahir</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->tempat }} , {{ $keluargas->tgl }} </span>  
-                    <br>
-                    <span style="margin-right: 98px;font-size: 14px;">Anak ke</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->anak_ke }} </span>  
-                    <br>
-                    <span style="margin-right: 109px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->status }} </span>
-                  @endforeach
                   <div class="pull-right">
-                    <a class="btn btn-success btn-xs" href=""><i class="fa fa-edit fa-fx"></i> Edit</a>
-                  </div>
-                </div>    
+
+                            @foreach($keluarga as $keluargas)
+                              <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->nama }}</span>
+                              <br>
+                              <span style="margin-right: 18px;font-size: 14px;">Tempat Tanggal Lahir</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->tempat }} , {{ $keluargas->tgl }} </span>  
+                              <br>
+                              <span style="margin-right: 98px;font-size: 14px;">Anak ke</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->anak_ke }} </span>  
+                              <br>
+                              <span style="margin-right: 109px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->status }} </span>
+                            
+                            <div class="pull-right">
+                              <a class="btn btn-success btn-xs" href=""><i class="fa fa-edit fa-fx"></i> Edit</a>
+                            </div>
+
+                  @endforeach
+                  </div>  
+
               </div>
+
             </section>
+
           </div>
         </div>
       </div>
-    </div>
+
     <div id="istri" class="container tab-pane fade"><br>
       <div class="container">
         <span class="title-head">-- Istri --</span>
@@ -367,28 +373,29 @@
             <section class="card">
               <div class="card-body mb-4" style="border: 1px solid #898989;">
                 <div class="body-text">
-                    <span style="margin-right: 113px; font-size: 14px;"><b>SD</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>
+                    <span style="margin-right: 113px; font-size: 14px;"><b>SD</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: {{$pendidikan['sd']}}</span>
                     <br>
-                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>  
-                    <br>
-                    <br>
-                    <span style="margin-right: 102px;font-size: 14px;"><b>SMP</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>  
-                    <br>
-                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>
+                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: {{$pendidikan['lulus_sd']}}</span>  
                     <br>
                     <br>
-                    <span style="margin-right: 68px;font-size: 14px;"><b>SMA/SMK</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>  
+                    <span style="margin-right: 102px;font-size: 14px;"><b>SMP</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: {{$pendidikan['smp']}}</span>  
                     <br>
-                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>
+                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: {{$pendidikan['lulus_smp']}}</span>
                     <br>
                     <br>
-                    <span style="margin-right: 26px;font-size: 14px;"><b>Perguruan Tinggi</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>  
+                    <span style="margin-right: 68px;font-size: 14px;"><b>SMA/SMK</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: {{$pendidikan['smk']}}</span>  
                     <br>
-                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: </span>
+                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: {{$pendidikan['lulus_smk']}}</span>
+                    <br>
+                    <br>
+                    <span style="margin-right: 26px;font-size: 14px;"><b>Perguruan Tinggi</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: {{$pendidikan['nama_universitas']}} ({{$pendidikan['tingkat_pt']}})</span>  
+                    <br>
+                    <span style="margin-right: 58px;font-size: 14px;"><b>Tahun Lulus</b></span><span style="margin-right: 18px;font-size: 14px;"></span><span style="font-size: 14px;">: {{$pendidikan['lulus_pt']}}</span>
                     <br>
                   <div class="pull-right">
-                    <a class="btn btn-success btn-xs" href="{{ route('pegawai.pendidikan',$id_pegawai->id_pegawai)}}"><i class="fa fa-edit fa-fx"></i> Edit</a>
+                    <a class="btn btn-success btn-xs" href="{{ route('pegawai.pendidikan', $pegawais->id_pegawai )}}"><i class="fa fa-edit fa-fx"></i> Edit</a>
                   </div>
+                  
                 </div>    
               </div>
             </section>
@@ -439,15 +446,17 @@
       <div class="container">
         <span class="title-head">-- Sertifikat --</span>
         <div class="pull-right">
-          <a class="btn btn-info btn-xs pull-right" href=""><i class="fa fa-plus fa-fx"></i> Tambah</a>
+          <a class="btn btn-info btn-xs pull-right" href="{{ route('pegawai.sertifikat', $pegawais->id_pegawai)}}"><i class="fa fa-plus fa-fx"></i> Tambah</a>
         </div>
       </div>
 
+     
       <div class="container">
         <div class="row">
+
           <div class="col-md-12">
             <section class="card mt-2 mb-4">
-                
+                 @foreach($sertifikat as $s)
                   <div class="card-body" style="border: 1px solid #c0c2ce;">
                       <div class="profile-left">
                         <!-- begin profile-image -->
@@ -458,8 +467,8 @@
                         <!-- end profile-image -->  
                       </div>
                       <div class="profile-right-tab" style="margin-bottom: 80px;">
-                        <h4>LOMBA - LOMBA</h4>
-                        <span style="font-size: 14px;">02 Nov 2020 ASDJK ASDJK ASDJK ASDJK ASDJK ASDJK ASDJK ASDJK ASDJK ASDJKV ASDJK ASDJKVV ASDJK ASDJK ASDJKV</span>
+                        <p><b style="font-size: 22px;">{{$s->nama_event}}</b><i>({{$s->tahun_event}}</i>)</p>
+                        <span style="font-size: 14px;">Prestasi yang diraih : <b>{{$s->ket_prestasi}}</b></span>
                       </div>
                       <div class="pull-right">
                         <a href="">
@@ -470,7 +479,7 @@
                         </a>
                       </div>
                   </div>
-
+                @endforeach
             </section>
           </div>
         </div>

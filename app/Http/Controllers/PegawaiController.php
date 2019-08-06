@@ -99,6 +99,7 @@ class PegawaiController extends Controller
     public function update(Request $req, $id_pegawai)
     {
         $pegawai = Pegawai::find($id_pegawai);
+        
         $pegawai->nik = $req->nik;
         $pegawai->nama = $req->nama;
         $pegawai->id_jabatan = $req->id_jabatan;
@@ -117,7 +118,7 @@ class PegawaiController extends Controller
             $file = $req->file('image');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
-            $file->move('uploads', $filename);
+            $file->move('uploads/pegawai/', $filename);
             $pegawai->image = $filename;
         }
 
@@ -147,10 +148,11 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::where('id_pegawai','=',$id_pegawai)->get();
         $pegawais = Pegawai::find($id_pegawai);
-         $keluarga = \App\Keluarga::all();
-       
+        $keluarga = \App\Keluarga::all();
+        $pendidikan = \App\Pendidikan::find($id_pegawai);
+        $sertifikat = \App\Sertifikat::where('id_pegawai','=',$id_pegawai)->get();
 
-        return view('pegawais/detail',compact('pegawai','keluarga','pegawais'));
+        return view('pegawais/detail',compact('pegawai','keluarga','pegawais','pendidikan','sertifikat'));
     }
 
 }

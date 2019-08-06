@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use \PDF;
 
 class PerjalananController extends Controller
 {
@@ -13,7 +15,10 @@ class PerjalananController extends Controller
      */
     public function index()
     {
-        return view('perjalanans.index');
+        $surat_perjalanan = \App\SuratPerjalanan::all();
+        $pegawai = \App\Pegawai::all();
+
+        return view('perjalanans.index', compact('surat_perjalanan','pegawai'));
     }
 
     /**
@@ -23,7 +28,9 @@ class PerjalananController extends Controller
      */
     public function create()
     {
-        return view('perjalanans.create');
+        $pegawai = \App\Pegawai::all();
+
+        return view('perjalanans.create',compact('pegawai'));
     }
 
     /**
@@ -32,9 +39,11 @@ class PerjalananController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        \App\SuratPerjalanan::create($req->all());
+
+        return redirect('perjalanan');
     }
 
     /**
@@ -54,9 +63,12 @@ class PerjalananController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_surat)
     {
-        //
+        $surat_perjalanan = \App\SuratPerjalanan::find($id_surat);
+        $pegawai = \App\Pegawai::all();
+
+        return view('perjalanans.edit', compact('surat_perjalanan','pegawai'));
     }
 
     /**
@@ -66,9 +78,12 @@ class PerjalananController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $req, $id_surat)
     {
-        //
+        $surat_perjalanan = \App\SuratPerjalanan::find($id_surat);
+        $surat_perjalanan->update($req->all());
+
+        return redirect('perjalanan');
     }
 
     /**
@@ -77,8 +92,29 @@ class PerjalananController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_surat)
     {
-        //
+        $surat_perjalanan = \App\SuratPerjalanan::find($id_surat);
+        $surat_perjalanan->delete($surat_perjalanan);
+        
+        return redirect('perjalanan');
+    }
+    public function cetak_pdf()
+    {
+        $surat_perjalanan = DB::table('surat_perjalanans')
+            ->join('pegawais', 'surat_perjalanans.id_pegawai', '=', 'pegawais.id_pegawai')
+            ->select('pegawais.*', 'surat_perjalanans.*')
+            ->get();
+ 
+    	$pdf = PDF::loadview('perjalanans/surat_perjalanan_pdf',compact('surat_perjalanan'));
+    	return $pdf->stream();
+    }
+    public function cetak_pdf_id($id_surat)
+    {
+        $surat_perjalanan = \App\SuratPerjalanan::find($id_surat);
+        $surat = \App\SuratPerjalanan::where('id_surat','=',$id_surat)->get();
+ 
+    	$pdf = PDF::loadview('perjalanans/surat_perjalanan_id_pdf',compact('surat_perjalanan','surat'));
+    	return $pdf->stream();
     }
 }
