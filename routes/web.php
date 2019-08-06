@@ -40,11 +40,19 @@ Route::get('/pegawai/print', 'PegawaiController@print')->name('pegawai.print');
 Route::post('/pegawai/store', 'PegawaiController@store')->name('pegawai.store');
 Route::get('/pegawai/edit/{id_pegawai}', 'PegawaiController@edit')->name('pegawai.edit');
 Route::post('/pegawai/update/{id_pegawai}', 'PegawaiController@update')->name('pegawai.update');
+Route::get('/pegawai/hapus/{id_pegawai}', 'PegawaiController@destroy')->name('pegawai.hapus');
 
 Route::get('/pegawai/destroy/{id_pegawai}', 'PegawaiController@destroy')->name('pegawai.destroy');
 //Surat SP
-Route::get('/surat-sp/create', 'SPController@create')->name('sp.create');
+
 Route::get('/surat-sp/index', 'SPController@index')->name('sp.index');
+Route::get('/surat-sp/create', 'SPController@create')->name('sp.create');
+Route::post('/surat-sp/store', 'SPController@store')->name('sp.store');
+Route::get('/surat-sp/edit/{id_sp}', 'SPController@edit')->name('sp.edit');
+Route::post('/surat-sp/update/{id_sp}', 'SPController@update')->name('sp.update');
+Route::get('/surat-sp/hapus/{id_sp}', 'SPController@destroy')->name('sp.hapus');
+Route::get('/surat-sp/cetak_pdf', 'SPController@cetak_pdf')->name('sp.cetak_pdf');
+Route::get('/surat-sp/cetak_pdf_id/{id_surat}', 'SPController@cetak_pdf_id')->name('sp.cetak_pdf_id');
 
 //Jabatan
 Route::get('/jabatan/index', 'JabatanController@jabatan')->name('jabatan.index');

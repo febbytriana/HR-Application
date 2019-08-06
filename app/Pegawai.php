@@ -70,9 +70,13 @@ class Pegawai extends Model
     {
         return $this->hasMany(Sertifikat::class, 'id_pegawai', 'id_pegawai');
     }
-    public function surat_perjalanan() 
+    public function suratPerjalanan() 
     {
         return $this->hasOne(SuratPerjalanan::class, 'id_pegawai', 'id_pegawai');
+    }
+    public function suratPeringatan() 
+    {
+        return $this->hasOne(SuratPeringatan::class, 'id_pegawai', 'id_pegawai');
     }
 }
    

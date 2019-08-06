@@ -3,7 +3,7 @@
 @section('content')
 
 <section role="main" class="content-body">
-
+ 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mt-3">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
@@ -19,7 +19,7 @@
             </div>
             <br>
             <div class="pull-left">
-             <a href="">
+             <a href="{{ route('sp.cetak_pdf')}}">
                 <button class="btn btn-success btn-xs"><i class="fa fa-print fa-print"></i> Cetak</button>
              </a>
              <a href="{{ route('sp.create') }}" style="margin-left: 7px">
@@ -36,29 +36,33 @@
                         <th style="text-align: center;">NIK</th>
                         <th style="text-align: center;">Nama</th>
                         <th style="text-align: center;">Perihal</th>
+                        <th style="text-align: center;">Pelanggaran</th>
                         <th style="text-align: center;">Tanggal Pelanggaran</th>
                         <th style="text-align: center;" width="180px">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+                @foreach($surat_peringatan as $key => $sp)
                     <tr>
-                        <td style="text-align: center;">1</td>
-                        <td style="text-align: center;">1234</td>
-                        <td style="text-align: center;">Babeh</td>
-                        <td style="text-align: center;">SP 3</td>
-                        <td style="text-align: center;">2019-02-02</td>
+                        <td style="text-align: center;">{{$key+1}}</td>
+                        <td style="text-align: center;">{{$sp->pegawai['nik']}}</td>
+                        <td style="text-align: center;">{{$sp->pegawai['nama']}}</td>
+                        <td style="text-align: center;">{{$sp->perihal}}</td>
+                        <td style="text-align: center;">{{$sp->pelanggaran}}</td>
+                        <td style="text-align: center;">{{$sp->tgl_pelanggaran}}</td>
                         <td style="text-align: center;">
-                            <a href="">
+                            <a href="{{ route('sp.cetak_pdf_id', $sp->id_sp)}}">
                                 <button class="btn btn-success btn-xs"><i class="fa fa-print"></i></button>
                             </a>
-                            <a href="">
+                            <a href="{{ route('sp.edit', $sp->id_sp)}}">
                                 <button class="btn btn-info btn-xs"><i class="fa fa-pencil"></i></button>
                             </a>
-                            <a href="">
+                            <a href="{{ route('sp.hapus', $sp->id_sp)}}">
                                 <button class="btn btn-danger btn-xs" onclick="return confirm('Hapus data ini?')"><i class="fa fa-trash"></i></button>
                             </a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
       </div>
