@@ -7,6 +7,9 @@ use App\Pendidikan;
 use App\Sertifikat;
 use App\Jabatan;
 use App\NoDarurat;
+use App\Kontrak;
+use App\PengalamanKerja;
+use App\Pelatihan;
 use DB;
 use Illuminate\Http\Request;
 
@@ -40,7 +43,7 @@ class PegawaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req,$id_pegawai)
+    public function store(Request $req)
     {
         $pegawai = new Pegawai;
         $pegawai->nik = $req->nik;
@@ -64,7 +67,7 @@ class PegawaiController extends Controller
 
         $pegawai->save();
 
-        session()->flash('success-create', 'Data Akun berhasil disimpan');
+        session()->flash('success-create', 'Data Pegawai '.$req->nama.' telah disimpan');
         
         return redirect('/pegawai/index');
     }
@@ -103,7 +106,6 @@ class PegawaiController extends Controller
     public function update(Request $req, $id_pegawai)
     {
         $pegawai = Pegawai::find($id_pegawai);
-        
         $pegawai->nik = $req->nik;
         $pegawai->nama = $req->nama;
         $pegawai->id_jabatan = $req->id_jabatan;
@@ -118,7 +120,7 @@ class PegawaiController extends Controller
         $pegawai->penyakit = $req->penyakit;
         $pegawai->telp = $req->telp;
         $pegawai->email = $req->email;
-
+    
         if($req->hasfile('image')){
             $file       = $req->file('image');
             $fileName   = $file->getClientOriginalName();
@@ -145,19 +147,33 @@ class PegawaiController extends Controller
         $pegawai = Pegawai::find($id_pegawai);
         $pegawai->delete();
 
+        session()->flash('success-create', 'Data Pegawai '.$pegawai->nama.' telah dihapus');
+
         return redirect('/pegawai/index');
     }
 
     public function detail($id_pegawai)
     {
         $pegawai = Pegawai::where('id_pegawai','=',$id_pegawai)->get();
-        $pegawais = Pegawai::find($id_pegawai);
+        $pegawais = Pegawai::find($id_pegawai); 
         $keluarga = \App\Keluarga::all();
         $pendidikan = Pendidikan::where('id_pegawai',$id_pegawai)->first();
         $no_darurat = NoDarurat::where('id_pegawai',$id_pegawai)->get();
         $sertifikat = Sertifikat::where('id_pegawai',$id_pegawai)->get();
+        $kontrak = Kontrak::where('id_pegawai',$id_pegawai)->get();
+        $pengalaman = PengalamanKerja::where('id_pegawai',$id_pegawai)->get();
+        $jabatan = Jabatan::all();
+        $pelatihan = Pelatihan::where('id_pegawai',$id_pegawai)->get();
 
-        return view('pegawais/detail',compact('pegawai','keluarga','pegawais','pendidikan','no_darurat','sertifikat'));
+        return view('pegawais/detail',compact('pegawai','keluarga','pegawais','pendidikan','no_darurat','sertifikat','kontrak','pengalaman','jabatan','pelatihan'));
+    }
+
+    public function updateJabatan(Request $req,$id_pegawai)
+    {
+        $pegawai = Pegawai::find($id_pegawai);
+        $pegawai->id_jabatan = $req->id_jabatan;
+        $pegawai->save();
+        return redirect('pegawai/detail/'.$id_pegawai);
     }
 
 }

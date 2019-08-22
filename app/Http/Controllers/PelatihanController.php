@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pelatihan;
+use App\Pegawai;
 use Illuminate\Http\Request;
 
 class PelatihanController extends Controller
@@ -22,9 +23,12 @@ class PelatihanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id_pegawai)
     {
         //
+        $pegawai = Pegawai::find($id_pegawai);
+
+        return view('pelatihan.create',compact('pegawai')); 
     }
 
     /**
@@ -33,9 +37,19 @@ class PelatihanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req,$id_pegawai)
     {
         //
+        $pelatihan = new Pelatihan;
+        $pelatihan->id_pegawai = $id_pegawai;
+        $pelatihan->nama_event = $req->nama_event;
+        $pelatihan->tempat_pelatihan = $req->tempat_pelatihan;
+        $pelatihan->tanggal = $req->tanggal;
+        $pelatihan->peran = $req->peran;
+
+        $pelatihan->save();
+
+        return redirect('pegawai/detail/'.$id_pegawai);
     }
 
     /**
@@ -55,9 +69,13 @@ class PelatihanController extends Controller
      * @param  \App\Pelatihan  $pelatihan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pelatihan $pelatihan)
+    public function edit($id_pegawai,$id_pelatihan)
     {
         //
+        $pegawai = Pegawai::find($id_pegawai);
+        $pelatihan = Pelatihan::find($id_pelatihan);
+
+        return view('pelatihan.edit',compact('pegawai','pelatihan'));
     }
 
     /**
@@ -67,9 +85,18 @@ class PelatihanController extends Controller
      * @param  \App\Pelatihan  $pelatihan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pelatihan $pelatihan)
+    public function update(Request $req, $id_pegawai,$id_pelatihan)
     {
         //
+        $pelatihan = Pelatihan::find($id_pelatihan);
+        $pelatihan->nama_event = $req->nama_event;
+        $pelatihan->tempat_pelatihan = $req->tempat_pelatihan;
+        $pelatihan->tanggal = $req->tanggal;
+        $pelatihan->peran = $req->peran;
+
+        $pelatihan->save();
+
+        return redirect('pegawai/detail/'.$id_pegawai);
     }
 
     /**
@@ -78,8 +105,12 @@ class PelatihanController extends Controller
      * @param  \App\Pelatihan  $pelatihan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pelatihan $pelatihan)
+    public function destroy($id_pegawai,$id_pelatihan)
     {
         //
+        $pelatihan = Pelatihan::find($id_pelatihan);
+        $pelatihan->delete();
+
+        return redirect('pegawai/detail/'.$id_pegawai);
     }
 }

@@ -1,3 +1,38 @@
+@section('js')
+<script type="text/javascript">
+      function hapusPeg(idpeg) {
+        Swal({
+            title: 'Apakah Anda Yakin?',
+            text: "Tekan 'Hapus' Untuk Meneruskan Penghapusan",
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Hapus'
+        }).then((result) => {
+            if (result.value) {
+                Swal({
+                    title: 'Sukses!',
+                    text: 'Penghapusan Data Berhasil.',
+                    type: 'success'
+                }).then((result) => {
+                    if(result.value) {
+                        location.href = 'http://localhost:8000/pegawai/hapus/'+idpeg;
+                    }
+                })
+            } else if (result.dismiss === swal.DismissReason.cancel) {
+                  swal(
+                    'Batal',
+                    'Anda membatalkan penghapusan',
+                    'error'
+                  )
+            }
+        })
+    }
+</script>
+@stop
+
 @extends('layouts.app')
 
 @section('content')
@@ -85,7 +120,7 @@
                             <a href="{{ route('pegawai.edit',$value->id_pegawai)}}">
                                 <i class="fa fa-pencil btn-warning" style="padding:8px;border-radius:5px;"></i>
                             </a>
-                            <a href="{{ route('pegawai.hapus', $value->id_pegawai)}}" onclick="return confirm('Yakin akan menghapus data ini?')">
+                            <a href="#" onclick="hapusPeg('{{$value->id_pegawai}}')">
                                 <i class="fa fa-trash btn-danger" style="padding:8px;border-radius:5px;"></i>
                             </a>
                         </td>

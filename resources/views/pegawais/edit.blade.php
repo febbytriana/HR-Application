@@ -30,6 +30,7 @@
       <ol class="breadcrumb mt-3">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
         <li class="breadcrumb-item"><a href="{{ route('pegawai.index') }}">Data Pegawai</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{$pegawai->nama}}</li>
         <li class="breadcrumb-item active" aria-current="page">Edit</li>
       </ol>
     </nav>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\PengalamanKerja;
+use App\Pegawai;
 use Illuminate\Http\Request;
+
 
 class PengalamanKerjaController extends Controller
 {
@@ -22,9 +24,11 @@ class PengalamanKerjaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id_pegawai)
     {
         //
+        $pegawai = Pegawai::find($id_pegawai);
+        return view('pengalaman.create',compact('pegawai'));
     }
 
     /**
@@ -33,9 +37,19 @@ class PengalamanKerjaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req,$id_pegawai)
     {
         //
+        $pengalaman = new PengalamanKerja;
+        $pengalaman->id_pegawai = $id_pegawai;
+        $pengalaman->nama_perusahaan = $req->nama_perusahaan;
+        $pengalaman->jabatan = $req->jabatan;
+        $tahun = "$req->lama $req->format";
+        $pengalaman->tahun = $tahun;
+
+        $pengalaman->save();
+
+        return redirect('pegawai/detail/'.$id_pegawai);
     }
 
     /**
@@ -55,9 +69,12 @@ class PengalamanKerjaController extends Controller
      * @param  \App\PengalamanKerja  $pengalamanKerja
      * @return \Illuminate\Http\Response
      */
-    public function edit(PengalamanKerja $pengalamanKerja)
+    public function edit($id_pegawai,$id_pengalaman)
     {
         //
+        $pegawai = Pegawai::find($id_pegawai);
+        $pengalaman = PengalamanKerja::find($id_pengalaman);
+        return view('pengalaman.edit',compact('pegawai','pengalaman'));
     }
 
     /**
@@ -67,9 +84,18 @@ class PengalamanKerjaController extends Controller
      * @param  \App\PengalamanKerja  $pengalamanKerja
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PengalamanKerja $pengalamanKerja)
+    public function update(Request $req,$id_pegawai,$id_pengalaman)
     {
         //
+        $pengalaman = PengalamanKerja::find($id_pengalaman);
+        $pengalaman->nama_perusahaan = $req->nama_perusahaan;
+        $pengalaman->jabatan = $req->jabatan;
+        $tahun = "$req->lama $req->format";
+        $pengalaman->tahun = $tahun;
+
+        $pengalaman->save();
+
+        return redirect('pegawai/detail/'.$id_pegawai);
     }
 
     /**
@@ -78,8 +104,12 @@ class PengalamanKerjaController extends Controller
      * @param  \App\PengalamanKerja  $pengalamanKerja
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PengalamanKerja $pengalamanKerja)
+    public function destroy(Request $req,$id_pegawai,$id_pengalaman)
     {
         //
+        $pengalaman = PengalamanKerja::find($id_pengalaman);
+        $pengalaman->delete();
+        
+        return redirect('pegawai/detail/'.$id_pegawai);
     }
 }

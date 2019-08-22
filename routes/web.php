@@ -46,6 +46,7 @@ Route::get('/pegawai/hapus/{id_pegawai}', 'PegawaiController@destroy')->name('pe
 
 Route::get('/pegawai/destroy/{id_pegawai}', 'PegawaiController@destroy')->name('pegawai.destroy');
 Route::get('/pegawai/profil/{id_pegawai}', 'PegawaiController@profil')->name('pegawai.profil');
+Route::post('/pegawai/updatejabatan/{id_pegawai}', 'PegawaiController@updateJabatan')->name('pegawai.updatejabatan');
 
 //Surat SP
 
@@ -99,4 +100,27 @@ Route::get('/keluarga/hapus/{id_pegawai}', 'KeluargaController@destroy')->name('
 Route::get('/pegawai/sertifikat/index/{id_pegawai}', 'SertifikatController@index')->name('pegawai.sertifikat.index');
 Route::get('/pegawai/sertifikat/{id_pegawai}', 'SertifikatController@create')->name('pegawai.sertifikat');
 Route::post('/pegawai/sertifikat/store/{id_pegawai}', 'SertifikatController@store')->name('pegawai.sertifikat.store');
-Route::get('/pegawai/sertifikat/edit/{id_pegawai}/{id_sertifikat}', 'SertifikatController@create')->name('pegawai.sertifikat.edit');
+Route::get('/pegawai/sertifikat/edit/{id_pegawai}/{id_sertifikat}', 'SertifikatController@edit')->name('pegawai.sertifikat.edit');
+Route::post('/pegawai/sertifikat/update/{id_pegawai}/{id_sertifikat}', 'SertifikatController@update')->name('pegawai.sertifikat.update');
+Route::get('/pegawai/sertifikat/delete/{id_pegawai}/{id_sertifikat}', 'SertifikatController@destroy')->name('pegawai.sertifikat.destroy');
+
+//Kontrak
+Route::get('/pegawai/kontrak/create/{id_pegawai}', 'KontrakController@create')->name('kontrak.create');
+Route::post('/pegawai/kontrak/store/{id_pegawai}', 'KontrakController@store')->name('kontrak.store');
+Route::get('/pegawai/kontrak/edit/{id_pegawai}/{id_kontrak}', 'KontrakController@edit')->name('kontrak.edit');
+Route::post('/pegawai/kontrak/update/{id_pegawai}/{id_kontrak}', 'KontrakController@update')->name('kontrak.update');
+Route::get('/pegawai/kontrak/delete/{id_pegawai}/{id_kontrak}', 'KontrakController@destroy')->name('kontrak.hapus');
+
+//Pengalaman
+Route::get('/pegawai/pengalaman/create/{id_pegawai}', 'PengalamanKerjaController@create')->name('pengalaman.create');
+Route::post('/pegawai/pengalaman/store/{id_pegawai}', 'PengalamanKerjaController@store')->name('pengalaman.store');
+Route::get('/pegawai/pengalaman/edit/{id_pegawai}/{id_pengalaman}', 'PengalamanKerjaController@edit')->name('pengalaman.edit');
+Route::post('/pegawai/pengalaman/update/{id_pegawai}/{id_pengalaman}', 'PengalamanKerjaController@update')->name('pengalaman.update');
+Route::get('/pegawai/pengalaman/delete/{id_pegawai}/{id_pengalaman}', 'PengalamanKerjaController@destroy')->name('pengalaman.hapus');
+
+//Pelatihan
+Route::get('/pegawai/pelatihan/create/{id_pegawai}', 'PelatihanController@create')->name('pelatihan.create');
+Route::post('/pegawai/pelatihan/store/{id_pegawai}', 'PelatihanController@store')->name('pelatihan.store');
+Route::get('/pegawai/pelatihan/edit/{id_pegawai}/{id_pengalaman}', 'PelatihanController@edit')->name('pelatihan.edit');
+Route::post('/pegawai/pelatihan/update/{id_pegawai}/{id_pengalaman}', 'PelatihanController@update')->name('pelatihan.update');
+Route::get('/pegawai/pelatihan/delete/{id_pegawai}/{id_pengalaman}', 'PelatihanController@destroy')->name('pelatihan.hapus');

@@ -58,8 +58,8 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Jabatan<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <select name="id_jabatan" id="id_jabatan" class="custom-select">
-                                    <option value=""></option>
+                                <select name="id_jabatan" id="id_jabatan" class="form-control select2">
+                                    <option value="">Pilih</option>
                                     @foreach ($jabatan as $jabatan)
                                     <option value="{{$jabatan->id_jabatan}}">{{$jabatan->jabatan}}</option>
                                     @endforeach
@@ -101,7 +101,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Agama<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <select name="agama" id="agama" class="custom-select">
+                                <select name="agama" id="agama" class="custom-select select2">
                                     <option value=""></option>
                                     <option value="Islam">Islam</option>
                                     <option value="Katholik">Katholik</option>
@@ -115,7 +115,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Kewarganegaraan<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <select name="warga_negara" id="warga_negara" class="custom-select">
+                                <select name="warga_negara" id="warga_negara" class="custom-select select2">
                                     <option value=""></option>
                                     <option value="WNI">Warga Negara Indonesia</option>
                                     <option value="WNA">Warga Negara Asing</option>
@@ -125,7 +125,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Status Perkawinan<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <select name="status_kawin" id="status_kawin" class="custom-select">
+                                <select name="status_kawin" id="status_kawin" class="custom-select select2">
                                     <option value=""></option>
                                     <option value="Kawin">Kawin</option>
                                     <option value="Belum kawin">Belum kawin</option>
@@ -135,7 +135,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Golongan Darah<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <select name="goldar" id="goldar" class="custom-select">
+                                <select name="goldar" id="goldar" class="custom-select select2">
                                     <option value=""></option>
                                     <option value="A">A</option>
                                     <option value="B">B</option>

@@ -41,17 +41,14 @@ class SertifikatController extends Controller
         $sertifikat->nama_event = $req->nama_event;
         $sertifikat->tahun_event = $req->tahun_event;
         $sertifikat->ket_prestasi = $req->ket_prestasi;
-        if($req->hasfile('gambar_sertifikat')){
-            $file = $req->file('gambar_sertifikat');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move('uploads/sertifikat/', $filename);
-            $sertifikat->gambar_sertifikat = $filename;
-        }
+        $file       = $req->file('gambar_sertifikat');
+        $fileName   = $file->getClientOriginalName();
+        $req->file('gambar_sertifikat')->move("upload/", $fileName);
+        $sertifikat->gambar_sertifikat = $fileName;
         $sertifikat->save();
 
 
-        return redirect('pegawai/index');
+        return redirect('pegawai/detail/'.$id_pegawai);
     }
 
     /**
@@ -71,11 +68,11 @@ class SertifikatController extends Controller
      * @param  \App\Sertifikat  $sertifikat
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_pegawai)
+    public function edit($id_pegawai,$id_sertifikat)
     {
         $pegawai = \App\Pegawai::find($id_pegawai);
         $sertifikat = \App\Sertifikat::find($id_sertifikat);
-        return view('pegawais.sertifikat.edit');
+        return view('pegawais.sertifikat.edit',compact('pegawai','sertifikat'));
     }
 
     /**
@@ -85,9 +82,23 @@ class SertifikatController extends Controller
      * @param  \App\Sertifikat  $sertifikat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sertifikat $sertifikat)
+    public function update(Request $req,$id_pegawai,$id_sertifikat)
     {
         //
+        $sertifikat = Sertifikat::find($id_sertifikat);
+        $sertifikat->nama_event = $req->nama_event;
+        $sertifikat->tahun_event = $req->tahun_event;
+        $sertifikat->ket_prestasi = $req->ket_prestasi;
+        if($req->hasfile('gambar_sertifikat')) {
+        $file       = $req->file('gambar_sertifikat');
+        $fileName   = $file->getClientOriginalName();
+        $req->file('gambar_sertifikat')->move("upload/", $fileName);
+        $sertifikat->gambar_sertifikat = $fileName;
+        }
+        $sertifikat->save();
+
+
+        return redirect('pegawai/detail/'.$id_pegawai);
     }
 
     /**
@@ -96,8 +107,12 @@ class SertifikatController extends Controller
      * @param  \App\Sertifikat  $sertifikat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sertifikat $sertifikat)
+    public function destroy($id_pegawai,$id_sertifikat)
     {
         //
+        $sertifikat = Sertifikat::find($id_sertifikat);
+        $sertifikat->delete();
+
+        return redirect('/pegawai/detail/'.$id_pegawai);
     }
 }
