@@ -40,7 +40,7 @@ class PegawaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req,$id_pegawai)
+    public function store(Request $req)
     {
         $pegawai = new Pegawai;
         $pegawai->nik = $req->nik;
@@ -156,8 +156,9 @@ class PegawaiController extends Controller
         $pendidikan = Pendidikan::where('id_pegawai',$id_pegawai)->first();
         $no_darurat = NoDarurat::where('id_pegawai',$id_pegawai)->get();
         $sertifikat = Sertifikat::where('id_pegawai',$id_pegawai)->get();
+        $pelatihan = \App\Pelatihan::where('id_pegawai','=',$id_pegawai)->get();
 
-        return view('pegawais/detail',compact('pegawai','keluarga','pegawais','pendidikan','no_darurat','sertifikat'));
+        return view('pegawais/detail',compact('pegawai','keluarga','pegawais','pendidikan','no_darurat','sertifikat','pelatihan'));
     }
 
 }

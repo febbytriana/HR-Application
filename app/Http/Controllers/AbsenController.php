@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Post;
+use App\Exports\ListExport;
 
 class AbsenController extends Controller
 {
@@ -13,7 +16,9 @@ class AbsenController extends Controller
      */
     public function index()
     {
-        return view('absen.index');
+        $pegawai = \App\Pegawai::all();
+
+        return view('absen.index', compact('pegawai'));
     }
 
     /**
@@ -80,5 +85,9 @@ class AbsenController extends Controller
     public function destroy($id)
     {
         //
+    }
+    function export()
+    {
+        return Excel::download(new \App\Exports\AbsenExport, 'absen.xlsx');
     }
 }

@@ -369,12 +369,12 @@
           </div>
         </div>
       </div>
-
+    </div>
     <div id="istri" class="container tab-pane fade"><br>
       <div class="container">
         <span class="title-head">-- Istri --</span>
         <div class="pull-right">
-          <a class="btn btn-info btn-xs pull-right" href=""><i class="fa fa-plus fa-fx"></i> Tambah</a>
+          <a class="btn btn-info btn-xs pull-right" href="""><i class="fa fa-plus fa-fx"></i> Tambah</a>
         </div>
       </div>
       <br>
@@ -519,26 +519,28 @@
                 <div class="head" style="margin-bottom: 27px">
                   <span style="font-size: 17px; font-family: 'Poppins', sans-serif;">Pernah Ikut Pelatihan di?</span>
                   <div class="pull-right">
-                    <a href="" class="btn btn-info btn-xs"><i class="fa fa-plus fa-fx"></i> Tambah</a>
+                    <a href="{{ route('pelatihan.create', $data->id_pegawai)}}" class="btn btn-info btn-xs"><i class="fa fa-plus fa-fx"></i> Tambah</a>
                   </div>  
                 </div>
-                
+                @foreach($pelatihan as $p)
                 <section class="card mb-4">
                   <div class="card-header" style="background: #b4b4b4">
-                    <h6>PT. Cap Kaki Tiga</h6>
+                    <h6>{{$p->nama_event}}</h6>
                   </div>
                   <div class="card-body" style="border: 1px solid #c0c2ce;">
-                      <span style="margin-right: 49px; font-size: 14px;">Tempat</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;"> Staff</span>
+                      <span style="margin-right: 49px; font-size: 14px;">Tempat</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;"> {{$p->tempat_pelatihan}}</span>
                       <br>
-                      <span style="margin-right: 48px;font-size: 14px;">Tanggal</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">2 Bulan</span>
+                      <span style="margin-right: 48px;font-size: 14px;">Tanggal</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;"> {{$p->tanggal}}</span>
                       <br>
-                      <span style="margin-right: 60px;font-size: 14px;">Peran</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Sutradara</span>
+                      <span style="margin-right: 60px;font-size: 14px;">Peran</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;"> {{$p->peran}}</span>
                       <br>
                       <div class="pull-right">
-                        <a class="btn btn-success btn-xs" href=""><i class="fa fa-edit fa-fx"></i> Edit</a> &nbsp<a class="btn btn-danger btn-xs" href=""><i class="fa fa-trash fa-fx"></i> Hapus</a>
+                        <a class="btn btn-success btn-xs" href="{{ route('pelatihan.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_pelatihan'=>$p->id_pelatihan]) }}"><i class="fa fa-edit fa-fx"></i> Edit</a> &nbsp
+                        <a class="btn btn-danger btn-xs" href="{{ route('pelatihan.hapus',['id_pegawai'=>$pegawais->id_pegawai,'id_pelatihan'=>$p->id_pelatihan]) }}" onclick="return confirm('Yakin akan menghapus data ini?')"><i class="fa fa-trash fa-fx"></i> Hapus</a>
                       </div>
                   </div>
                 </section>
+                @endforeach
             </div>
             </section>
           </div>
@@ -644,8 +646,7 @@
       </div>
     </div>
   </div>
-  </div>
-</div>
+</div>    
 
 <script type="text/javascript">
   var nick=document.getElementById("ada").value;

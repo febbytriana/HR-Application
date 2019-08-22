@@ -1,9 +1,10 @@
-<!doctype html>
-<html class="no-js" lang="en">
+
+<html>
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>HR-App</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,8 +26,6 @@
     <link rel="stylesheet" href="{{ asset('vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}">
     
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-    <link rel="stylesheet" href="{{ asset('sweetalert2-7.32.4/package/dist/sweetalert2.min.css') }}">
-    <script src="{{ asset('sweetalert2-7.32.4/package/dist/sweetalert2.all.min.js') }}"></script>
     <!-- modernizr css -->
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
     <style type="text/css">
@@ -40,9 +39,7 @@
 </head>
 
 <body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+    
     <!-- preloader area start -->
     <div id="preloader">
         <div class="loader"></div>
@@ -112,7 +109,7 @@
                                 <ul class="collapse">
                                     <li><a href="{{ route('pegawai.index') }}">Data Pegawai</a></li>
                                     <li><a href="{{ route('absen.index') }}">Absensi</a></li>
-                                    <li><a href="">Gaji</a></li>
+                                    <li><a href="{{ route('gaji.create') }}">Gaji</a></li>
                                 </ul>
                             </li>                             
                             <li class="sidebar-items4"><a class="waves-effect" anim="ripple" href="{{ route('sp.create') }}"><i class="ti-email"></i> <span>Surat Peringatan</span></a></li>
@@ -227,16 +224,6 @@ box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);">
 
     <script src="{{ asset('vendor/jquery/jquery-input-mask-phone-number.js') }}"></script>
 
-    <!-- start chart js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js') }}"></script>
-    <!-- start highcharts js -->
-    <script src="https://code.highcharts.com/highcharts.js') }}"></script>
-    <!-- start zingchart js -->
-    <script src="https://cdn.zingchart.com/zingchart.min.js') }}"></script>
-    <script>
-    zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
-    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
-    </script>
     <!-- all line chart activation -->
     <script src="{{ asset('js/line-chart.js') }}"></script>
     <!-- all pie chart -->
@@ -245,6 +232,8 @@ box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);">
     <script src="{{ asset('js/plugins.js') }}"></script>
 
     <script src="{{ asset('js/scripts.js') }}"></script>
+
+    
 
     <script>
       $(function () {
@@ -263,7 +252,14 @@ box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);">
       });
     </script>
     <script src="{{ asset('js/waves-effect.js') }}"></script>
-
+      <script>
+         $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN':
+          $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+      </script>
     @section('js')
 
     @show

@@ -14,8 +14,11 @@ Route::get('/', function () {
 });
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
 //absen
 Route::get('/absen/index','AbsenController@index')->name('absen.index');
+Route::get('/absen/export', 'AbsenController@export')->name('absen.export');
+
 //akun
 Route::get('/akun/index', 'AkunController@index')->name('akun.index');
 Route::get('/akun/create', 'AkunController@create')->name('akun.create');
@@ -25,6 +28,7 @@ Route::get('/akun/edit/{id}', 'AkunController@edit')->name('akun.edit');
 Route::post('/akun/update', 'AkunController@update')->name('akun.update');
 Route::post('/akun/kelola-akun', 'AkunController@updateakun')->name('akun.update-akun');
 Route::get('/akun/destroy/{id}', 'AkunController@destroy')->name('akun.destroy');
+
 //akun-pegawai
 Route::get('/akunpegawai/indexpegawai', 'AkunController@indexpegawai')->name('akunpegawai.indexpegawai');
 Route::get('/akunpegawai/createpegawai', 'AkunController@createpegawai')->name('akunpegawai.createpegawai');
@@ -34,6 +38,7 @@ Route::get('/akunpegawai/editpegawai/{id}', 'AkunController@editpegawai')->name(
 Route::post('/akunpegawai/updatepegawai', 'AkunController@updatepegawai')->name('akunpegawai.updatepegawai');
 Route::post('/akunpegawai/kelola-akunpegawai', 'AkunController@updateakunpegawai')->name('akunpegawai.update-akunpegawai');
 Route::get('/akunpegawai/destroypegawai/{id}', 'AkunController@destroypegawai')->name('akunpegawai.destroypegawai');
+
 //pegawai
 Route::get('/pegawai/index', 'PegawaiController@index')->name('pegawai.index');
 Route::get('/pegawai/detail/{id}', 'PegawaiController@detail')->name('pegawai.detail');
@@ -87,6 +92,7 @@ Route::post('/no-darurat/store/{id_pegawai}','NoDaruratController@store')->name(
 Route::get('/no-darurat/edit/{id_pegawai}/{id_no_darurat}','NoDaruratController@edit')->name('darurat.edit');
 Route::post('/no-darurat/update/{id_pegawai}/{id_no_darurat}','NoDaruratController@update')->name('darurat.update');
 Route::get('/no-darurat/delete/{id_pegawai}/{id_no_darurat}','NoDaruratController@destroy')->name('darurat.destroy');
+
 //Keluarga
 Route::get('/keluarga/index', 'KeluargaController@index')->name('keluarga.index');
 Route::get('/keluarga/create/{id_pegawai}', 'KeluargaController@create')->name('keluarga.create');
@@ -100,3 +106,14 @@ Route::get('/pegawai/sertifikat/index/{id_pegawai}', 'SertifikatController@index
 Route::get('/pegawai/sertifikat/{id_pegawai}', 'SertifikatController@create')->name('pegawai.sertifikat');
 Route::post('/pegawai/sertifikat/store/{id_pegawai}', 'SertifikatController@store')->name('pegawai.sertifikat.store');
 Route::get('/pegawai/sertifikat/edit/{id_pegawai}/{id_sertifikat}', 'SertifikatController@create')->name('pegawai.sertifikat.edit');
+
+//Pelatihan
+Route::get('/pelatihan/create/{id_pegawai}', 'PelatihanController@create')->name('pelatihan.create');
+Route::post('/pelatihan/store/{id_pegawai}','PelatihanController@store')->name('pelatihan.store');
+Route::get('/pelatihan/edit/{id_pegawai}/{id_pelatihan}','PelatihanController@edit')->name('pelatihan.edit');
+Route::post('/pelatihan/update/{id_pegawai}/{id_no_darurat}','PelatihanController@update')->name('pelatihan.update');
+Route::get('/pelatihan/hapus/{id_pegawai}/{id_pelatihan}','PelatihanController@destroy')->name('pelatihan.hapus');
+
+//Gaji
+Route::get('/gaji/create', 'GajiController@index')->name('gaji.create');
+Route::get('/getpegawai/{id_pegawai}', 'GajiController@getpegawai')->name('getpegawai');

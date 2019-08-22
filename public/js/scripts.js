@@ -70,8 +70,7 @@
     /*================================
     form bootstrap validation
     ==================================*/
-    $('[data-toggle="popover"]').popover()
-
+    
     /*------------- Start form Validation -------------*/
     window.addEventListener('load', function() {
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
