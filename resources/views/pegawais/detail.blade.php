@@ -573,7 +573,7 @@
       <div class="container">
         <span class="title-head">-- Istri --</span>
         <div class="pull-right">
-          <a class="btn btn-info btn-xs pull-right" href=""><i class="fa fa-plus fa-fx"></i> Tambah</a>
+          <a class="btn btn-info btn-xs pull-right" href="""><i class="fa fa-plus fa-fx"></i> Tambah</a>
         </div>
       </div>
       <br>
