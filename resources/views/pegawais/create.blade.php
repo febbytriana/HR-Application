@@ -107,7 +107,7 @@
                                     <option value="Katholik">Katholik</option>
                                     <option value="Protestan">Protestan</option>
                                     <option value="Hindu">Hindu</option>
-                                     <option value="Budha">Budha</option>
+                                    <option value="Budha">Budha</option>
                                     <option value="Kong Hu Chu">Kong Hu Chu</option>
                                 </select>
                             </div>

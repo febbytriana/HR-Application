@@ -9,6 +9,10 @@ class Pegawai extends Model
     protected $table = "pegawais";
     protected $primaryKey = "id_pegawai";
     protected $fillable = [
+<<<<<<< HEAD
+=======
+        'kode_pegawai',
+>>>>>>> origin/master
         'nik',
         'nama',
         'id_jabatan',
@@ -76,11 +80,14 @@ class Pegawai extends Model
     public function suratPeringatan() 
     {
         return $this->hasOne(SuratPeringatan::class, 'id_pegawai', 'id_pegawai');
+<<<<<<< HEAD
     
     }
     public function absen() 
     {
         return $this->hasOne(Absen::class, 'id_pegawai', 'id_pegawai');
+=======
+>>>>>>> origin/master
     }
 }
    

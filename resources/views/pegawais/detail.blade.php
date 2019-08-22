@@ -71,6 +71,7 @@
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" style="color: #82df39;"><i class="fa fa-users fa-fx"></i> Keluarga</a>
           <div class="dropdown-menu">
 
+
               <a class="btn btn-info btn-xs pull-right" href="{{ route('keluarga.create',$pegawais->id_pegawai) }}"><i class="fa fa-plus fa-fx"></i> Tambah Data keluarga</a>
        
             <a class="dropdown-item" data-toggle="tab" href="#orangtua">Orang Tua</a>
@@ -83,6 +84,11 @@
             @if($pegawais->jk=="Laki-laki")
             <a class="dropdown-item" data-toggle="tab" href="#istri">Istri</a>
             @endif
+
+            <a class="dropdown-item" data-toggle="tab" href="#orangtua">Orang Tua</a>
+            <a class="dropdown-item" data-toggle="tab" href="#anak">Anak</a>
+            <a class="dropdown-item" data-toggle="tab" href="#istri">Istri</a>
+
           </div>
       </li>
       <li class="nav-item" style="margin-left: 10px;">
@@ -261,7 +267,9 @@
                 </div>
                 <br>
                 <div class="pull-left">
-                  <a href="">
+
+                  <a href="{{ route('akun.create')}}">
+
                     <button class="btn btn-info btn-xs" style="width: 200px"><i class="fa fa-plus fa-fx"></i> Tambah</button>
                  </a>
                 </div>
@@ -309,28 +317,33 @@
       @if(count($hitungortu) > 0)
         @foreach($keluarga as $keluargas)
            @if($keluargas->status=="Ayah" ||  $keluargas->status=="Ibu")
+
+    <div id="orangtua" class="container tab-pane fade"><br>
+      <div class="container">
+        <h4>-- Orang Tua --</h4>
+      </div>
+      <br>
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <section class="card">
               <div class="card-body mb-4" style="border: 2px solid #c0c2ce;">
                 <div class="body-text">
-                        
-                             
-                              <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->nama }}</span>
-                              <br>
-                              <span style="margin-right: 65px; font-size: 14px;">Jenis Kelamin</span><span style="margin-right: 15px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->jk }}</span>
-                              <br>
-                              <span style="margin-right: 14px;font-size: 14px;">Tempat Tanggal Lahir</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->tempat }} , {{ $keluargas->tgl }} </span>  
-                              <br>
-                              <span style="margin-right: 109px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->status }} </span>
-                              <br>
-                            <div class="pull-right">
-                              <a class="btn btn-success btn-xs" href="{{ route('keluarga.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-edit fa-fx"></i> Edit</a>
+                          
+                    <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->nama }}</span>
+                    <br>
+                    <span style="margin-right: 65px; font-size: 14px;">Jenis Kelamin</span><span style="margin-right: 15px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->jk }}</span>
+                    <br>
+                    <span style="margin-right: 14px;font-size: 14px;">Tempat Tanggal Lahir</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->tempat }} , {{ $keluargas->tgl }} </span>  
+                    <br>
+                    <span style="margin-right: 109px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->status }} </span>
+                    <br>
+                    <div class="pull-right">
+                        <a class="btn btn-success btn-xs" href="{{ route('keluarga.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-edit fa-fx"></i> Edit</a>
 
 
-                              <a class="btn btn-success btn-xs" href="{{ route('keluarga.destroy',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-trash fa-fx"></i> Hapus</a>                            
-                            </div>  
+                        <a class="btn btn-success btn-xs" href="{{ route('keluarga.destroy',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-trash fa-fx"></i> Hapus</a>                            
+                    </div>  
                            
                        
 
@@ -446,12 +459,44 @@
       @if(count($hitungistri) > 0)
         @foreach($keluarga as $keluargas)
           @if($keluargas->status=="Istri")
+                    <span style="margin-right: 25px; font-size: 14px;">Nama Ayah</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>
+                    <br>
+                    <span style="margin-right: 58px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>  
+                    <br>
+                    <span style="margin-right: 36px;font-size: 14px;">Nama Ibu</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>  
+                    <br>
+                    <span style="margin-right: 58px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>
+                    <br>
+                    <span style="margin-right: 53px;font-size: 14px;">Alamat</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Jl. Tes Perum Test No. 99, Kec. Batujajar Kota Padalarang</span>
+                  <div class="pull-right">
+                    <a class="btn btn-success btn-xs" href=""><i class="fa fa-edit fa-fx"></i> Edit</a>
+                  </div>
+                </div>    
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="anak" class="container tab-pane fade"><br>
+      <div class="container">
+        <span class="title-head">-- Anak --</span>
+        <div class="pull-right">
+        @foreach($pegawai as $spegawais)
+
+        <a class="btn btn-info btn-xs pull-right" href="{{ route('keluarga.create',$pegawais->id_pegawai) }}"><i class="fa fa-plus fa-fx"></i> Tambah</a>
+        @endforeach
+        </div>
+      </div>
+      <br>
+>>>>>>> origin/master
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <section class="card">
               <div class="card-body mb-4" style="border: 2px solid #c0c2ce;">
                 <div class="body-text">
+
                         
                             
                               <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->nama }}</span>
@@ -493,6 +538,34 @@
                 <div class="body-text">
                   <span>Tidak ada data.</span>
                 </div>
+
+                    <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>
+                    <br>
+                    <span style="margin-right: 18px;font-size: 14px;">Tempat Tanggal Lahir</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>  
+                    <br>
+                    <span style="margin-right: 98px;font-size: 14px;">Anak ke</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>  
+                    <br>
+                    <span style="margin-right: 109px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>
+                  
+                  <div class="pull-right">
+
+                            @foreach($keluarga as $keluargas)
+                              <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->nama }}</span>
+                              <br>
+                              <span style="margin-right: 18px;font-size: 14px;">Tempat Tanggal Lahir</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->tempat }} , {{ $keluargas->tgl }} </span>  
+                              <br>
+                              <span style="margin-right: 98px;font-size: 14px;">Anak ke</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->anak_ke }} </span>  
+                              <br>
+                              <span style="margin-right: 109px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->status }} </span>
+                            
+                            <div class="pull-right">
+                              <a class="btn btn-success btn-xs" href=""><i class="fa fa-edit fa-fx"></i> Edit</a>
+                            </div>
+
+                  @endforeach
+                  </div>  
+
+>>>>>>> origin/master
               </div>
 
             </section>
@@ -826,6 +899,13 @@
     document.getElementById("panggilan").innerHTML=nickname[0];
   }
   
+<<<<<<< HEAD
 </script>
 
 @endsection
+=======
+
+</script>
+
+@endsection
+>>>>>>> origin/master

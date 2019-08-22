@@ -14,7 +14,7 @@ class AbsenController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function index()
     {
         $id_user = Auth::user()->id;

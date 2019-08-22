@@ -7,7 +7,10 @@ use App\Pendidikan;
 use App\Sertifikat;
 use App\Jabatan;
 use App\NoDarurat;
+<<<<<<< HEAD
 use App\Keluarga;
+=======
+>>>>>>> origin/master
 use DB;
 use Illuminate\Http\Request;
 
@@ -41,7 +44,11 @@ class PegawaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function store(Request $req)
+=======
+    public function store(Request $req,$id_pegawai)
+>>>>>>> origin/master
     {
         $pegawai = new Pegawai;
         $pegawai->nik = $req->nik;
@@ -65,7 +72,11 @@ class PegawaiController extends Controller
 
         $pegawai->save();
 
+<<<<<<< HEAD
         session()->flash('success-create', 'Data Pegawai berhasil disimpan');
+=======
+        session()->flash('success-create', 'Data Akun berhasil disimpan');
+>>>>>>> origin/master
         
         return redirect('/pegawai/index');
     }
@@ -152,6 +163,7 @@ class PegawaiController extends Controller
     public function detail($id_pegawai)
     {
         $pegawai = Pegawai::where('id_pegawai','=',$id_pegawai)->get();
+<<<<<<< HEAD
         $pegawais = Pegawai::find($id_pegawai); 
         $keluarga = Keluarga::where('id_pegawai',$id_pegawai)->get();
         $hitunganak = Keluarga::where([['id_pegawai',$id_pegawai],['status','=','Anak']])->get();
@@ -159,11 +171,19 @@ class PegawaiController extends Controller
 
         $hitungistri = Keluarga::where([['id_pegawai',$id_pegawai],['status','=','Istri']])->get();
         $hitungortu = Keluarga::where([['id_pegawai',$id_pegawai],['status','=','Ayah']])->get();
+=======
+        $pegawais = Pegawai::find($id_pegawai);
+        $keluarga = \App\Keluarga::all();
+>>>>>>> origin/master
         $pendidikan = Pendidikan::where('id_pegawai',$id_pegawai)->first();
         $no_darurat = NoDarurat::where('id_pegawai',$id_pegawai)->get();
         $sertifikat = Sertifikat::where('id_pegawai',$id_pegawai)->get();
 
+<<<<<<< HEAD
         return view('pegawais/detail',compact('pegawai','keluarga','hitunganak','hitungsuami','hitungistri','hitungortu','pegawais','pendidikan','no_darurat','sertifikat'));
+=======
+        return view('pegawais/detail',compact('pegawai','keluarga','pegawais','pendidikan','no_darurat','sertifikat'));
+>>>>>>> origin/master
     }
 
 }

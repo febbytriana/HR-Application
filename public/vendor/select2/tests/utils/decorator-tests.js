@@ -1,4 +1,4 @@
-lmodule('Decorators');
+module('Decorators');
 
 var Utils = require('select2/utils');
 
