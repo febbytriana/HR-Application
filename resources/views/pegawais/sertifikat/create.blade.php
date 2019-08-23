@@ -1,3 +1,25 @@
+@section('js')
+<script type="text/javascript">
+
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#showgambar').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#inputgambar").change(function () {
+        readURL(this);
+    });
+
+</script>
+@stop
+
 @extends('layouts.app')
 
 @section('content')
@@ -7,7 +29,8 @@
       <ol class="breadcrumb mt-3">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
         <li class="breadcrumb-item"><a href="{{ route('pegawai.index') }}">Data Pegawai</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Sertifikat</li>
+        <li class="breadcrumb-item"><a href="{{ route('pegawai.detail',$pegawai->id_pegawai) }}">Sertifikat</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{$pegawai->nama}}</li>
         <li class="breadcrumb-item active" aria-current="page">Tambah</li>
       </ol>
     </nav>
@@ -42,13 +65,21 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Foto<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <input type="file" class="form-control" name="gambar_sertifikat">
+                                <div style="width:350px; height:180px;border: 1px solid #c0c2ce;">
+                                    <img src="" id="showgambar" alt="" style="width: 100%; height: 100%;">
+                                </div>
+                                <br>
+                                <input type="file" class="form-control" id="inputgambar" name="gambar_sertifikat">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-9">
+                                <div class="pull-right">
+                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                </div>
                             </div>
                         </div> 
-                    </div>
-                        <div class="form-group" style="margin-left:480px;">
-                            &nbsp;<button type="submit" class="btn btn-primary">Tambah</button>
-                        </div>  
+                    </div>  
                     </div>
                 </form>
             </div>

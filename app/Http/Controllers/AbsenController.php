@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\Pegawai;
 use App\Absen;
 use Auth;
 use Response;
+=======
+use Maatwebsite\Excel\Facades\Excel;
+use App\Post;
+use App\Exports\ListExport;
+>>>>>>> origin/master
 
 class AbsenController extends Controller
 {
@@ -17,6 +23,7 @@ class AbsenController extends Controller
      */ 
     public function index()
     {
+<<<<<<< HEAD
         $id_user = Auth::user()->id;
         $pegawai = Pegawai::where('id_user', $id_user)->first();
         $id_pegawai = $pegawai['id_pegawai'];
@@ -26,6 +33,11 @@ class AbsenController extends Controller
         $pegawais = Pegawai::all();
 
         return view('absen.index',compact('dataabsen','id_pegawai','absen','pegawai','pegawais'));
+=======
+        $pegawai = \App\Pegawai::all();
+
+        return view('absen.index', compact('pegawai'));
+>>>>>>> origin/master
     }
 
     /**
@@ -122,5 +134,9 @@ class AbsenController extends Controller
         $absen = Absen::find($id_absen);
         $absen->delete();
         return redirect()->back();
+    }
+    function export()
+    {
+        return Excel::download(new \App\Exports\AbsenExport, 'absen.xlsx');
     }
 }

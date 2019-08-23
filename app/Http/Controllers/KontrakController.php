@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Kontrak;
+use App\Pegawai;
 use Illuminate\Http\Request;
 
 class KontrakController extends Controller
@@ -22,9 +23,11 @@ class KontrakController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id_pegawai)
     {
         //
+        $pegawai = Pegawai::find($id_pegawai);
+        return view('kontrak.create',compact('pegawai'));
     }
 
     /**
@@ -33,9 +36,21 @@ class KontrakController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req,$id_pegawai)
     {
         //
+        $kontrak = new Kontrak;
+        $kontrak->id_pegawai = $id_pegawai;
+        $kontrak->kontrak = $req->kontrak;
+        $mulai = strtotime($req->mulai); 
+        $newmulai = date('d-m-Y',$mulai);
+        $habis = strtotime($req->habis); 
+        $newhabis = date('d-m-Y',$habis);
+        $tahun = "$newmulai Sampai dengan $newhabis";
+        $kontrak->tahun = $tahun;
+        $kontrak->save();
+
+        return redirect('pegawai/detail/'.$id_pegawai);
     }
 
     /**
@@ -55,9 +70,12 @@ class KontrakController extends Controller
      * @param  \App\Kontrak  $kontrak
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kontrak $kontrak)
+    public function edit($id_pegawai,$id_kontrak)
     {
         //
+        $pegawai = Pegawai::find($id_pegawai);
+        $kontrak = Kontrak::find($id_kontrak);
+        return view('kontrak.edit',compact('pegawai','kontrak'));
     }
 
     /**
@@ -67,9 +85,20 @@ class KontrakController extends Controller
      * @param  \App\Kontrak  $kontrak
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kontrak $kontrak)
+    public function update(Request $req, $id_pegawai,$id_kontrak)
     {
         //
+        $kontrak =  Kontrak::find($id_kontrak);
+        $kontrak->kontrak = $req->kontrak;
+        $mulai = strtotime($req->mulai); 
+        $newmulai = date('d-m-Y',$mulai);
+        $habis = strtotime($req->habis); 
+        $newhabis = date('d-m-Y',$habis);
+        $tahun = "$newmulai Sampai dengan $newhabis";
+        $kontrak->tahun = $tahun;
+        $kontrak->save();
+
+        return redirect('pegawai/detail/'.$id_pegawai);
     }
 
     /**
@@ -78,8 +107,12 @@ class KontrakController extends Controller
      * @param  \App\Kontrak  $kontrak
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kontrak $kontrak)
+    public function destroy($id_pegawai,$id_kontrak)
     {
         //
+        $kontrak = Kontrak::find($id_kontrak);
+        $kontrak->delete();
+
+        return redirect('/pegawai/detail/'.$id_pegawai);
     }
 }

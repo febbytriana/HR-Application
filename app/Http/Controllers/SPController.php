@@ -12,7 +12,7 @@ class SPController extends Controller
     {
         $surat_peringatan = \App\SuratPeringatan::all();
         $pegawai = \App\Pegawai::all();
-
+        session()->flash('nav','sp');
         return view('surat-sp.index', compact('surat_peringatan','pegawai'));
     }
 
@@ -89,15 +89,15 @@ class SPController extends Controller
      */
     public function destroy($id)
     {
-        $sp = \App\SuratPeringatan::find($id_sp);
+        $sp = \App\SuratPeringatan::find($id);
         $sp->delete($sp);
 
-        return redirect(surat-sp/index);
+        return redirect('surat-sp/index');
     }
 
     public function cetak_pdf()
     {
-        $surat_peringatan = DB::table('surat_peringatans')
+        $surat_peringatans = DB::table('surat_peringatans')
             ->join('pegawais', 'surat_peringatans.id_pegawai', '=', 'pegawais.id_pegawai')
             ->select('pegawais.*', 'surat_peringatans.*')
             ->get();

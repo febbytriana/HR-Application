@@ -1,3 +1,37 @@
+@section('js')
+<script type="text/javascript">
+    function hapusSp(idsp) {
+        Swal({
+            title: 'Apakah Anda Yakin?',
+            text: "Tekan 'Hapus' Untuk Meneruskan Penghapusan",
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#82df39',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Hapus'
+        }).then((result) => {
+            if (result.value) {
+                Swal({
+                    title: 'Sukses!',
+                    text: 'Penghapusan Data Berhasil.',
+                    type: 'success'
+                }).then((result) => {
+                    if(result.value) {
+                        location.href = 'http://localhost:8000/surat-sp/hapus/'+idsp;
+                    }
+                })
+            } else if (result.dismiss === swal.DismissReason.cancel) {
+                  swal(
+                    'Batal',
+                    'Anda membatalkan penghapusan',
+                    'error'
+                  )
+            }
+        })
+    }
+</script>
+@stop
 @extends('layouts.app')
 
 @section('content')
@@ -11,7 +45,7 @@
         </ol>
     </nav>
 
-    <section class="card mt-3">
+    <section class="card shadow mt-3">
 
         <div class="card-body">
             <div class="head-title">
@@ -58,7 +92,7 @@
                                 <button class="btn btn-info btn-xs"><i class="fa fa-pencil"></i></button>
                             </a>
                             <a href="{{ route('sp.hapus', $sp->id_sp)}}">
-                                <button class="btn btn-danger btn-xs" onclick="return confirm('Hapus data ini?')"><i class="fa fa-trash"></i></button>
+                                <a class="btn btn-danger btn-xs" onclick="hapusSp('{{$sp->id_sp}}')"><i class="fa fa-trash"></i></a>
                             </a>
                         </td>
                     </tr>

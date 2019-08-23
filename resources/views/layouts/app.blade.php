@@ -1,9 +1,10 @@
-<!doctype html>
-<html class="no-js" lang="en">
+
+<html>
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>HR-App</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,10 +24,10 @@
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}">
+      <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('select2/dist/css/select2.min.css') }}">
     
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-    <link rel="stylesheet" href="{{ asset('sweetalert2-7.32.4/package/dist/sweetalert2.min.css') }}">
-    <script src="{{ asset('sweetalert2-7.32.4/package/dist/sweetalert2.all.min.js') }}"></script>
     <!-- modernizr css -->
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
     <style type="text/css">
@@ -40,17 +41,18 @@
 </head>
 
 <body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+    
     <!-- preloader area start -->
     <div id="preloader">
         <div class="loader"></div>
     </div>
     <!-- preloader area end -->
     <!-- page container area start -->
-    <div class="page-container">
+    <div class="page-container" style="background-color: #fff;">
         <!-- sidebar menu area start -->
+        @if(empty(Auth::user()->status) && empty(Auth::user()->nama))
+            <script type="text/javascript">location.href="{{ route("login") }}";</script>
+        @else
         <div class="sidebar-menu">
             <div class="sidebar-header" style="background: #0f5b94; border: none; padding-bottom: 10px;">
                 <div class="logo">
@@ -61,8 +63,7 @@
                 <div class="menu-inner">
                     <nav>
                         <ul class="metismenu" id="menu">
-                            <li class="sidebar-items1"><a class="waves-effect" anim="ripple" href="{{ route('home') }}"><i class="ti-map-alt"></i> <span>Dashboard</span></a></li>
-
+                            <li class="sidebar-items1 {{Route::is('home') ? 'active' : null}}"><a class="waves-effect" anim="ripple" href="{{ route('home') }}"><i class="ti-map-alt"></i> <span>Dashboard</span></a></li>
                                 @if(Auth::user()->status == "Pegawai" )
                                 <li class="sidebar-items2">
                                     <a class="waves-effect" anim="ripple" href=""><i class=""></i> <span>Profil</span></a>
@@ -88,12 +89,12 @@
 
                                 @if(Auth::user()->status == "HR" )
 
-                               <li class="sidebar-items2">
+                               <li class="sidebar-items2 {{Route::is('akunpegawai.indexpegawai') ? 'active' : null}}">
                                 
                                 <a class="waves-effect" anim="ripple" href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-harddrive"></i>
                                     <span>Manajemen Akun</span></a>
-                                <ul class="collapse">
-                                    <li><a href="{{ route('akunpegawai.indexpegawai') }}">Pegawai</a></li>
+                                <ul class="collapse {{Route::is('akunpegawai.indexpegawai') ? 'in' : null}}">
+                                    <li class="{{Route::is('akunpegawai.indexpegawai') ? 'active' : null}}"><a href="{{ route('akunpegawai.indexpegawai') }}">Pegawai</a></li>
                                 </ul>
                              </li> 
                                 @endif
@@ -109,29 +110,30 @@
 
                         @if(Auth::user()->status == "HR" )
              
-                            <li class="sidebar-items3"> 
+                            <li class="sidebar-items3 @if(Route::is('pegawai.index') == 1 || Route::is('absen.index') == 1 || Route::is('gaji.create') == 1) active @endif"> 
                                 <a class="waves-effect" anim="ripple" href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-user"></i>
                                     <span>Pegawai</span></a>
-                                <ul class="collapse">
-                                    <li><a href="{{ route('pegawai.index') }}">Data Pegawai</a></li>
-                                    <li><a href="{{ route('absen.index') }}">Absensi</a></li>
-                                    <li><a href="">Gaji</a></li>
+                                <ul class="collapse @if(Route::is('pegawai.index') == 1 || Route::is('absen.index') == 1) in @endif">
+                                    <li class="{{Route::is('pegawai.index') ? 'active' : null}}"><a href="{{ route('pegawai.index') }}">Data Pegawai</a></li>
+                                    <li class="{{Route::is('absen.index') ? 'active' : null}}"><a href="{{ route('absen.index') }}">Absensi</a></li>
+                                    <li class="{{Route::is('gaji.create') ? 'active' : null}}"><a href="{{ route('gaji.create') }}">Gaji</a></li>
                                 </ul>
                             </li>                             
-                            <li class="sidebar-items4"><a class="waves-effect" anim="ripple" href="{{ route('sp.create') }}"><i class="ti-email"></i> <span>Surat Peringatan</span></a></li>
-                            <li class="sidebar-items5"><a class="waves-effect" anim="ripple" href="{{ route('perjalanan.create') }}"><i class="ti-email"></i> <span>Surat Perjalanan</span></a></li>
+                            <li class="sidebar-items4 {{Route::is('sp.create') ? 'active' : null}}"><a class="waves-effect" anim="ripple" href="{{ route('sp.create') }}"><i class="ti-email"></i> <span>Surat Peringatan</span></a></li>
+                            <li class="sidebar-items5 {{Route::is('perjalanan.create') ? 'active' : null}}"><a class="waves-effect" anim="ripple" href="{{ route('perjalanan.create') }}"><i class="ti-email"></i> <span>Surat Perjalanan</span></a></li>
                             
 
-                            <li class="sidebar-items6">
+                            <li class="sidebar-items6 @if(Route::is('sp.index') == 1 || Route::is('perjalanan.index') == 1) active @endif">
                                 <a class="waves-effect" anim="ripple" href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-printer"></i>
                                     <span>Report</span></a>
-                                <ul class="collapse">
-                                    <li><a href="{{ route('sp.index') }}">Surat SP</a></li>
-                                    <li><a href="{{ route('perjalanan.index') }}">Surat Perjalanan</a></li>
+                                <ul class="collapse @if(Route::is('sp.index') == 1 || Route::is('perjalanan.index') == 1) in @endif">
+                                    <li class="{{Route::is('sp.index') ? 'active' : null}}"><a href="{{ route('sp.index') }}">Surat SP</a></li>
+                                    <li class="{{Route::is('perjalanan.index') ? 'active' : null}}"><a href="{{ route('perjalanan.index') }}">Surat Perjalanan</a></li>
                                 </ul>
                             </li> 
                     @endif
                         </ul>
+                    
                     </nav>
                 </div>
             </div>
@@ -199,16 +201,17 @@ box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);">
         </div>
         <!-- main content area end -->
         <!-- footer area start-->
-         <div class="card-body">
+         <div class="card-body" style="background-color: #fff;">
             @yield('content')
 
         </div>
 
         <!-- footer area end-->
+        @endif
     </div>
 
         <footer>
-            <div class="footer-area" style="background-color: #e4e7e8;">
+            <div class="footer-area" style="background-color: #fff;">
                 <p style="color: #585858;">&copy;2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
             </div>
         </footer>
@@ -230,24 +233,18 @@ box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);">
 
     <script src="{{ asset('vendor/jquery/jquery-input-mask-phone-number.js') }}"></script>
 
-    <!-- start chart js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js') }}"></script>
-    <!-- start highcharts js -->
-    <script src="https://code.highcharts.com/highcharts.js') }}"></script>
-    <!-- start zingchart js -->
-    <script src="https://cdn.zingchart.com/zingchart.min.js') }}"></script>
-    <script>
-    zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
-    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
-    </script>
     <!-- all line chart activation -->
     <script src="{{ asset('js/line-chart.js') }}"></script>
     <!-- all pie chart -->
     <script src="{{ asset('js/pie-chart.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset('select2/dist/js/select2.full.min.js') }}"></script>
     <!-- others plugins -->
     <script src="{{ asset('js/plugins.js') }}"></script>
 
     <script src="{{ asset('js/scripts.js') }}"></script>
+
+    
 
     <script>
       $(function () {
@@ -263,10 +260,18 @@ box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);">
     <script>
       $(document).ready(function () {
         $('#cc').inputmask("9999-9999-9999");
+        $('.select2').select2();
       });
     </script>
     <script src="{{ asset('js/waves-effect.js') }}"></script>
-
+      <script>
+         $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN':
+          $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+      </script>
     @section('js')
 
     @show

@@ -101,7 +101,7 @@
     </div>
 
         <footer>
-            <div class="footer-area fixed-bottom" style="background-color: rgba(0,0,0,0.7);">
+            <div class="footer-area fixed-bottom" style="background-color: #0f5b94;">
                 <p style="color: #fff;">Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
             </div>
         </footer>

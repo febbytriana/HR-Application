@@ -10,7 +10,7 @@
         </ol>
     </nav>
 
-    <section class="card mt-3">
+    <section class="card shadow mt-3">
 
         <section class="panel">
             @if(session()->has('success-create'))
@@ -42,13 +42,19 @@
             @endif
         </section>
 
-        <div class="card-header">
+        <div class="card-header rounded" style="background-color: #0f5b94; color: #fff;">
             <h4>Dashboard</h2>
         </div>
 
         <div class="card-body">
-          <span>Hai,{{ Auth::user()->nama}}</span><br>
-          <span>Anda masuk sebagai {{ Auth::user()->status}}</span><br>
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-4 col-xs-6">
+                    {{ @Auth::user()->nama }}
+                    {{ @Auth::user()->status}}
+                  </div>
+              </div>
+          </div>
         </div>
     </section>
 </section>
