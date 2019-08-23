@@ -90,7 +90,6 @@ Route::get('/no-darurat/edit/{id_pegawai}/{id_no_darurat}','NoDaruratController@
 Route::post('/no-darurat/update/{id_pegawai}/{id_no_darurat}','NoDaruratController@update')->name('darurat.update');
 Route::get('/no-darurat/delete/{id_pegawai}/{id_no_darurat}','NoDaruratController@destroy')->name('darurat.destroy');
 
-
 //Keluarga
 Route::get('/keluarga/create/{id_pegawai}','KeluargaController@create')->name('keluarga.create');
 Route::post('/keluarga/store/{id_pegawai}','KeluargaController@store')->name('keluarga.store');

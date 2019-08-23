@@ -11,15 +11,11 @@ class Keluarga extends Model
     protected $fillable = [
     	'id_pegawai',
     	'nama',
-<<<<<<< HEAD
         'jk',
         'tempat',
         'tgl',
-=======
         'tempat',
         'tgl',
-        'anak_ke',
->>>>>>> origin/master
     	'status',
     ];
 
