@@ -25,10 +25,10 @@
                       <div class="form-group">
                             <label class="col-md-3 control-label">Nama pegawai*</label>
                             <div class="col-md-9">
-                                <select name="id_pegawai" id="id_pegawai" class="form-control">
+                                <select name="id_pegawai" id="id_pegawai" disabled="" class="form-control">
                                     <option value=""></option>
                                     @foreach($pegawai as $p)
-                                    <option value="{{$p->id_pegawai}}"@if($sp->id_sp) selected='selected @endif'>{{$p->nama}}</option>
+                                    <option value="{{$p->id_pegawai}}"   @if($sp->id_sp==$p->id_pegawai) selected='selected @endif'>{{$p->nama}}</option>
                                     @endforeach
                                 </select>
                           </div>

@@ -84,9 +84,6 @@
         <br>
         <div class="card-body">
              <div class="pull-left">
-              <a href="">
-                <button class="btn btn-success btn-xs"><i class="fa fa-file"></i> Export EXCEL</button>
-              </a>
               <a href="{{ route('pegawai.create')}}" style="margin-left: 7px">
                 <button class="btn btn-info btn-xs"><i class="fa fa-plus"></i> Tambah</button>
               </a>
@@ -120,7 +117,7 @@
                             <a href="{{ route('pegawai.edit',$value->id_pegawai)}}">
                                 <i class="fa fa-pencil btn-warning" style="padding:8px;border-radius:5px;"></i>
                             </a>
-                            <a href="#" onclick="hapusPeg('{{$value->id_pegawai}}')">
+                            <a href="{{ route('pegawai.hapus', $value->id_pegawai)}}" onclick="hapusPeg('{{$value->id_pegawai}}')">
                                 <i class="fa fa-trash btn-danger" style="padding:8px;border-radius:5px;"></i>
                             </a>
                         </td>

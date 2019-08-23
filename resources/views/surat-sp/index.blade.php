@@ -56,9 +56,6 @@
              <a href="{{ route('sp.cetak_pdf')}}">
                 <button class="btn btn-success btn-xs"><i class="fa fa-print fa-print"></i> Cetak</button>
              </a>
-             <a href="{{ route('sp.create') }}" style="margin-left: 7px">
-                <button class="btn btn-info btn-xs"><i class="fa fa-plus"></i> Tambah</button>
-              </a>
             </div>
             <br>
             <br>
@@ -92,7 +89,7 @@
                                 <button class="btn btn-info btn-xs"><i class="fa fa-pencil"></i></button>
                             </a>
                             <a href="{{ route('sp.hapus', $sp->id_sp)}}">
-                                <a class="btn btn-danger btn-xs" onclick="hapusSp('{{$sp->id_sp}}')"><i class="fa fa-trash"></i></a>
+                                <button class="btn btn-danger btn-xs" onclick="return confirm('Yakin akan dihapus?')"><i class="fa fa-trash"></i></button>
                             </a>
                         </td>
                     </tr>

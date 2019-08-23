@@ -146,7 +146,7 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::find($id_pegawai);
         $pegawai->delete();
-
+ 
         session()->flash('success-create', 'Data Pegawai '.$pegawai->nama.' telah dihapus');
 
         return redirect('/pegawai/index');
