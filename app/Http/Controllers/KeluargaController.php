@@ -30,11 +30,8 @@ class KeluargaController extends Controller
      */
     public function create($id_pegawai)
     {
-        $pegawai = Pegawai::where('id_pegawai','=',$id_pegawai)->get();
-        $keluarga = Keluarga::all();
-
-        return view('keluargas/edit', compact('keluarga','pegawai'));
-
+        $pegawai = \App\Pegawai::find($id_pegawai);
+        return view('keluargas.create',compact('pegawai'));
     }
 
     /**
@@ -43,14 +40,23 @@ class KeluargaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $req, $id_pegawai)
     {
         $keluarga = new Keluarga;
+        
+        $keluarga->id_pegawai = $id_pegawai;
         $keluarga->nama = $req->nama;
+        $keluarga->jk = $req->jk;
+        $keluarga->tempat = $req->tempat;
+        $keluarga->tgl = $req->tgl;
         $keluarga->status = $req->status;
 
         $keluarga->save();
-        return redirect('/keluarga/index');
+
+        session()->flash('success-create', 'Data Keluarga berhasil disimpan');
+        
+        return redirect('/pegawai/detail/'.$id_pegawai);
+
     }
 
     /**
@@ -70,11 +76,13 @@ class KeluargaController extends Controller
      * @param  \App\Keluarga  $keluarga
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_pegawai)
+
+    public function edit($id_pegawai,$id_keluarga)
     {
-        $keluarga = Keluarga::find($id_pegawai);
-        $pegawai = Pegawai::all();
-        return view('keluargas/edit', compact('keluarga','pegawai'));
+        $keluarga = Keluarga::find($id_keluarga);
+        $pegawai = Pegawai::find($id_pegawai);
+        return view('keluargas.edit',compact('keluarga','pegawai'));
+
     }
 
     /**
@@ -84,33 +92,40 @@ class KeluargaController extends Controller
      * @param  \App\Keluarga  $keluarga
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req)
+    public function update(Request $req, $id_pegawai,$id_keluarga)
     {
-        $pegawai = Pegawai::all();
-        $keluarga = Keluarga::find($req->id_pegawai);
+        $keluarga = Keluarga::find($id_keluarga);
         $keluarga->id_pegawai = $req->id_pegawai;
         $keluarga->nama = $req->nama;
+        $keluarga->jk = $req->jk;
         $keluarga->tempat = $req->tempat;
         $keluarga->tgl = $req->tgl;
-        $keluarga->anak_ke = $req->anak_ke;
         $keluarga->status = $req->status;
 
         $keluarga->save();
-        return redirect('/pegawai/detail');
 
+        session()->flash('success-create', 'Data Keluarga berhasil diubah');
+        
+        return redirect('/pegawai/detail/'.$id_pegawai);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
+<<<<<<< HEAD
+     *s
      * @param  \App\Keluarga  $keluarga
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_keluarga)
+    public function destroy($id_pegawai, $id_keluarga)
     {
         $keluarga = Keluarga::find($id_keluarga);
-        $keluarga->delete();
+        
+        if($keluarga != null){
+            $keluarga->delete();
+             return redirect('/pegawai/detail/'.$id_pegawai);
 
-        return redirect()->back(); 
+        }
+
+        return redirect('/pegawai/detail/'.$id_pegawai);
     }
 }

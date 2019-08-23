@@ -51,7 +51,7 @@ class AkunController extends Controller
     {
         
            $akun = new User;
-           $akun->name = $req->nama;
+           $akun->nama = $req->nama;
            $akun->email = $req->email;
            $akun->password = Hash::make($req->password);
            $akun->status = $req->status;
@@ -78,6 +78,7 @@ class AkunController extends Controller
             $pegawai = Pegawai::find($req->id);
             $pegawai->id_user = $akun_id['id'];
             $pegawai->save();
+            return redirect('/akunpegawais/index');
         }
         else{
             
@@ -85,7 +86,7 @@ class AkunController extends Controller
             
         }
            session()->flash('success-create', 'Data Akun berhasil disimpan');
-           return redirect('/akun/index');
+           
     }
     /**
      * Display the specified resource.
@@ -109,6 +110,14 @@ class AkunController extends Controller
         $akun = User::find($id);
         $pegawai = Pegawai::all();
         return view('akuns/edit', compact('akun','pegawai'));
+    }
+
+    public function editpegawai($id)
+    {
+        $id = Auth::user()->id;
+        $akun = User::find($id);
+        $pegawai = Pegawai::all();
+        return view('akunpegawais/edit', compact('akun','pegawai'));
     }
     /**
      * Update the specified resource in storage.
@@ -149,6 +158,14 @@ class AkunController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    {
+        $akun = User::find($id);
+        $akun->delete();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+        return redirect()->back();
+    }
+
+    public function destroypegawai($id)
     {
         $akun = User::find($id);
         $akun->delete();

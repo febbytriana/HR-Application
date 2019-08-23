@@ -21,9 +21,9 @@
                     @csrf 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="col-md-3 control-label">Name <span class="required">*</span></label>
+                            <label class="col-md-3 control-label">Nama <span class="required">*</span></label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="name">
+                                <input type="text" class="form-control" name="nama">
                             </div>
                         </div>
                         <div class="form-group">

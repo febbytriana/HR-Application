@@ -15,10 +15,6 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-//absen
-Route::get('/absen/index','AbsenController@index')->name('absen.index');
-Route::get('/absen/export', 'AbsenController@export')->name('absen.export');
-
 //akun
 Route::get('/akun/index', 'AkunController@index')->name('akun.index');
 Route::get('/akun/create', 'AkunController@create')->name('akun.create');
@@ -95,12 +91,11 @@ Route::post('/no-darurat/update/{id_pegawai}/{id_no_darurat}','NoDaruratControll
 Route::get('/no-darurat/delete/{id_pegawai}/{id_no_darurat}','NoDaruratController@destroy')->name('darurat.destroy');
 
 //Keluarga
-Route::get('/keluarga/index', 'KeluargaController@index')->name('keluarga.index');
-Route::get('/keluarga/create/{id_pegawai}', 'KeluargaController@create')->name('keluarga.create');
-Route::post('/keluarga/store', 'KeluargaController@store')->name('keluarga.store');
-Route::get('/keluarga/edit', 'KeluargaController@edit')->name('keluarga.edit');
-Route::post('/keluarga/update', 'KeluargaController@update')->name('keluarga.update');
-Route::get('/keluarga/hapus/{id_pegawai}', 'KeluargaController@destroy')->name('keluarga.hapus');
+Route::get('/keluarga/create/{id_pegawai}','KeluargaController@create')->name('keluarga.create');
+Route::post('/keluarga/store/{id_pegawai}','KeluargaController@store')->name('keluarga.store');
+Route::get('/keluarga/edit/{id_pegawai}/{id_keluarga}','KeluargaController@edit')->name('keluarga.edit');
+Route::post('/keluarga/update/{id_pegawai}/{id_keluarga}','KeluargaController@update')->name('keluarga.update');
+Route::get('/keluarga/delete/{id_pegawai}/{id_keluarga}','KeluargaController@destroy')->name('keluarga.destroy');
 
 //Sertifikat
 Route::get('/pegawai/sertifikat/index/{id_pegawai}', 'SertifikatController@index')->name('pegawai.sertifikat.index');
@@ -131,6 +126,19 @@ Route::get('/pegawai/pelatihan/edit/{id_pegawai}/{id_pengalaman}', 'PelatihanCon
 Route::post('/pegawai/pelatihan/update/{id_pegawai}/{id_pengalaman}', 'PelatihanController@update')->name('pelatihan.update');
 Route::get('/pegawai/pelatihan/delete/{id_pegawai}/{id_pengalaman}', 'PelatihanController@destroy')->name('pelatihan.hapus');
 Route::get('/pegawai/sertifikat/edit/{id_pegawai}/{id_sertifikat}', 'SertifikatController@create')->name('pegawai.sertifikat.edit');
+
+//absen-pegawai
+Route::get('/absen/index', 'AbsenController@index')->name('absen.index');
+Route::get('/absen/detail/{id}', 'AbsenController@detail')->name('absen.detail');
+Route::get('/absen/create/{id_pegawai}', 'AbsenController@create')->name('absen.create');
+Route::get('/absen/print', 'AbsenController@print')->name('absen.print');
+Route::post('/absen/store/{id_pegawai}', 'AbsenController@store')->name('absen.store');
+Route::get('/absen/edit/{id_pegawai}', 'AbsenController@edit')->name('absen.edit');
+Route::post('/absen/update/{id_pegawai}', 'AbsenController@update')->name('absen.update');
+Route::get('/absen/hapus/{id_pegawai}', 'AbsenController@destroy')->name('absen.hapus');
+
+Route::get('/absen/destroy/{id_pegawai}', 'AbsenController@destroy')->name('absen.destroy');
+Route::get('/absen/profil/{id_pegawai}', 'AbsenController@profil')->name('absen.profil');
 
 //Gaji
 Route::get('/gaji/create', 'GajiController@index')->name('gaji.create');

@@ -7,6 +7,7 @@ use App\Pendidikan;
 use App\Sertifikat;
 use App\Jabatan;
 use App\NoDarurat;
+use App\Keluarga;
 use App\Kontrak;
 use App\PengalamanKerja;
 use App\Pelatihan;
@@ -43,6 +44,7 @@ class PegawaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $req)
     {
         $pegawai = new Pegawai;
@@ -68,7 +70,7 @@ class PegawaiController extends Controller
         $pegawai->save();
 
         session()->flash('success-create', 'Data Pegawai '.$req->nama.' telah disimpan');
-        
+
         return redirect('/pegawai/index');
     }
 
@@ -156,6 +158,12 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::where('id_pegawai','=',$id_pegawai)->get();
         $pegawais = Pegawai::find($id_pegawai); 
+        $keluarga = Keluarga::where('id_pegawai',$id_pegawai)->get();
+        $hitunganak = Keluarga::where([['id_pegawai',$id_pegawai],['status','=','Anak']])->get();
+        $hitungsuami = Keluarga::where([['id_pegawai',$id_pegawai],['status','=','Suami']])->get();
+
+        $hitungistri = Keluarga::where([['id_pegawai',$id_pegawai],['status','=','Istri']])->get();
+        $hitungortu = Keluarga::where([['id_pegawai',$id_pegawai],['status','=','Ayah']])->get();
         $keluarga = \App\Keluarga::all();
         $pendidikan = Pendidikan::where('id_pegawai',$id_pegawai)->first();
         $no_darurat = NoDarurat::where('id_pegawai',$id_pegawai)->get();
@@ -165,15 +173,16 @@ class PegawaiController extends Controller
         $jabatan = Jabatan::all();
         $pelatihan = Pelatihan::where('id_pegawai',$id_pegawai)->get();
 
-        return view('pegawais/detail',compact('pegawai','keluarga','pegawais','pendidikan','no_darurat','sertifikat','kontrak','pengalaman','jabatan','pelatihan'));
+         return view('pegawais/detail',compact('pegawai','keluarga','hitunganak','hitungsuami','hitungistri','hitungortu','pegawais','pendidikan','no_darurat','sertifikat','kontrak','pengalaman','jabatan','pelatihan'));
     }
+
+       
 
     public function updateJabatan(Request $req,$id_pegawai)
     {
         $pegawai = Pegawai::find($id_pegawai);
         $pegawai->id_jabatan = $req->id_jabatan;
         $pegawai->save();
-        return redirect('pegawai/detail/'.$id_pegawai);
     }
 
 }

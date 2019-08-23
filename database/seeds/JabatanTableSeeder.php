@@ -14,19 +14,35 @@ class JabatanTableSeeder extends Seeder
     {
          DB::table('jabatans')->insert([
             'id_jabatan'    => '1',
-        	'jabatan'    => 'Software Tester',
+        	'jabatan'       => 'Software Tester',
         	'gaji_pokok'    => '3500000',
         	'created_at'	=> Carbon::now(),
         	'updated_at'	=> Carbon::now(),
         ]);
 
-
          DB::table('jabatans')->insert([
             'id_jabatan'    => '2',
-        	'jabatan'    => 'Manager',
-        	'gaji_pokok'    => '4500000',
-        	'created_at'	=> Carbon::now(),
-        	'updated_at'	=> Carbon::now(),
+            'jabatan'       => 'Game Tester',
+            'gaji_pokok'    => '6000000',
+            'created_at'    => Carbon::now(),
+            'updated_at'    => Carbon::now(),
+        ]);
+
+         DB::table('jabatans')->insert([
+            'id_jabatan'    => '3',
+            'jabatan'       => 'Back-End',
+            'gaji_pokok'    => '4500000',
+            'created_at'    => Carbon::now(),
+            'updated_at'    => Carbon::now(),
+        ]);
+
+
+         DB::table('jabatans')->insert([
+            'id_jabatan'    => '4',
+            'jabatan'       => 'Front-End',
+            'gaji_pokok'    => '4500000',
+            'created_at'    => Carbon::now(),
+            'updated_at'    => Carbon::now(),
         ]);
     }
 }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Post;
-use App\Exports\ListExport;
+
+use App\Pegawai;
+use App\Absen;
+use Auth;
+use Response;
 
 class AbsenController extends Controller
 {
@@ -13,12 +15,19 @@ class AbsenController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function index()
     {
-        $pegawai = \App\Pegawai::all();
+        $id_user = Auth::user()->id;
+        $pegawai = Pegawai::where('id_user', $id_user)->first();
+        $id_pegawai = $pegawai['id_pegawai'];
+        $dataabsen = Absen::select('id_pegawai')->where('id_pegawai', $id_pegawai)->get();
 
-        return view('absen.index', compact('pegawai'));
+        $absen = Absen::all();
+        $pegawais = Pegawai::all();
+
+        return view('absen.index',compact('dataabsen','id_pegawai','absen','pegawai','pegawais'));
+
     }
 
     /**
@@ -26,9 +35,21 @@ class AbsenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id_pegawai)
     {
-        //
+        $tanggal = date("d-m-y");
+
+        $id_user = Auth::user()->id;
+        $pegawai = Pegawai::select('id_pegawai')->where('id_user', $id_user)->first();
+        $id_pegawai = $pegawai['id_pegawai'];
+
+
+        $dataabsen = Absen::where('tgl',$tanggal)->where('id_pegawai', $id_pegawai)->get();
+
+        $absen = Absen::all();
+        $pegawais = Pegawai::all();
+
+        return view('absen/create', compact('id_pegawai','dataabsen','absen','pegawais'));
     }
 
     /**
@@ -37,9 +58,20 @@ class AbsenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req, $id_pegawai)
     {
-        //
+        $absen = new Absen;
+
+        $id_user = Auth::user()->id;
+        $pegawai = Pegawai::select('id_pegawai')->where('id_user', $id_user)->first();
+        $absen->id_pegawai = $id_pegawai;
+
+        $absen->tgl = $req->tgl;
+        $absen->keterangan = $req->keterangan;
+        $absen->save();
+
+        session()->flash('success-create', 'Data Absen berhasil disimpan');
+        return redirect('/absen/index/'.$id_pegawai);
     }
 
     /**
@@ -59,9 +91,10 @@ class AbsenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_absen)
     {
-        //
+        $absen = Nilai::find($id_absen);
+        return view('absens/edit', compact('absen'));
     }
 
     /**
@@ -71,9 +104,13 @@ class AbsenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $req)
     {
-        //
+        $absen = Absen::find($req->id_absen);
+        $absen->keterangan = $req->keterangan;
+        $absen->save();
+        session()->flash('success-create', 'Data Absen berhasil diubah');
+        return redirect('/absen/create');
     }
 
     /**
@@ -82,12 +119,11 @@ class AbsenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_absen)
     {
-        //
+        $absen = Absen::find($id_absen);
+        $absen->delete();
+        return redirect()->back();
     }
-    function export()
-    {
-        return Excel::download(new \App\Exports\AbsenExport, 'absen.xlsx');
-    }
+    
 }

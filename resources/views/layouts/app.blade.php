@@ -68,6 +68,9 @@
                                 <li class="sidebar-items2">
                                     <a class="waves-effect" anim="ripple" href=""><i class=""></i> <span>Profil</span></a>
                                 </li>
+                                <li class="sidebar-items2">
+                                    <a class="waves-effect" anim="ripple" href="{{ route('absen.index') }}"><i class=""></i> <span>Absensi</span></a>
+                                </li>
 
                                 @endif
                                 @if(Auth::user()->status == "Admin" )

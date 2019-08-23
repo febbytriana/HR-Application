@@ -50,8 +50,8 @@
           <div class="container">
               <div class="row">
                   <div class="col-lg-4 col-xs-6">
-                    {{ @Auth::user()->nama }}
-                    {{ @Auth::user()->status}}
+                    Nama   : {{ @Auth::user()->nama }}, <br>
+                    Status : {{ @Auth::user()->status}}
                   </div>
               </div>
           </div>

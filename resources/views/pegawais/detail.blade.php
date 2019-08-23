@@ -190,9 +190,22 @@
         <!--<a class="nav-link link-tab active" data-toggle="tab" href="#pengalaman">Pengalaman</a>-->
           <a class="nav-link dropdown-toggle link-tab" data-toggle="dropdown" href="#" style="color: #1E2639;"><i class="fa fa-users fa-fx"></i> Keluarga</a>
           <div class="dropdown-menu">
+
+
+            <a class="btn btn-info btn-xs pull-right" href="{{ route('keluarga.create',$pegawais->id_pegawai) }}"><i class="fa fa-plus fa-fx"></i> Tambah Data keluarga</a>
+       
             <a class="dropdown-item" data-toggle="tab" href="#orangtua">Orang Tua</a>
             <a class="dropdown-item" data-toggle="tab" href="#anak">Anak</a>
+
+            @if($pegawais->jk=="Perempuan")
+            <a class="dropdown-item" data-toggle="tab" href="#suami">Suami</a>
+            @endif   
+
+            @if($pegawais->jk=="Laki-laki")
             <a class="dropdown-item" data-toggle="tab" href="#istri">Istri</a>
+            @endif
+
+
           </div>
       </li>
       <li class="nav-item" style="margin-left: 10px;">
@@ -440,173 +453,276 @@
         </div>
       </div>
     </div>
+
+
     <div id="orangtua" class="container tab-pane fade"><br>
       <div class="container">
-        <h4>-- Orang Tua --</h4>
+        <span class="title-head">-- OrangTua --</span>
       </div>
       <br>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <section class="card">
-              <div class="card-body mb-4" style="border: 2px solid #c0c2ce;">
-                <div class="body-text">
-                    <table class="table table-profile">
-                    <tbody>
-                      <tr>
-                        <td class="field">Nama Ayah</td>
-                        <td class="field">:</td>
-                        <td>
-                          -
-                        </td>
-                      </tr>
-                      
-                      <tr>
-                        <td class="field">Status</td>
-                        <td>:</td>
-                        <td>
-                          -
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="field">Nama Ibu</td>
-                        <td>:</td>
-                        <td>
-                          -
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="field">Status</td>
-                        <td>:</td>
-                        <td>
-                          -
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="field">Alamat</td>
-                        <td>:</td>
-                        <td>
-                          -
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div class="pull-right">
-                    <a href="">
-                      <button class="btn btn-success btn-xs"><i class="fa fa-edit fa-fx"></i> Edit</button>
-                    </a>
-                    <a href="">
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash fa-fx"></i> Hapus</button>
-                    </a>
+      @if(count($hitungortu) > 0)
+        @foreach($keluarga as $keluargas)
+           @if($keluargas->status=="Ayah" ||  $keluargas->status=="Ibu")
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <section class="card">
+                    <div class="card-body mb-4" style="border: 2px solid #c0c2ce;">
+                      <div class="body-text">
+                              
+                        <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->nama }}</span>
+                        <br>
+                        <span style="margin-right: 65px; font-size: 14px;">Jenis Kelamin</span><span style="margin-right: 15px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->jk }}</span>
+                        <br>
+                        <span style="margin-right: 14px;font-size: 14px;">Tempat Tanggal Lahir</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->tempat }} , {{ $keluargas->tgl }} </span>  
+                        <br>
+                        <span style="margin-right: 109px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->status }} </span>
+                        <br>
+                        <div class="pull-right">
+                            <a class="btn btn-success btn-xs" href="{{ route('keluarga.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-edit fa-fx"></i> Edit</a>
+
+
+                            <a class="btn btn-success btn-xs" href="{{ route('keluarga.destroy',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-trash fa-fx"></i> Hapus</a>                            
+                        </div>  
+                               
+                           
+
+                    </div>
                   </div>
-                </div>    
-              </div>
-            </section>
+
+               </section>
+
+            </div>
           </div>
         </div>
+         @endif
+          @endforeach
+                            
+      @endif
+
+      @if(count($hitungortu) == 0)
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <section class="card">
+                <div class="card-body mb-4" style="border: 2px solid #c0c2ce;">
+                  <div class="body-text">
+                    <span>Tidak ada data.</span>
+                  </div>
+                </div>
+
+              </section>
+
+            </div>
+          </div>
       </div>
+
+      @endif
+
     </div>
+
     <div id="anak" class="container tab-pane fade"><br>
       <div class="container">
         <span class="title-head">-- Anak --</span>
-        <div class="pull-right">
-        @foreach($pegawai as $spegawais)
-
-        <a class="btn btn-info btn-xs pull-right" href="{{ route('keluarga.create',$pegawais->id_pegawai) }}"><i class="fa fa-plus fa-fx"></i> Tambah</a>
-        @endforeach
-        </div>
       </div>
       <br>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <section class="card">
-              @foreach($keluarga as $keluargas)
-              <div class="card-body mb-4" style="border: 2px solid #c0c2ce;">
-                <div class="body-text">
-                    <table class="table table-profile">
-                    <tbody>
-                      <tr>
-                        <td class="field">Nama</td>
-                        <td class="field">:</td>
-                        <td>
-                          {{ $keluargas->nama }}
-                        </td>
-                      </tr>
-                      
-                      <tr>
-                        <td class="field">Tempat Tanggal Lahir</td>
-                        <td>:</td>
-                        <td>
-                          {{ $keluargas->tempat }} , {{ $keluargas->tgl }}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="field">Anak Ke</td>
-                        <td>:</td>
-                        <td>
-                          {{ $keluargas->anak_ke }}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="field">Status</td>
-                        <td>:</td>
-                        <td>
-                          {{ $keluargas->status }}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table> 
-                  <div class="pull-right">
-                    <a class="btn btn-success btn-xs" href=""><i class="fa fa-edit fa-fx"></i> Edit</a>
-                  </div>
+      @if(count($hitunganak) > 0)
+        @foreach($keluarga as $keluargas)
+         @if($keluargas->status=="Anak")
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <section class="card">
+                    <div class="card-body mb-4" style="border: 2px solid #c0c2ce;">
+                      <div class="body-text">
+                              <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->nama }}</span>
+                              <br>
+                              <span style="margin-right: 65px; font-size: 14px;">Jenis Kelamin</span><span style="margin-right: 15px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->jk }}</span>
+                              <br>
+                              <span style="margin-right: 14px;font-size: 14px;">Tempat Tanggal Lahir</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->tempat }} , {{ $keluargas->tgl }} </span>  
+                              <br>
+                              <span style="margin-right: 109px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->status }} </span>
+                              <br>
+                            <div class="pull-right">
+                              <a class="btn btn-success btn-xs" href="{{ route('keluarga.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-edit fa-fx"></i> Edit</a>
+
+
+                              <a class="btn btn-success btn-xs" href="{{ route('keluarga.destroy',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-trash fa-fx"></i> Hapus</a>                            
+                            </div>
+                            
+                       
+
               </div>
             </div>
-            @endforeach
+
             </section>
 
           </div>
         </div>
       </div>
+            @endif
+          @endforeach
+                            
+      @endif
+
+      @if(count($hitunganak) == 0)
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <section class="card">
+                <div class="card-body mb-4" style="border: 2px solid #c0c2ce;">
+                  <div class="body-text">
+                    <span>Tidak ada data.</span>
+                  </div>
+                </div>
+
+              </section>
+
+            </div>
+          </div>
+        </div>
+
+      @endif
+
     </div>
 
-    <div id="istri" class="container tab-pane fade"><br>
+   @if($pegawais->jk=="Laki-laki")
+      <div id="istri" class="container tab-pane fade"><br>
       <div class="container">
         <span class="title-head">-- Istri --</span>
-        <div class="pull-right">
-          <a class="btn btn-info btn-xs pull-right" href="""><i class="fa fa-plus fa-fx"></i> Tambah</a>
-        </div>
       </div>
       <br>
+      @if(count($hitungistri)   > 0)
+        @foreach($keluarga as $keluargas)
+          @if($keluargas->status=="Istri")
+            <div class="container">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <section class="card">
+                        <div class="card-body mb-4" style="border: 2px solid #c0c2ce;">
+                          <div class="body-text">   
+                              <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->nama }}</span>
+                              <br>
+                              <span style="margin-right: 65px; font-size: 14px;">Jenis Kelamin</span><span style="margin-right: 15px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->jk }}</span>
+                              <br>
+                              <span style="margin-right: 14px;font-size: 14px;">Tempat Tanggal Lahir</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->tempat }} , {{ $keluargas->tgl }} </span>  
+                              <br>
+                              <span style="margin-right: 109px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->status }} </span>
+                              <br>
+                            <div class="pull-right">
+                              <a class="btn btn-success btn-xs" href="{{ route('keluarga.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-edit fa-fx"></i> Edit</a>
+
+
+                              <a class="btn btn-success btn-xs" href="{{ route('keluarga.destroy',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-trash fa-fx"></i> Hapus</a>                            
+                            </div>
+                          
+                             
+                          </div>
+                        </div>
+
+                      </section>
+
+                  </div>
+                </div>
+              </div>
+        @endif
+          @endforeach
+                            
+        @endif
+
+        @if(count($hitungistri) == 0)
+
+        <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="card">
+              <div class="card-body mb-4" style="border: 2px solid #c0c2ce;">
+                <div class="body-text">
+                  <span>Tidak ada data.</span>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+        @endif
+ 
+    </div>
+  @endif
+
+  @if($pegawais->jk=="Perempuan")
+    <div id="suami" class="container tab-pane fade"><br>
+      <div class="container">
+        <span class="title-head">-- Suami --</span>
+      </div>
+      <br>
+      @if(count($hitungsuami) > 0)
+        @foreach($keluarga as $keluargas)
+           @if($keluargas->status=="Suami")
+
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <section class="card">
               <div class="card-body mb-4" style="border: 2px solid #c0c2ce;">
                 <div class="body-text">
-                    <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>
-                    <br>
-                    <span style="margin-right: 18px;font-size: 14px;">Tempat Tanggal Lahir</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>  
-                    <br>
-                    <span style="margin-right: 106px;font-size: 14px;">Istri ke</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Budi</span>  
-                    <br>
-                    <span style="margin-right: 89px;font-size: 14px;">Pekerjaan</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">Hidup</span>
-                  
-                  <div class="pull-right">
-                    <a href="">
-                      <button class="btn btn-success btn-xs"><i class="fa fa-edit fa-fx"></i> Edit</button>
-                    </a>
-                    <a href="">
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash fa-fx"></i> Hapus</button>
-                    </a>
-                  </div>
-                </div>    
+                        
+                             
+                              <span style="margin-right: 111px; font-size: 14px;">Nama</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->nama }}</span>
+                              <br>
+                              <span style="margin-right: 65px; font-size: 14px;">Jenis Kelamin</span><span style="margin-right: 15px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->jk }}</span>
+                              <br>
+                              <span style="margin-right: 14px;font-size: 14px;">Tempat Tanggal Lahir</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->tempat }} , {{ $keluargas->tgl }} </span>  
+                              <br>
+                              <span style="margin-right: 109px;font-size: 14px;">Status</span><span style="margin-right: 18px;font-size: 14px;"> : </span><span style="font-size: 14px;">{{ $keluargas->status }} </span>
+                              <br>
+                            <div class="pull-right">
+                              <a class="btn btn-success btn-xs" href="{{ route('keluarga.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-edit fa-fx"></i> Edit</a>
+
+
+                              <a class="btn btn-success btn-xs" href="{{ route('keluarga.destroy',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-trash fa-fx"></i> Hapus</a>                            
+                            </div>
+                            
+                       
+
               </div>
+            </div>
+
             </section>
+
           </div>
         </div>
       </div>
+      @endif
+      @endforeach                
+        @endif
+
+      @if(count($hitungsuami) == 0)
+
+        <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="card">
+              <div class="card-body mb-4" style="border: 2px solid #c0c2ce;">
+                <div class="body-text">
+                  <span>Tidak ada data.</span>
+                </div>
+              </div>
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+      @endif
     </div>
+          
+  
+  @endif
     <div id="pendidikan" class="container tab-pane fade"><br>
       <div class="container">
         <h4>-- Pendidikan --</h4>
@@ -909,7 +1025,7 @@
     document.getElementById("panggilan").innerHTML=nickname[0];
   }
   
-
 </script>
 
-@endsection
+
+@endsection   

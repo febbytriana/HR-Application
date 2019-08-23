@@ -26,35 +26,40 @@
                             @if( $hitungpegawai > 0 )
                             <label class="control-label">Nama <span class="required">*</span></label>
 
-                            <select onchange="hilangkan(this.value)" class="form-control" id="pilih" name="id" data-show-subtext="true">
+                            <select class="form-control" id="pilih" name="id"data-show-subtext="true">
                                 <option value="cari">-- Cari -- </option>
                                
                                 
-                                <optgroup label="Pegawai">
-                                    @foreach( $pegawai as $datapegawai )
-                                    <option value="{{ $datapegawai->id_pegawai }}">{{ $datapegawai->nama }} </option>
-                                    @endforeach
+
+                                <optgroup label="Akun">
+
+                                        @foreach( $pegawai as $datapegawai )
+                                        @if($datapegawai['id_user']!=NULL)
+
+                                         <option data-toggle="tooltip" title="Sudah memiliki akun." disabled="" value="{{ $datapegawai->id_pegawai }}">{{ $datapegawai->nama }} </option>
+
+                                         @endif 
+
+                                         @endforeach
+
+                                </optgroup> 
+                                <optgroup label="Kosong">
+
+                                        @foreach( $pegawai as $datapegawais )
+                                        @if($datapegawais['id_user']==NULL)
+
+                                         <option value="{{ $datapegawais->id_pegawai }}">{{ $datapegawais->nama }} </option>
+                                         @endif 
+                                         @endforeach
+
                                 </optgroup> 
 
 
-                            </select>                                                               
-                             @endif 
-                             <a id="tambah" class="btn btn-success btn-xs" onclick="ganti()"><i class="fa fa-plus"></i> Tambah Data Baru</a>
-                             <a id="back" style="display: none" class="btn btn-warning btn-xs" onclick="back()"><i class="fa fa-minus"></i> Kembali</a>
-                             <div id="nama_baru" style="display: none;" class="form-group">
-                                    <div class="col-md-9">
-                                        <input type="text"  class="form-control" name="nama">
-                                    </div>
-                                </div> 
 
-                            @if( $hitungpegawai == 0 )
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Nama <span class="required">*</span></label>
-                                    <div class="col-md-9">
-                                        <input type="text"  class="form-control" name="nama">
-                                    </div>
-                                </div>    
-                            @endif
+
+
+                            </select>                                                               
+                             @endif
                                 
                                 
                         </div>
