@@ -1,4 +1,4 @@
-@if(Auth::user()->status == "Pegawai")
+@if(Auth::user()->status == "HR")
     <script type="text/javascript">location.href = "{{route('home')}}";</script>
 @endif
 <html>

@@ -15,10 +15,14 @@ class GajiController extends Controller
 
     public function getpegawai($id_pegawai)
     {
-        $pegawai = \App\Pegawai::find($id_pegawai);
+        $pegawai = \App\Pegawai::where('nik',$id_pegawai)->firstOrFail();
         $jabatan = \App\Jabatan::all();
         if ($pegawai) {
             echo '<div class="form-group">
+                      <label for="nama">Nama Pegawai</label>
+                      <input type="text" class="form-control" name="nama" id="nama" value="'.$pegawai->nama.'" readonly="">
+                    </div>
+                    <div class="form-group">
                       <label for="jabatan">Jabatan </label>
                         <input type="text" class="form-control" id="jabatan" name="jabatan" 
                             value="'.$pegawai->jabatan['jabatan'].'" readonly="readonly">

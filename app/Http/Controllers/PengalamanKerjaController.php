@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\PengalamanKerja;
 use App\Pegawai;
+use App\TempPengalamanKerja;
 use Illuminate\Http\Request;
 
 
@@ -74,7 +75,11 @@ class PengalamanKerjaController extends Controller
         //
         $pegawai = Pegawai::find($id_pegawai);
         $pengalaman = PengalamanKerja::find($id_pengalaman);
+        if(count($pegawai) && count($pengalaman) > 0) {
         return view('pengalaman.edit',compact('pegawai','pengalaman'));
+        }else{
+            abort(404);
+        }
     }
 
     /**
@@ -87,7 +92,7 @@ class PengalamanKerjaController extends Controller
     public function update(Request $req,$id_pegawai,$id_pengalaman)
     {
         //
-        $pengalaman = PengalamanKerja::find($id_pengalaman);
+        $pengalaman = PengalamanKerja::find($id_pengalaman) ?? abort(404);
         $pengalaman->nama_perusahaan = $req->nama_perusahaan;
         $pengalaman->jabatan = $req->jabatan;
         $tahun = "$req->lama $req->format";
@@ -107,9 +112,37 @@ class PengalamanKerjaController extends Controller
     public function destroy(Request $req,$id_pegawai,$id_pengalaman)
     {
         //
-        $pengalaman = PengalamanKerja::find($id_pengalaman);
+        $pengalaman = PengalamanKerja::find($id_pengalaman) ?? abort(404);
         $pengalaman->delete();
         
         return redirect('pegawai/detail/'.$id_pegawai);
+    }
+
+    public function pengalamanindex($id_pegawai)
+    {
+        $pegawai = Pegawai::find($id_pegawai) ?? abort(404);
+        $pengalaman = PengalamanKerja::where('id_pegawai',$id_pegawai)->get();
+        $checktemp = TempPengalamanKerja::where('id_pegawai',$id_pegawai)->count();
+        return view('pengalaman.index',compact('pegawai','pengalaman','checktemp'));
+    }
+
+    public function createtemp($id_pegawai)
+    {
+        $pegawai = Pegawai::find($id_pegawai) ?? abort(404);
+        return view('pengalaman.createtemp',compact('pegawai'));
+    }
+
+    public function storetemp(Request $req,$id_pegawai)
+    {
+        $pengalaman = new TempPengalamanKerja;
+        $pengalaman->id_pegawai = $id_pegawai;
+        $pengalaman->nama_perusahaan = $req->nama_perusahaan;
+        $pengalaman->jabatan = $req->jabatan;
+        $tahun = "$req->lama $req->format";
+        $pengalaman->tahun = $tahun;
+
+        $pengalaman->save();
+
+        return redirect('pegawai/pengalaman/'.$id_pegawai);
     }
 }

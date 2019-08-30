@@ -11,8 +11,10 @@ use App\Keluarga;
 use App\Kontrak;
 use App\PengalamanKerja;
 use App\Pelatihan;
+use App\TempPegawai;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PegawaiController extends Controller
 {
@@ -21,9 +23,10 @@ class PegawaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $pegawai = \App\Pegawai::all();
+       $pegawai = \App\Pegawai::all();
         $jabatan = \App\Jabatan::all();
         $keluarga = \App\Keluarga::all();
        
@@ -93,7 +96,7 @@ class PegawaiController extends Controller
      */
     public function edit($id_pegawai)
     {
-        $pegawai = Pegawai::find($id_pegawai);
+        $pegawai = Pegawai::find($id_pegawai) ?? abort(404);
         $jabatan = Jabatan::all();
         return view('pegawais/edit',compact('pegawai','jabatan'));
     }
@@ -107,7 +110,8 @@ class PegawaiController extends Controller
      */
     public function update(Request $req, $id_pegawai)
     {
-        $pegawai = Pegawai::find($id_pegawai);
+        $pegawai = Pegawai::find($id_pegawai) ?? abort(404);
+
         $pegawai->nik = $req->nik;
         $pegawai->nama = $req->nama;
         $pegawai->id_jabatan = $req->id_jabatan;
@@ -146,7 +150,7 @@ class PegawaiController extends Controller
      */
     public function destroy($id_pegawai)
     {
-        $pegawai = Pegawai::find($id_pegawai);
+        $pegawai = Pegawai::find($id_pegawai) ?? abort(404);
         $pegawai->delete();
 
         session()->flash('success-create', 'Data Pegawai '.$pegawai->nama.' telah dihapus');
@@ -156,7 +160,8 @@ class PegawaiController extends Controller
 
     public function detail($id_pegawai)
     {
-        $pegawai = Pegawai::where('id_pegawai','=',$id_pegawai)->get();
+        $pegawai = Pegawai::where('id_pegawai','=',$id_pegawai)->get() ?? abort(404);
+        if(count($pegawai) > 0) {
         $pegawais = Pegawai::find($id_pegawai); 
         $keluarga = Keluarga::where('id_pegawai',$id_pegawai)->get();
         $hitunganak = Keluarga::where([['id_pegawai',$id_pegawai],['status','=','Anak']])->get();
@@ -174,15 +179,75 @@ class PegawaiController extends Controller
         $pelatihan = Pelatihan::where('id_pegawai',$id_pegawai)->get();
 
          return view('pegawais/detail',compact('pegawai','keluarga','hitunganak','hitungsuami','hitungistri','hitungortu','pegawais','pendidikan','no_darurat','sertifikat','kontrak','pengalaman','jabatan','pelatihan'));
+        } else {
+            abort(404);
+        }
+
     }
 
        
 
     public function updateJabatan(Request $req,$id_pegawai)
     {
-        $pegawai = Pegawai::find($id_pegawai);
+        $pegawai = Pegawai::find($id_pegawai) ?? abort(404);
         $pegawai->id_jabatan = $req->id_jabatan;
         $pegawai->save();
+    }
+
+
+    //Akses Pegawai
+    public function profile($id_pegawai)
+    {
+        $pegawai = Pegawai::where('id_user',$id_pegawai)->first() ?? abort(404);
+        $jabatan = Jabatan::all();
+        $checktemp = TempPegawai::where('id_pegawai',$pegawai->id_pegawai)->count();
+        return view('pegawais.profile',compact('pegawai','jabatan','checktemp'));
+    }
+
+    public function editpersonal($id_pegawai)
+    {
+        $checktemp = TempPegawai::where('id_pegawai',base64_decode($id_pegawai))->count();
+        if($checktemp == 0) {
+        $pegawai = Pegawai::find(base64_decode($id_pegawai));
+        return view('pegawais.personal.edit',compact('pegawai'));
+        }else{
+            abort(404);
+        }
+    }
+
+    public function updatepersonal(Request $req,$id_pegawai)
+    {
+        $pegawai = new TempPegawai;
+        $idpegawai = base64_decode($id_pegawai) ?? abort(404);
+        $pegawai->id_pegawai = $idpegawai;
+        $pegawai->nik = $req->nik;
+        $pegawai->nama = $req->nama;
+        $pegawai->tempat = $req->tempat;
+        $pegawai->tgl = $req->tgl;
+        $pegawai->alamat = $req->alamat;
+        $pegawai->jk = $req->jk;
+        $pegawai->agama = $req->agama;
+        $pegawai->warga_negara = $req->warga_negara;
+        $pegawai->status_kawin = $req->status_kawin;
+        $pegawai->goldar = $req->goldar;
+        $pegawai->penyakit = $req->penyakit;
+        $pegawai->telp = $req->telp;
+        $pegawai->email = $req->email;
+
+        if($req->hasfile('image')) {
+        $file       = $req->file('image');
+        $fileName   = $file->getClientOriginalName();
+        $req->file('image')->move("upload/", $fileName);
+        $pegawai->image = $fileName;
+        }else {
+            $img = Pegawai::find($idpegawai);
+            $pegawai->image = $img->image;
+        }
+
+        $pegawai->save();
+        $peg = Pegawai::where('id_pegawai',$idpegawai)->first();
+        return redirect('pegawai/profil/'.$peg['id_user']);
+
     }
 
 }

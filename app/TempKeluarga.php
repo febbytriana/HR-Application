@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use App\TempKeluarga;
 use App\Keluarga;
 use Illuminate\Http\Request;
-class TempKeluargaController extends Controller
+class TempKeluarga extends Controller
 {
     /**
      * Display a listing of the resource.

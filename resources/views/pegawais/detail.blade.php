@@ -226,7 +226,7 @@
     <div id="profile" class="container tab-pane active"><br>
       <!-- begin profile-container -->
       <div class="container">
-        <h4>-- Profile --</h4>
+        <h4> {{$pegawais->nama}}</h4>
       </div>
         <div class="profile-container">
                 <!-- begin profile-section -->
@@ -240,9 +240,9 @@
                   <img src="{{ asset('upload/'.$data->image) }}" width="160" height="300"></a>
               </div>
               <!-- end profile-image -->
-                <div class="m-b-10">
+                 <div style="background-color: #0f5b94; color: #fff; text-align: center;">
                 <span class="nickname">{{ $data->nama}}</span>
-              </div>
+                </div>
             </div>
             <!-- end profile-left -->
             <!-- begin profile-right -->

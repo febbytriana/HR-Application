@@ -339,6 +339,10 @@ body {
   color: #fff;
 }
 
+.text-dark {
+  color: black;
+}
+
 .fs-17 {
   font-size: 17px;
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Keluarga;
 use App\Pegawai;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -31,7 +32,11 @@ class KeluargaController extends Controller
     public function create($id_pegawai)
     {
         $pegawai = \App\Pegawai::find($id_pegawai);
-        return view('keluargas.create',compact('pegawai'));
+
+        $checkayah = Keluarga::where([['id_pegawai',$id_pegawai],['status','Ayah']])->get();
+        $checkibu = Keluarga::where([['id_pegawai',$id_pegawai],['status','Ibu']])->get();
+
+        return view('keluargas.create',compact('pegawai','checkayah','checkibu'));
     }
 
     /**
@@ -127,5 +132,19 @@ class KeluargaController extends Controller
         }
 
         return redirect('/pegawai/detail/'.$id_pegawai);
+    }
+
+    public function ortu($id_pegawai)
+    {
+        $pegawai = Pegawai::find($id_pegawai);
+        $ortu = DB::table('keluargas')
+            ->where('id_pegawai', $id_pegawai)
+            ->where(function ($query) {
+                $query->where('status', '=', 'Ayah')
+                      ->orWhere('status', '=', 'Ibu');
+            })
+            ->get();
+
+        return view('keluargas.index',compact('ortu','pegawai'));
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.apppegawai')
 @section('content')
 
   <section role="main" class="content-body">
