@@ -87,9 +87,9 @@ class SPController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_sp)
     {
-        $sp = \App\SuratPeringatan::find($id);
+        $sp = \App\SuratPeringatan::find($id_sp);
         $sp->delete($sp);
 
         return redirect('surat-sp/index');
@@ -97,7 +97,7 @@ class SPController extends Controller
 
     public function cetak_pdf()
     {
-        $surat_peringatans = DB::table('surat_peringatans')
+        $surat_peringatan = DB::table('surat_peringatans')
             ->join('pegawais', 'surat_peringatans.id_pegawai', '=', 'pegawais.id_pegawai')
             ->select('pegawais.*', 'surat_peringatans.*')
             ->get();
