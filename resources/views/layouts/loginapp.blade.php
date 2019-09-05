@@ -28,23 +28,20 @@
     <!-- modernizr css -->
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
     <style type="text/css">
-        body:before {
-            content: "";
-          position: fixed;
-          z-index: -1;
-          background-size:cover;
-          background-position:center top;
-          display: block;
-          background-image: url('{{ asset('images/googleinc.jpg') }}');
-          width: 100%;
-          height: 100%;
-          filter: blur(5px) ;
-          -webkit-filter: blur(5px) ;
+        #email:focus {
+            border-color: #0f5b94;
+        }
+        #password:focus {
+            border-color: #0f5b94;
         }
     </style>
 </head>
 
-<body>
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('{{asset('images/1.jpg')}}');
+background-repeat: repeat,no-repeat;
+background-size: cover;
+background-position: center;
+opacity: 0.8;">
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -57,54 +54,23 @@
         <!-- sidebar menu area end -->
         <!-- main content area start -->
 
-        <div class="header bg-primary">
-           <!-- header area start -->
-            <div class="header-area" style="background-color: #0f5b94; padding-top: 0px; padding-bottom: 7px; border:none;">
-                <div class="row align-items-center">
-                    <!-- nav and search button -->
-                    <div class="col-md-6 col-sm-8 clearfix">
-                        <div class="nav-btn pull-left">
-                            <div class="logo">
-                                <a href="/"><img src="{{ asset('images/logohr.png') }}" alt="logo" width="40" height="40"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- profile info & task -->
-                    <div class="col-md-6 col-sm-4 clearfix">
-                        <ul class="pull-right">
-                            
-                            @guest
-                            <li class="nav-item" style="margin-top: 8px;">
-                                <a class="nav-link" href="/" style="color: #fff;"><h6>PT. Gamma Solution</h6></a>
-                            </li>
-                            @else
+                            @if(! @guest)
                              <script type="text/javascript">
                                  location.href="{{ route("home") }}";
                              </script>
                             @endguest
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- header area end -->
-            <!-- page title area start -->
-
-        </div>
         <!-- main content area end -->
         <!-- footer area start-->
-         <div class="card-body">
             @yield('content')
 
-        </div>
-
         <!-- footer area end-->
-    </div>
-
         <footer>
-            <div class="footer-area fixed-bottom" style="background-color: #0f5b94;">
-                <p style="color: #fff;">Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
+            <div class="footer-area fixed-bottom" style="background-color: transparent;">
+                <p style="color: #fff;">&copy; Gamma Solution</p>
             </div>
         </footer>
+    </div>
+
     <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}"></script>
     <!-- bootstrap 4 js -->
     <script src="{{ asset('js/popper.min.js') }}"></script>
@@ -139,6 +105,10 @@
     <script src="{{ asset('js/scripts.js') }}"></script>
 
     <script src="{{ asset('js/waves-effect.js') }}"></script>
+
+    @section('js')
+
+    @show
 
 </body>
 

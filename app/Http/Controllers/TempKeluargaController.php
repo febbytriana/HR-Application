@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\TempKeluarga;
-use App\Keluarga;                                        
+use App\Keluarga;  
+use App\Pegawai;
+use DB;                                      
 
 use Illuminate\Http\Request;
 
@@ -106,5 +108,19 @@ class TempKeluargaController extends Controller
         $tempkeluarga->delete();
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
         return redirect()->back();
+    }
+
+    public function ortu($id_pegawai)
+    {
+        $pegawai = Pegawai::find($id_pegawai);
+        $ortu = DB::table('keluargas')
+            ->where('id_pegawai', $id_pegawai)
+            ->where(function ($query) {
+                $query->where('status', '=', 'Ayah')
+                      ->orWhere('status', '=', 'Ibu');
+            })
+            ->get();
+
+        return view('keluargas.index',compact('ortu','pegawai'));
     }
 }

@@ -16,7 +16,7 @@
           <div class="">
               <div class="col-md-12">
                   <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-2 mb-4">
                         <div class="profile-left">
                           <!-- begin profile-image -->
                           <div class="profile-image shadow">
@@ -29,7 +29,7 @@
                           <!-- end profile-image -->
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-4">
                         <div class="card shadow">
                         <div class="card-body rounded">
                         <div class="s-report-title d-flex justify-content-between">
@@ -88,7 +88,7 @@
                         </div>
                         </div>
                     </div>
-                    <div class="col-md-4 ml-0">
+                    <div class="col-md-4">
                         <div class="card shadow">
                           <a class="card-header" data-toggle="collapse" href="#collapseOne" style="font-size: 18px; color: #fff; background-color: #0f5b94;">
                               Data lainnya..
@@ -103,23 +103,26 @@
                                         <tr>
                                             <td style="font-size: 14px;"><a class="text-dark" href="{{route('keluarga.ortu',$pegawai->id_pegawai)}}">Orang Tua</a></td>
                                         </tr>
-                                        <tr>
+                                        <tr>@if($pegawai->jk == "Laki-laki")
                                             <td style="font-size: 14px;"><a class="text-dark" href="#">Istri</a></td>
+                                            @else
+                                            <td style="font-size: 14px;"><a class="text-dark" href="#">Suami</a></td>
+                                            @endif
                                         </tr>
                                         <tr>
                                             <td style="font-size: 14px;"><a class="text-dark" href="#">Anak</a></td>
                                         </tr>
                                         <tr>
-                                            <td style="font-size: 14px;"><a class="text-dark" href="#">Pendidikan</a></td> 
+                                            <td style="font-size: 14px;"><a class="text-dark" href="{{route('pendidikan.indexpegawai',$pegawai->id_pegawai)}}">Pendidikan</a></td> 
                                         </tr>
                                         <tr>
-                                            <td style="font-size: 14px;"><a class="text-dark" href="#">Pelatihan yang pernah diikuti</a></td>
+                                            <td style="font-size: 14px;"><a class="text-dark" href="{{route('pelatihan.indexpegawai',$pegawai->id_pegawai)}}">Pelatihan yang pernah diikuti</a></td>
                                         </tr>
                                         <tr>
-                                            <td style="font-size: 14px;"><a class="text-dark" href="#">Sertifikat yang pernah didapat</a></td>
+                                            <td style="font-size: 14px;"><a class="text-dark" href="{{route('sertifikat.indexpegawai',$pegawai->id_pegawai)}}">Sertifikat yang pernah didapat</a></td>
                                         </tr>
                                         <tr>
-                                            <td style="font-size: 14px;"><a class="text-dark" href="#">Nomor Darurat</a></td>
+                                            <td style="font-size: 14px;"><a class="text-dark" href="{{route('darurat.indexpegawai',$pegawai->id_pegawai)}}">Nomor Darurat</a></td>
                                         </tr>
                                     </table>
                               </div>

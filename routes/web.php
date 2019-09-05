@@ -17,15 +17,6 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/home', 'HomeController@index')->name('home');
 });
 Route::group(['middleware' => ['auth','role:HR']], function(){
-	//akun
-	Route::get('/akun/index', 'AkunController@index')->name('akun.index');
-	Route::get('/akun/create', 'AkunController@create')->name('akun.create');
-	Route::get('/akun/print', 'AkunController@print')->name('akun.print');
-	Route::post('/akun/store', 'AkunController@store')->name('akun.store');
-	Route::get('/akun/edit/{id}', 'AkunController@edit')->name('akun.edit');
-	Route::post('/akun/update', 'AkunController@update')->name('akun.update');
-	Route::post('/akun/kelola-akun', 'AkunController@updateakun')->name('akun.update-akun');
-	Route::get('/akun/destroy/{id}', 'AkunController@destroy')->name('akun.destroy');
 
 	//akun-pegawai
 	Route::get('/akunpegawai/indexpegawai', 'AkunController@indexpegawai')->name('akunpegawai.indexpegawai');
@@ -139,6 +130,16 @@ Route::group(['middleware' => ['auth','role:HR']], function(){
 });
 
 Route::group(['middleware' => ['auth','role:Admin']], function(){
+	//akun
+	Route::get('/akun/index', 'AkunController@index')->name('akun.index');
+	Route::get('/akun/create', 'AkunController@create')->name('akun.create');
+	Route::get('/akun/print', 'AkunController@print')->name('akun.print');
+	Route::post('/akun/store', 'AkunController@store')->name('akun.store');
+	Route::get('/akun/edit/{id}', 'AkunController@edit')->name('akun.edit');
+	Route::post('/akun/update', 'AkunController@update')->name('akun.update');
+	Route::post('/akun/kelola-akun', 'AkunController@updateakun')->name('akun.update-akun');
+	Route::get('/akun/destroy/{id}', 'AkunController@destroy')->name('akun.destroy');
+	
 	//Jabatan
 	Route::get('/jabatan/index', 'JabatanController@jabatan')->name('jabatan.index');
 	Route::get('/jabatan/create', 'JabatanController@create')->name('jabatan.create');
@@ -154,8 +155,36 @@ Route::group(['middleware' => ['auth','role:Pegawai']], function(){
 	Route::get('/pegawai/profil/{id_pegawai}', 'PegawaiController@profile')->name('pegawai.profil');
 	Route::get('/pegawai/personal/edit/{id_pegawai}','PegawaiController@editpersonal')->name('pegawai.editperson');
 	Route::post('/pegawai/personal/update/{id_pegawai}','PegawaiController@updatepersonal')->name('pegawai.updateperson');
-	Route::get('/pegawai/pengalaman/{id_pegawai}','PengalamanKerjaController@pengalamanindex')->name('pegawai.pengalaman');
-	Route::get('/pegawai/pengalaman/insert/{id_pegawai}','PengalamanKerjaController@createtemp')->name('pengalaman.createpengtemp');
-	Route::post('/pegawai/pengalaman/save/{id_pegawai}','PengalamanKerjaController@storetemp')->name('pengalaman.storetemp');
-	Route::get('/pegawai/keluarga/index/{id_pegawai}','KeluargaController@ortu')->name('keluarga.ortu');
+//Pengalaman
+	Route::get('/pegawai/pengalaman/{id_pegawai}','TempPengalamanKerjaController@pengalamanindex')->name('pegawai.pengalaman');
+	Route::get('/pegawai/pengalaman/insert/{id_pegawai}','TempPengalamanKerjaController@createtemp')->name('pengalaman.createpengtemp');
+	Route::post('/pegawai/pengalaman/save/{id_pegawai}','TempPengalamanKerjaController@storetemp')->name('pengalaman.storetemp');
+//Ortu
+	Route::get('/pegawai/keluarga/ortu/index/{id_pegawai}','TempKeluargaController@ortu')->name('keluarga.ortu');
+	Route::get('/pegawai/keluarga/ortu/insert/{id_pegawai}','TempKeluargaController@createtemp')->name('keluarga.createtemp');
+	Route::post('/pegawai/keluarga/ortu/save/{id_pegawai}','TempKeluargaController@storetemp')->name('keluarga.save');
+//ANAK
+	Route::get('/pegawai/keluarga/anak/index/{id_pegawai}','TempKeluargaController@anak')->name('keluarga.anaks');
+	Route::get('/pegawai/keluarga/anak/insert/{id_pegawai}','TempKeluargaController@createanak')->name('keluarga.createanak');
+	Route::post('/pegawai/keluarga/anak/save/{id_pegawai}','TempKeluargaController@storeanak')->name('keluarga.saveanak');
+//ISTRI
+	Route::get('/pegawai/keluarga/istri/index/{id_pegawai}','TempKeluargaController@istri')->name('keluarga.istris');
+	Route::get('/pegawai/keluarga/istri/insert/{id_pegawai}','TempKeluargaController@createistri')->name('keluarga.createistri');
+	Route::post('/pegawai/keluarga/istri/save/{id_pegawai}','TempKeluargaController@storeistri')->name('keluarga.saveistri');
+//Pendidikan
+	Route::get('/pegawai/pendidikan/index/{id_pegawai}','TempPendidikanController@indexpegawai')->name('pendidikan.indexpegawai');
+	Route::get('/pegawai/pendidikan/insert/{id_pegawai}','TempPendidikanController@createtemp')->name('pendidikan.creatependtemp');
+	Route::post('/pegawai/pendidikan/save/{id_pegawai}','TempPendidikanController@storetemp')->name('pendidikan.savepend');
+//Pelatihan
+	Route::get('/pegawai/pelatihan/index/{id_pegawai}','TempPelatihanController@indexpegawai')->name('pelatihan.indexpegawai');
+	Route::get('/pegawai/pelatihan/insert/{id_pegawai}','TempPelatihanController@createtemp')->name('pelatihan.createtemp');
+	Route::post('/pegawai/pelatihan/save/{id_pegawai}','TempPelatihanController@storetemp')->name('pelatihan.savepel');
+//Sertifikat
+	Route::get('/pegawai/sertifikat/index/{id_pegawai}','TempSertifikatController@indexpegawai')->name('sertifikat.indexpegawai');
+	Route::get('/pegawai/sertifikat/insert/{id_pegawai}','TempSertifikatController@createtemp')->name('sertifikat.crtsertifikat');
+	Route::post('/pegawai/sertifikat/save/{id_pegawai}','TempSertifikatController@storetemp')->name('sertifikat.savesrt');
+//No Darurat
+	Route::get('/pegawai/nodarurat/index/{id_pegawai}','TempNoDaruratController@indexpegawai')->name('darurat.indexpegawai');
+	Route::get('/pegawai/nodarurat/insert/{id_pegawai}','TempNoDaruratController@createtemp')->name('darurat.crtdarurat');
+	Route::post('/pegawai/nodarurat/save/{id_pegawai}','TempNoDaruratController@storetemp')->name('darurat.save');
 });

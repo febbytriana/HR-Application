@@ -16,8 +16,8 @@ class CreateTempPelatihansTable extends Migration
         Schema::create('temp_pelatihans', function (Blueprint $table) {
             $table->increments('id_temp_pelatihan');
 
-            $table->integer('id_pelatihan')->unsigned()->nullable();
-            $table->foreign('id_pelatihan')->references('id_pelatihan')->on('pelatihans')->onUpdate('set null')->onDelete('set null');
+            $table->integer('id_pegawai')->unsigned()->nullable();
+            $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais')->onUpdate('set null')->onDelete('set null');
 
             $table->string('nama_event');
             $table->string('tempat_pelatihan');

@@ -18,25 +18,19 @@
               <div class="col-md-12">
                 <div class="s-report-title d-flex justify-content-between">
                     <h5>Orang Tua</h5>
-                    <div class="dropdown" style="display: block;">
-                        @if(count($ortu) == 2)
-                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" disabled="">
-                          Tidak dapat menambah data
-                        </button>
-                        <div class="dropdown-menu">
-                          <a class="dropdown-item disabled" href="#">Ayah</a>
-                          <a class="dropdown-item disabled" href="#">Ibu</a>
-                        </div>
-                        @else
-                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
-                          Tambah
-                        </button>
-                        <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">Ayah</a>
-                          <a class="dropdown-item" href="#">Ibu</a>
-                        </div>
+                        @if(count($ortu) < 2 && count($checkayah) < 1 && count($checkibu) < 1)
+                        <a class="" href="{{route('keluarga.createtemp',$pegawai->id_pegawai)}}" style="font-size: 17px;"><i class="fa fa-plus"></i> Tambah</a>
+                        @elseif(count($ortu) < 2 && count($checkayah) == 1 && count($checkibu) < 1)
+                        <a class="" href="{{route('keluarga.createtemp',$pegawai->id_pegawai)}}" style="font-size: 17px;"><i class="fa fa-plus"></i> Tambah</a>
+                        @elseif(count($ortu) < 2 && count($checkayah) < 1 && count($checkibu) == 1)
+                        <a class="" href="{{route('keluarga.createtemp',$pegawai->id_pegawai)}}" style="font-size: 17px;"><i class="fa fa-plus"></i> Tambah</a>
+                        @elseif(count($checkayah) == 1 && count($checkibu) == 1)
+
                         @endif
-                    </div>
+
+                        @if(count($ortu) == 2)
+                        Data sudah lengkap
+                        @endif
                 </div>
                 <hr>                  
                 <div class="row">
