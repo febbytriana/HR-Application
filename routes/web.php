@@ -71,7 +71,7 @@ Route::group(['middleware' => ['auth','role:HR']], function(){
 	Route::get('/no-darurat/create/{id_pegawai}','NoDaruratController@create')->name('darurat.create');
 	Route::post('/no-darurat/store/{id_pegawai}','NoDaruratController@store')->name('darurat.store');
 	Route::get('/no-darurat/edit/{id_pegawai}/{id_no_darurat}','NoDaruratController@edit')->name('darurat.edit');
-	Route::post('/no-darurat/update/{id_pegawai}/{id_no_darurat}','NoDaruratController@update')->name('darurat.update');
+	Route::post('/no-darurat/update/{id_pegawai}/{id_no_darurat}','NoDaruratController@update')->name('Darurat.update');
 	Route::get('/no-darurat/delete/{id_pegawai}/{id_no_darurat}','NoDaruratController@destroy')->name('darurat.destroy');
 
 	//Keluarga
@@ -126,7 +126,8 @@ Route::group(['middleware' => ['auth','role:HR']], function(){
 
 	//Gaji
 	Route::get('/gaji/create', 'GajiController@index')->name('gaji.create');
-	Route::get('/getpegawai/{id_pegawai}', 'GajiController@getpegawai')->name('getpegawai');	
+	Route::get('/getpegawai/{id_pegawai}', 'GajiController@getpegawai')->name('getpegawai');
+
 });
 
 Route::group(['middleware' => ['auth','role:Admin']], function(){
@@ -153,38 +154,4 @@ Route::group(['middleware' => ['auth','role:Admin']], function(){
 Route::group(['middleware' => ['auth','role:Pegawai']], function(){
 	//Akses Pegawai
 	Route::get('/pegawai/profil/{id_pegawai}', 'PegawaiController@profile')->name('pegawai.profil');
-	Route::get('/pegawai/personal/edit/{id_pegawai}','PegawaiController@editpersonal')->name('pegawai.editperson');
-	Route::post('/pegawai/personal/update/{id_pegawai}','PegawaiController@updatepersonal')->name('pegawai.updateperson');
-//Pengalaman
-	Route::get('/pegawai/pengalaman/{id_pegawai}','TempPengalamanKerjaController@pengalamanindex')->name('pegawai.pengalaman');
-	Route::get('/pegawai/pengalaman/insert/{id_pegawai}','TempPengalamanKerjaController@createtemp')->name('pengalaman.createpengtemp');
-	Route::post('/pegawai/pengalaman/save/{id_pegawai}','TempPengalamanKerjaController@storetemp')->name('pengalaman.storetemp');
-//Ortu
-	Route::get('/pegawai/keluarga/ortu/index/{id_pegawai}','TempKeluargaController@ortu')->name('keluarga.ortu');
-	Route::get('/pegawai/keluarga/ortu/insert/{id_pegawai}','TempKeluargaController@createtemp')->name('keluarga.createtemp');
-	Route::post('/pegawai/keluarga/ortu/save/{id_pegawai}','TempKeluargaController@storetemp')->name('keluarga.save');
-//ANAK
-	Route::get('/pegawai/keluarga/anak/index/{id_pegawai}','TempKeluargaController@anak')->name('keluarga.anaks');
-	Route::get('/pegawai/keluarga/anak/insert/{id_pegawai}','TempKeluargaController@createanak')->name('keluarga.createanak');
-	Route::post('/pegawai/keluarga/anak/save/{id_pegawai}','TempKeluargaController@storeanak')->name('keluarga.saveanak');
-//ISTRI
-	Route::get('/pegawai/keluarga/istri/index/{id_pegawai}','TempKeluargaController@istri')->name('keluarga.istris');
-	Route::get('/pegawai/keluarga/istri/insert/{id_pegawai}','TempKeluargaController@createistri')->name('keluarga.createistri');
-	Route::post('/pegawai/keluarga/istri/save/{id_pegawai}','TempKeluargaController@storeistri')->name('keluarga.saveistri');
-//Pendidikan
-	Route::get('/pegawai/pendidikan/index/{id_pegawai}','TempPendidikanController@indexpegawai')->name('pendidikan.indexpegawai');
-	Route::get('/pegawai/pendidikan/insert/{id_pegawai}','TempPendidikanController@createtemp')->name('pendidikan.creatependtemp');
-	Route::post('/pegawai/pendidikan/save/{id_pegawai}','TempPendidikanController@storetemp')->name('pendidikan.savepend');
-//Pelatihan
-	Route::get('/pegawai/pelatihan/index/{id_pegawai}','TempPelatihanController@indexpegawai')->name('pelatihan.indexpegawai');
-	Route::get('/pegawai/pelatihan/insert/{id_pegawai}','TempPelatihanController@createtemp')->name('pelatihan.createtemp');
-	Route::post('/pegawai/pelatihan/save/{id_pegawai}','TempPelatihanController@storetemp')->name('pelatihan.savepel');
-//Sertifikat
-	Route::get('/pegawai/sertifikat/index/{id_pegawai}','TempSertifikatController@indexpegawai')->name('sertifikat.indexpegawai');
-	Route::get('/pegawai/sertifikat/insert/{id_pegawai}','TempSertifikatController@createtemp')->name('sertifikat.crtsertifikat');
-	Route::post('/pegawai/sertifikat/save/{id_pegawai}','TempSertifikatController@storetemp')->name('sertifikat.savesrt');
-//No Darurat
-	Route::get('/pegawai/nodarurat/index/{id_pegawai}','TempNoDaruratController@indexpegawai')->name('darurat.indexpegawai');
-	Route::get('/pegawai/nodarurat/insert/{id_pegawai}','TempNoDaruratController@createtemp')->name('darurat.crtdarurat');
-	Route::post('/pegawai/nodarurat/save/{id_pegawai}','TempNoDaruratController@storetemp')->name('darurat.save');
 });

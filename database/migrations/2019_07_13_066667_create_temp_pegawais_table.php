@@ -19,12 +19,10 @@ class CreateTempPegawaisTable extends Migration
             $table->integer('id_pegawai')->unsigned()->nullable();
             $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais')->onUpdate('set null')->onDelete('set null');
 
-            $table->string('nik');
             $table->string('nama',100);
             $table->string('tempat');
             $table->date('tgl');
             $table->string('alamat');
-            $table->string('jk');
             $table->string('agama');
             $table->string('warga_negara');
             $table->string('status_kawin');

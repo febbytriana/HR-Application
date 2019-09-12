@@ -86,33 +86,4 @@ class TempNoDaruratController extends Controller
         //
     }
 
-    public function indexpegawai($id_pegawai)
-    {
-        $pegawai = Pegawai::find($id_pegawai);
-        $checktemp = TempNoDarurat::where('id_pegawai',$id_pegawai)->count();
-        $darurat = NoDarurat::where('id_pegawai',$id_pegawai)->get();
-
-        return view('no-darurat.index',compact('pegawai','darurat','checktemp'));
-    }
-
-    public function createtemp($id_pegawai)
-    {
-        $pegawai = Pegawai::find($id_pegawai);
-
-        return view('no-darurat.createtemp',compact('pegawai'));
-    }
-
-    public function storetemp(Request $req,$id_pegawai)
-    {
-        $darurat = new TempNoDarurat;
-
-        $darurat->id_pegawai = $id_pegawai;
-        $darurat->nama = $req->nama;
-        $darurat->nomor = $req->nomor;
-        $darurat->status = $req->status;
-
-        $darurat->save();
-
-        return redirect('pegawai/nodarurat/index/'.$id_pegawai);
-    }
 }

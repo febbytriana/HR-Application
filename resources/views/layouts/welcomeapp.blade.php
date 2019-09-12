@@ -28,6 +28,8 @@
     <!-- modernizr css -->
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
     <style type="text/css">
+        @import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One|Fredoka+One&display=swap');
         #email:focus {
             border-color: #0f5b94;
         }
@@ -37,11 +39,10 @@
     </style>
 </head>
 
-<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('{{asset('images/1.jpg')}}');
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('{{asset('images/bg-landing.jpg')}}');
 background-repeat: repeat,no-repeat;
-background-size: cover;
-background-position: center;
-opacity: 0.8;">
+background-size: 100%;
+opacity: 0.9;">
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->

@@ -14,7 +14,7 @@
 
     <section class="card mt-3">
         <div class="card-header" style="background: #0f5b94; color: #fff;">
-                <h5>Tambah Pelatihan Kerja</h5>
+                <h5>Tambah Pengalaman Kerja</h5>
         </div>
         <div class="card-body" style="margin-left:200px;">
             <div class="col-md-24">
@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Peran<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <select class="custom-select" name="peran">
+                                <select class="custom-select" name="peran" required="">
                                     <option value="Panitia">Panitia</option>
                                     <option value="Peserta">Peserta</option>
                                 </select>  

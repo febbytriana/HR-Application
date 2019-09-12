@@ -110,17 +110,4 @@ class TempKeluargaController extends Controller
         return redirect()->back();
     }
 
-    public function ortu($id_pegawai)
-    {
-        $pegawai = Pegawai::find($id_pegawai);
-        $ortu = DB::table('keluargas')
-            ->where('id_pegawai', $id_pegawai)
-            ->where(function ($query) {
-                $query->where('status', '=', 'Ayah')
-                      ->orWhere('status', '=', 'Ibu');
-            })
-            ->get();
-
-        return view('keluargas.index',compact('ortu','pegawai'));
-    }
 }

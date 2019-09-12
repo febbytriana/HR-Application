@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\TempSertifikat;
+use App\Pegawai;
+use App\Sertifikat;
+
 use Illuminate\Http\Request;
 
 class TempSertifikatController extends Controller
@@ -82,4 +85,5 @@ class TempSertifikatController extends Controller
     {
         //
     }
+
 }

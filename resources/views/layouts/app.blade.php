@@ -30,7 +30,9 @@
     <link rel="stylesheet" href="{{ asset('select2/dist/css/select2.min.css') }}">
     
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet" href="{{asset('sweetalert2-7.32.4/package/dist/sweetalert2.min.css')}}">
     <!-- modernizr css -->
+    <script src="{{asset('sweetalert2-7.32.4/package/dist/sweetalert2.all.min.js')}}"></script>
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
     <style type="text/css">
         .custom-select {
@@ -120,7 +122,8 @@
                                     <li class="{{Route::is('absen.index') ? 'active' : null}}"><a href="{{ route('absen.index') }}">Absensi</a></li>
                                     <li class="{{Route::is('gaji.create') ? 'active' : null}}"><a href="{{ route('gaji.create') }}">Gaji</a></li>
                                 </ul>
-                            </li>                             
+                            </li>
+
                             <li class="sidebar-items4 {{Route::is('sp.create') ? 'active' : null}}"><a class="waves-effect" anim="ripple" href="{{ route('sp.create') }}"><i class="ti-email"></i> <span>Surat Peringatan</span></a></li>
                             <li class="sidebar-items5 {{Route::is('perjalanan.create') ? 'active' : null}}"><a class="waves-effect" anim="ripple" href="{{ route('perjalanan.create') }}"><i class="ti-email"></i> <span>Surat Perjalanan</span></a></li>
                             

@@ -28,7 +28,7 @@
             <div class="login-box ptb--100">
             <form method="POST" action="{{route('login')}}">
                 @csrf
-            <div class="card-profile mb-3">
+            <div class="card-profile mb-4">
             <div class="card-avatar" style="background-color: #0f5b94">
                 <a href="/">
                     <img class="img" src="{{asset('images/logohr.png')}}">
@@ -59,8 +59,8 @@
                             </div>
                         </div>
             <div class="form-group row justify-content-center">
-                            <div class="col-md-10">
-                                <input id="submit" class="btn btn-success btn-submit" type="submit" value="Login">
+                            <div class="col-md-10" align="center">
+                                <input id="submit" class="btn btn-info btn-submit" type="submit" value="Login">
                             </div>
                         </div>
             </div>

@@ -50,7 +50,7 @@
               <div class="col-md-12">
                   <div class="row">
                     Nama : {{Auth::user()->nama}},<br>
-                    Hak Akses : {{Auth::user()->status}}
+                    Hak Akses : {{Auth::user()->status}}<br>
                   </div>
               </div>
           </div>

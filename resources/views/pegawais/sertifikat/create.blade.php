@@ -35,8 +35,8 @@
       </ol>
     </nav>
 
-    <section class="card mt-3">
-        <div class="card-header">
+    <section class="card shadow mt-3">
+        <div class="card-header bg-bprimary text-light">
                 <h4>Tambah Data Sertifikat</h2>
         </div>
         <div class="card-body" style="margin-left:200px;">

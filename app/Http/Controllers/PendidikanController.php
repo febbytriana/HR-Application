@@ -92,11 +92,15 @@ class PendidikanController extends Controller
             $pendidikan->lulus_sd = $request->lulus_sd;
             $pendidikan->smp = $request->smp;
             $pendidikan->lulus_smp = $request->lulus_smp;
+            if(!empty($req->smk) && !empty($req->lulus_smk)){
             $pendidikan->smk = $request->smk;
-            $pendidikan->lulus_smk = $request->lulus_smk;
+            $pendidikan->lulus_smk = $request->lulus_smk;       
+            }
+            if(!empty($req->nama_universitas) && !empty($req->lulus_pt) && !empty($req->tingkat_pt)){
             $pendidikan->nama_universitas = $request->nama_universitas;
             $pendidikan->tingkat_pt = $request->tingkat_pt;
             $pendidikan->lulus_pt = $request->lulus_pt;
+            }
             $pendidikan->id_pegawai = $request->id_pegawai;
             $pendidikan->save();
             return redirect('/pegawai/detail/'.$id_pegawai); 

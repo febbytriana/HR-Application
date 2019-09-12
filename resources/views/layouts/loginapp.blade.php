@@ -37,10 +37,9 @@
     </style>
 </head>
 
-<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('{{asset('images/1.jpg')}}');
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('{{asset('images/bg-login.jpg')}}');
 background-repeat: repeat,no-repeat;
-background-size: cover;
-background-position: center;
+background-size: 100%;
 opacity: 0.8;">
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -63,7 +62,7 @@ opacity: 0.8;">
         <!-- footer area start-->
             @yield('content')
 
-        <!-- footer area end-->
+        <!-- footer area end--> 
         <footer>
             <div class="footer-area fixed-bottom" style="background-color: transparent;">
                 <p style="color: #fff;">&copy; Gamma Solution</p>

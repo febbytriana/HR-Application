@@ -61,7 +61,7 @@ body {
 }
 
 .nav-tabs {
-	    background: #23b73b;
+	    background: #0f5b94;
 	    -webkit-border-radius: 5px 5px 0 0;
 	    -moz-border-radius: 5px 5px 0 0;
 	    border-radius: 5px 5px 0 0;
@@ -137,7 +137,6 @@ body {
 
 .profile-left {
  width:160px;
- float:left;
 }
 .profile-right {
  margin-left:240px;
@@ -363,4 +362,8 @@ body {
 .card-profile .card-avatar img {
     width: 100%;
     height: auto;
+}
+
+.bg-bprimary {
+  background-color: #0f5b94;
 }
