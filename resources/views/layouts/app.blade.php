@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>HR-App</title>
 
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/logohrapk.jpg') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
@@ -115,7 +116,7 @@
                                     <span>Pegawai</span></a>
                                 <ul class="collapse @if(Route::is('pegawai.index') == 1 || Route::is('absen.index') == 1) in @endif">
                                     <li class="{{Route::is('pegawai.index') ? 'active' : null}}"><a href="{{ route('pegawai.index') }}">Data Pegawai</a></li>
-                                    <li class="{{Route::is('absen.index') ? 'active' : null}}"><a href="{{ route('absen.index') }}">Absensi</a></li>
+                                    <li class="{{Route::is('absen.index') ? 'active' : null}}"><a href="{{ route('absenhr.index') }}">Absensi</a></li>
                                     <li class="{{Route::is('gaji.create') ? 'active' : null}}"><a href="{{ route('gaji.create') }}">Gaji</a></li>
                                 </ul>
                             </li>                             
@@ -243,6 +244,7 @@ box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);">
     <script src="{{ asset('js/plugins.js') }}"></script>
 
     <script src="{{ asset('js/scripts.js') }}"></script>
+    <script src="{{ asset('js/tgl_indo.js') }}"></script>
 
     
 

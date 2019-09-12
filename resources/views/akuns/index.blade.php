@@ -53,9 +53,6 @@
               <a href="{{ route('akun.create')}}">
                 <button class="btn btn-info btn-xs"><i class="fa fa-plus fa-fx"></i> Tambah</button>
              </a>
-             <a href="{{ route('akun.print') }}">
-                <button class="btn btn-success btn-xs"><i class="fa fa-print fa-print"></i></button>
-             </a>
             </div>
             <br>
             <br>

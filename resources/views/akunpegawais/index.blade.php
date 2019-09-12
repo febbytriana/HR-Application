@@ -51,9 +51,6 @@
             <a href="{{ route('akunpegawai.createpegawai')}}">
                 <button class="btn btn-primary"><i class="fa fa-plus"></i></button>
             </a>
-            <a href="{{ route('akunpegawai.printpegawai') }}">
-                <button class="btn btn-primary"><i class="fa fa-print"></i></button>
-            </a>
             <br>
             <br>
             <table class="table table-bordered table-striped table-hover" id="data-id" width="100%">

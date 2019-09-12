@@ -29,6 +29,7 @@ class PegawaiController extends Controller
        
         return view('pegawais.pegawai', compact('pegawai','jabatan','keluarga'));
     }
+
      /**
      * @return \Illuminate\Http\Response
      */

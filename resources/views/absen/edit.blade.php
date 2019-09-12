@@ -1,5 +1,5 @@
 @php 
-	
+    
     function tanggal_indonesia($tgl)
     {
     $tanggal     = substr($tgl,8,2);
@@ -7,6 +7,7 @@
     $tahun         = substr($tgl,0,4);
     return $tanggal.' '.$bulan.' '.$tahun;
     }
+
      
     function bulan($bln)
     {
@@ -61,61 +62,71 @@
 
 @section('content')
 
-	
  <section role="main" class="content-body">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb mt-3">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Absensi</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ $pegawai->nama }}</li>
+        <li class="breadcrumb-item"><a href="{{ route('absen.index',$pegawai->id_pegawai) }}">Absen</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Absen Pulang</li>
       </ol>
     </nav>
 
     <section class="card mt-3">
-        <div class="card-header">
-                <h4>Absensi</h2>
+        <div class="card-header" style="background: #0f5b94; color: #fff;">
+                <h5>Absen</h5>
         </div>
-        <div class="card-body">
-            <div class="col-md-12">
-                <form action="{{ route('absen.store',['id_pegawai'=>$pegawai->id_pegawai]) }}" method="POST">
+        <div class="card-body" style="margin-left:200px;">
+            <div class="col-md-24">
+                <form action="{{ route('absen.update',['id_pegawai'=>$pegawai->id_pegawai,'id_absen'=>$absen->id_absen]) }}" enctype="multipart/form-data" method="POST">
                     @csrf
-                    <div class="col-md-6">
+             
+                    <div class="col-md-12"> 
                         <div class="form-group">
                             <label class="col-md-3 control-label">Tanggal <span class="required">*</span></label>
                             <div class="col-md-9">
-                                <input id="tanggals" type="text" class="form-control" name="tanggal" value="@php {{echo tanggal_indonesia($date); }} @endphp" readonly="">
-                                <input type="text" hidden="" name="tgl" id="tgl">
-                                <input type="text" hidden="" name="bulan" id="bulan">
-                                <input type="text" hidden="" name="tahun" id="tahun">
+                                <input id="tanggals" type="text" class="form-control" name="tanggal" value="{{ $absen->tgl }} {{ $absen->bulan }} {{ $absen->tahun }}">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Keterangan<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="keterangan" value="{{ $absen->keterangan}}"readonly="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Alasan<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                @if($absen['alasan']!=NULL)
+                                 <input type="text" class="form-control" name="alasan" value="{{ $absen->alasan }}"readonly="">
+                                 @endif
+                                 @if($absen['alasan']==NULL)
+                                 <input type="text" class="form-control" name="alasan" value="-" readonly="">
+                                 @endif
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Jam Masuk<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="jam_masuk" value="{{ $absen->jam_masuk }}"readonly="">
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Jam Keluar<span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" id="ct" class="form-control" name="jam_keluar" readonly="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-9">
+                                <div class="pull-right">
+                                    <button type="submit" class="btn btn-success btn-sm waves-effect" anim="ripple">Ubah</button>
+                                </div>
+                            </div>
+                        </div>     
+                    </div> 
 
-                   		 <div class="form-group">
-                            <label class="col-md-3 control-label">Keterangan <span class="required">*</span></label>
-                            <div class="col-md-9">
-                                <select name="keterangan" id="keterangan" class="custom-select">
-                                    <option value=""></option>
-                                    <option value="Izin">Izin</option>
-                                    <option value="Sakit">Sakit</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group" >
-                            <label class="col-md-3 control-label">Alasan <span class="required">*</span></label>    
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="alasan">
-                            </div>
-                        </div>
-                        <div class="form-group" >
-                            <label class="col-md-3 control-label">Jam Masuk <span class="required">*</span></label>
-                            <div class="col-md-9">
-                                <input id="ct" type="text" class="form-control" name="jam_masuk" readonly="">
-                            </div>
-                        </div>
-                        
-	                    <div class="form-group">
-	                            &nbsp;<button type="submit" class="btn btn-primary">Tambah</button>
-	                    </div>  
-                    </div>
+            </div>
                 </form>
             </div>
         </div>

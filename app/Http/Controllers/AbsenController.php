@@ -8,6 +8,7 @@ use App\Pegawai;
 use App\Absen;
 use Auth;
 use Response;
+use Carbon\Carbon;
 
 class AbsenController extends Controller
 {
@@ -16,17 +17,98 @@ class AbsenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */ 
-    public function index()
+    public function index(Request $request)
     {
-        $id_user = Auth::user()->id;
-        $pegawai = Pegawai::where('id_user', $id_user)->first();
-        $id_pegawai = $pegawai['id_pegawai'];
-        $dataabsen = Absen::select('id_pegawai')->where('id_pegawai', $id_pegawai)->get();
+        $qwe=$request->input('alfa');
 
-        $absen = Absen::all();
-        $pegawais = Pegawai::all();
+            function tanggal_indonesia($tgl)
+            {
+            $tanggal     = substr($tgl,8,2);
+            $bulan         = bulan(substr($tgl,5,2));
+            $tahun         = substr($tgl,0,4);
+            return $tanggal.' '.$bulan.' '.$tahun;
 
-        return view('absen.index',compact('dataabsen','id_pegawai','absen','pegawai','pegawais'));
+
+            }
+     
+            function bulan($bln)
+            {
+            switch ($bln)
+            {
+            case 1:
+            return "Januari";
+            break;
+            case 2:
+            return "Februari";
+            break;
+            case 3:
+            return "Maret";
+            break;
+            case 4:
+            return "April";
+            break;
+            case 5:
+            return "Mei";
+            break;
+            case 6:
+
+            return "Juni";
+            break;
+            case 7:
+            return "Juli";
+            break;
+            case 8:
+            return "Agustus";
+            break;
+            case 9:
+            return "September";
+            break;
+            case 10:
+            return "Oktober";
+            break;
+            case 11:
+            return "November";
+            break;
+            case 12:
+            return "Desember";
+            break;
+            }
+            }
+            $date=date('Y-m-d')    ;
+            $date2=date('Y-M-d')    ;
+            $bulan = date('mmm');
+
+
+            $id_user = Auth::user()->id;
+            $pegawai = Pegawai::where('id_user', $id_user)->first();
+            $id_pegawai = $pegawai['id_pegawai'];
+
+            $dataabsen = Absen::select('id_pegawai')->where('id_pegawai', $id_pegawai)->get();
+
+            $hasil = tanggal_indonesia($bulan);
+
+            $bulans =(explode(" ",$hasil));
+               $bulanz = $bulans[1];
+
+            $sumsakit = Absen::select('id_pegawai','keterangan')->where('id_pegawai', $id_pegawai)->where('keterangan','=','Sakit')->where('bulan', $bulanz)->count();
+            
+            $sumizin = Absen::select('id_pegawai','keterangan')->where('id_pegawai', $id_pegawai)->where('keterangan','=','Izin')->where('bulan', $bulanz)->count();
+           
+            $sumtp = Absen::select('id_pegawai','keterangan')->where('id_pegawai', $id_pegawai)->where('keterangan','=','Tanpa Keterangan')->where('bulan', $bulanz)->count();
+            
+
+
+            $absen = Absen::select('id_absen','id_pegawai','tgl','bulan','tahun','jam_masuk','jam_keluar','keterangan','alasan')->latest()->limit(1)->get();
+
+            $data = Absen::select('id_absen','id_pegawai')->where('id_pegawai', $id_pegawai)->count();
+            
+            $mytime=Carbon::now()->format('d-m-Y');
+
+
+
+
+            return view('absen.index',compact('dataabsen','id_pegawai','pegawai','sumsakit','sumizin','sumtp','data','absen','mytime','qwe'));
+        
 
     }
 
@@ -37,19 +119,18 @@ class AbsenController extends Controller
      */
     public function create($id_pegawai)
     {
-        $tanggal = date("d-m-y");
 
         $id_user = Auth::user()->id;
         $pegawai = Pegawai::select('id_pegawai')->where('id_user', $id_user)->first();
         $id_pegawai = $pegawai['id_pegawai'];
 
 
-        $dataabsen = Absen::where('tgl',$tanggal)->where('id_pegawai', $id_pegawai)->get();
+        $dataabsen = Absen::where('id_pegawai', $id_pegawai)->get();
 
         $absen = Absen::all();
         $pegawais = Pegawai::all();
 
-        return view('absen/create', compact('id_pegawai','dataabsen','absen','pegawais'));
+        return view('absen/create', compact('id_pegawai','dataabsen','absen','pegawais','pegawai'));
     }
 
     /**
@@ -60,18 +141,27 @@ class AbsenController extends Controller
      */
     public function store(Request $req, $id_pegawai)
     {
+
         $absen = new Absen;
 
-        $id_user = Auth::user()->id;
-        $pegawai = Pegawai::select('id_pegawai')->where('id_user', $id_user)->first();
         $absen->id_pegawai = $id_pegawai;
 
         $absen->tgl = $req->tgl;
+        $absen->bulan = $req->bulan;
+        $absen->tahun = $req->tahun;
         $absen->keterangan = $req->keterangan;
+        $absen->alasan = $req->alasan;
+        $absen->jam_masuk = $req->jam_masuk;
+        $absen->jam_keluar = $req->jam_keluar;
         $absen->save();
 
+        
+
+        $absen = Absen::select('id_absen','id_pegawai','tgl','bulan','tahun')->latest()->limit(1)->get();
+
+
         session()->flash('success-create', 'Data Absen berhasil disimpan');
-        return redirect('/absen/index/'.$id_pegawai);
+        return redirect('/absen/index/');
     }
 
     /**
@@ -91,10 +181,11 @@ class AbsenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_absen)
+    public function edit($id_pegawai, $id_absen)
     {
-        $absen = Nilai::find($id_absen);
-        return view('absens/edit', compact('absen'));
+        $absen = Absen::find($id_absen);
+        $pegawai = Pegawai::find($id_pegawai);
+        return view('absen/edit', compact('absen','pegawai'));
     }
 
     /**
@@ -104,13 +195,17 @@ class AbsenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req)
+    public function update(Request $req,  $id_pegawai, $id_absen)
     {
         $absen = Absen::find($req->id_absen);
+        $absen->id_pegawai = $req->id_pegawai;
         $absen->keterangan = $req->keterangan;
+        $absen->alasan = $req->alasan;
+        $absen->jam_masuk = $req->jam_masuk;
+        $absen->jam_keluar = $req->jam_keluar;
         $absen->save();
         session()->flash('success-create', 'Data Absen berhasil diubah');
-        return redirect('/absen/create');
+        return redirect('/absen/index');
     }
 
     /**
@@ -119,7 +214,7 @@ class AbsenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_absen)
+    public function destroy($id_pegawai,$id_absen)
     {
         $absen = Absen::find($id_absen);
         $absen->delete();

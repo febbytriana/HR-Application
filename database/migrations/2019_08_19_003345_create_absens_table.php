@@ -19,10 +19,15 @@ class CreateAbsensTable extends Migration
             $table->integer('id_pegawai')->unsigned()->nullable();
             $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais')->onUpdate('set null')->onDelete('set null');
 
-            $table->date('tgl')->nullable();
+            $table->string('tgl')->nullable();
+            $table->string('bulan')->nullable();
+            $table->string('tahun')->nullable();
             $table->string('keterangan')->nullable();
-            
-            
+            $table->string('alasan')->nullable();
+            $table->time('jam_masuk')->nullable();
+            $table->time('jam_keluar')->nullable();
+
+             
             $table->timestamps();
         });
     }

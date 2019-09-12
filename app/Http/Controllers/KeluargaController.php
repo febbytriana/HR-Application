@@ -110,8 +110,7 @@ class KeluargaController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-<<<<<<< HEAD
+     * Remove
      *s
      * @param  \App\Keluarga  $keluarga
      * @return \Illuminate\Http\Response

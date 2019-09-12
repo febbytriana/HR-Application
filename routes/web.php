@@ -129,16 +129,21 @@ Route::get('/pegawai/sertifikat/edit/{id_pegawai}/{id_sertifikat}', 'SertifikatC
 
 //absen-pegawai
 Route::get('/absen/index', 'AbsenController@index')->name('absen.index');
-Route::get('/absen/detail/{id}', 'AbsenController@detail')->name('absen.detail');
 Route::get('/absen/create/{id_pegawai}', 'AbsenController@create')->name('absen.create');
 Route::get('/absen/print', 'AbsenController@print')->name('absen.print');
 Route::post('/absen/store/{id_pegawai}', 'AbsenController@store')->name('absen.store');
-Route::get('/absen/edit/{id_pegawai}', 'AbsenController@edit')->name('absen.edit');
-Route::post('/absen/update/{id_pegawai}', 'AbsenController@update')->name('absen.update');
-Route::get('/absen/hapus/{id_pegawai}', 'AbsenController@destroy')->name('absen.hapus');
+Route::get('/absen/edit/{id_pegawai}/{id_absen}', 'AbsenController@edit')->name('absen.edit');
+Route::post('/absen/update/{id_pegawai}/{id_absen}', 'AbsenController@update')->name('absen.update');
+Route::get('/absen/hapus/{id_pegawai}/{id_absen}', 'AbsenController@destroy')->name('absen.hapus');
 
 Route::get('/absen/destroy/{id_pegawai}', 'AbsenController@destroy')->name('absen.destroy');
 Route::get('/absen/profil/{id_pegawai}', 'AbsenController@profil')->name('absen.profil');
+
+
+//absen-hr
+Route::get('/absenhr/index', 'AbsenHRController@index')->name('absenhr.index');
+
+Route::get('/absenhr/detail/{id}', 'AbsenHRController@detail')->name('absenhr.detail');
 
 //Gaji
 Route::get('/gaji/create', 'GajiController@index')->name('gaji.create');

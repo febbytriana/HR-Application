@@ -12,6 +12,9 @@ class Absen extends Model
         'id_pegawai',
         'tgl',
         'keterangan',
+        'alasan',
+        'jam_masuk',
+        'jam_keluar',
     ];
 
     

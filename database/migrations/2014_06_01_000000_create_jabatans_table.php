@@ -9,6 +9,8 @@ class CreateJabatansTable extends Migration
      * Run the migrations.
      *
      * @return void
+
+
      */
     public function up()
     {
@@ -16,6 +18,9 @@ class CreateJabatansTable extends Migration
             $table->increments('id_jabatan');
             $table->string('jabatan');
             $table->integer('gaji_pokok');
+            $table->time('jam_masuk')->nullable();
+            $table->time('jam_keluar')->nullable();
+
             $table->timestamps();
         });
     }

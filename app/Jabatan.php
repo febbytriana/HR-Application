@@ -10,7 +10,9 @@ class Jabatan extends Model
     protected $primaryKey = 'id_jabatan';
     protected $fillable = [
         'jabatan',
-        'gaji_pokok'
+        'gaji_pokok',
+        'jam_masuk',
+        'jam_keluar',
     ];
 
     public function pegawai()
