@@ -13,6 +13,10 @@ use App\PengalamanKerja;
 use App\Pelatihan;
 use DB;
 use Illuminate\Http\Request;
+use App\Exports\PegawaiExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+ 
 
 class PegawaiController extends Controller
 {
@@ -184,5 +188,10 @@ class PegawaiController extends Controller
         $pegawai->id_jabatan = $req->id_jabatan;
         $pegawai->save();
     }
+
+    public function export_excel()
+	{
+		return Excel::download(new PegawaiExport, 'pegawai.xlsx');
+	}
 
 }

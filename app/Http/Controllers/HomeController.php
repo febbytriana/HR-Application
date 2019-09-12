@@ -23,6 +23,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $pegawai = \App\Pegawai::all();
+        $jumlah_pegawai = count($pegawai);
+
+        $perjalanan = \App\SuratPerjalanan::all();
+        $jumlah_perjalanan = count($perjalanan);
+
+        $sp = \App\SuratPeringatan::all();
+        $jumlah_sp = count($sp);
+
+        return view('home', compact('jumlah_pegawai','jumlah_perjalanan','jumlah_sp'));
     }
 }

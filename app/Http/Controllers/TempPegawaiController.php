@@ -76,7 +76,7 @@ public function show(Temp_Pegawai $temp_Pegawai)
     {
         $temppegawai = TempPegawai::find($id_temp_pegawai);
         $pegawai = Pegawai::all();
-        return view('pegawai/edit', compact('pegawai','temppegawai'));/
+        return view('pegawai/edit', compact('pegawai','temppegawai'));
     }
 
     /**
@@ -112,8 +112,7 @@ public function show(Temp_Pegawai $temp_Pegawai)
     public function destroy($id_temp_pegawai)
     {
         $temppegawai = TempPegawai::find($id_temp_pegawai);
-        $temppegawai->delete();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+        $temppegawai->delete();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
         return redirect()->back();
     }
 }

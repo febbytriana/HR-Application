@@ -87,6 +87,9 @@
               <a href="{{ route('pegawai.create')}}" style="margin-left: 7px">
                 <button class="btn btn-info btn-xs"><i class="fa fa-plus"></i> Tambah</button>
               </a>
+              <a href="{{ route('pegawai.exportexcel')}}" style="margin-left: 7px">
+                <button class="btn btn-success btn-xs"><i class="fa fa-book"></i> EXCEL</button>
+              </a>
             </div>
             <br>
             <br>

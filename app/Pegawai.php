@@ -82,6 +82,10 @@ class Pegawai extends Model
     {
         return $this->hasOne(Absen::class, 'id_pegawai', 'id_pegawai');
     }
+    public function gaji() 
+    {
+        return $this->hasOne(Gaji::class, 'id_pegawai', 'id_pegawai');
+    }
 }
    
 

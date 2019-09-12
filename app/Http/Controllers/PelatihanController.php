@@ -7,7 +7,7 @@ use App\Pegawai;
 use Illuminate\Http\Request;
 
 class PelatihanController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
      *

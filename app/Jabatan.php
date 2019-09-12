@@ -17,4 +17,8 @@ class Jabatan extends Model
     {
         return $this->belongsTo(Pegawai::class, 'id_jabatan', 'id_jabatan');
     }
+    public function gaji()
+    {
+        return $this->belongsTo(Gaji::class, 'id_jabatan', 'id_jabatan');
+    }
 }

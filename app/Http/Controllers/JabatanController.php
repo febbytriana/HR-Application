@@ -8,11 +8,7 @@ class JabatanController extends Controller
 {
     public function jabatan()
     {
-<<<<<<< HEAD
         $jabatan = \App\Jabatan::orderBy('jabatan','asc')->get();
-=======
-        $jabatan = \App\Jabatan::all();
->>>>>>> origin/master
         return view('jabatan.index', compact('jabatan'));
     }
     public function create()

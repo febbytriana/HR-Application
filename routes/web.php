@@ -48,6 +48,7 @@ Route::get('/pegawai/hapus/{id_pegawai}', 'PegawaiController@destroy')->name('pe
 Route::get('/pegawai/destroy/{id_pegawai}', 'PegawaiController@destroy')->name('pegawai.destroy');
 Route::get('/pegawai/profil/{id_pegawai}', 'PegawaiController@profil')->name('pegawai.profil');
 Route::post('/pegawai/updatejabatan/{id_pegawai}', 'PegawaiController@updateJabatan')->name('pegawai.updatejabatan');
+Route::get('/pegawai/exportexcel', 'PegawaiController@export_excel')->name('pegawai.exportexcel');
 
 //Surat SP
 
@@ -143,3 +144,12 @@ Route::get('/absen/profil/{id_pegawai}', 'AbsenController@profil')->name('absen.
 //Gaji
 Route::get('/gaji/create', 'GajiController@index')->name('gaji.create');
 Route::get('/getpegawai/{id_pegawai}', 'GajiController@getpegawai')->name('getpegawai');
+Route::get('/gaji/laporan', 'GajiController@laporan')->name('gaji.laporan');
+Route::post('/gaji/store', 'GajiController@store')->name('gaji.store');
+Route::get('/gaji/report', 'GajiController@cetak_pdf')->name('gaji.report');
+Route::get('/gaji/report_id/{id_gaji}', 'GajiController@cetak_pdf_id')->name('gaji.report_id');
+Route::get('/gaji/filter', 'GajiController@filter')->name('gaji.filter');
+Route::get('/gaji/report_filter', 'GajiController@report_filter')->name('gaji.report_filter');
+
+
+
