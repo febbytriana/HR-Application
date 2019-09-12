@@ -119,7 +119,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Status Perkawinan<span class="required">*</span></label>
                             <div class="col-md-9">
-                                <select name="status_kawin" id="status_kawin" class="form-control">
+                                <select name="status_kawin" id="status_kawin" class="form-control" required="">
                                     <option value=""></option>
                                     <option value="Kawin"@if($pegawai->status_kawin=='Kawin') selected='selected @endif'>Kawin</option>
                                     <option value="Belum kawin"@if($pegawai->status_kawin=='Belum kawin') selected='selected @endif'>Belum kawin</option>

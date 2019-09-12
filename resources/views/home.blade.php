@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 
   <section role="main" class="content-body">

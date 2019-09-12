@@ -28,7 +28,10 @@ class GajiController extends Controller
         $ha = count($hitunganak);
 
         if ($pegawai) {
-            echo '<div class="form-group">
+            echo ' <div class="form-group">
+              <label for="nama">Nama Pegawai</label>
+              <input type="text" class="form-control" name="nama" id="nama" readonly="" value="'.$pegawai->nama.'">
+            </div><div class="form-group">
                       <label for="jabatan">Jabatan </label>
                         <input type="text" class="form-control" id="jabatan" name="jabatan" 
                             value="'.$pegawai->jabatan['jabatan'].'" readonly="readonly">

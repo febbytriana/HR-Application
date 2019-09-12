@@ -61,7 +61,7 @@ body {
 }
 
 .nav-tabs {
-	    background: #23b73b;
+	    background: #0f5b94;
 	    -webkit-border-radius: 5px 5px 0 0;
 	    -moz-border-radius: 5px 5px 0 0;
 	    border-radius: 5px 5px 0 0;
@@ -137,7 +137,6 @@ body {
 
 .profile-left {
  width:160px;
- float:left
 }
 .profile-right {
  margin-left:240px;
@@ -339,6 +338,32 @@ body {
   color: #fff;
 }
 
+.text-dark {
+  color: black;
+}
+
 .fs-17 {
   font-size: 17px;
+}
+
+.card-profile .card-avatar {
+    margin: -50px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 0;
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.card-profile .card-avatar {
+    max-width: 130px;
+    max-height: 130px;
+}
+
+.card-profile .card-avatar img {
+    width: 100%;
+    height: auto;
+}
+
+.bg-bprimary {
+  background-color: #0f5b94;
 }

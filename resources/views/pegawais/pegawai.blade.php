@@ -94,7 +94,8 @@
             <br>
             <br>
             <br>
-            <table class="table table-bordered table-striped table-hover" id="data-id" width="100%">
+            <div class="table-responsive">
+            <table class="table table-hover" id="data-id" width="100%">
                 <thead>
                     <tr>
                         <th style="text-align: center;" width="50px">NO.</th>
@@ -128,6 +129,7 @@
                     @endforeach
                 </tbody>
             </table>
+            </div>
         </div>
     </section>
 </section>

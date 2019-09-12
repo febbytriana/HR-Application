@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -11,10 +12,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -23,15 +20,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $pegawai = \App\Pegawai::all();
-        $jumlah_pegawai = count($pegawai);
+       
+       
+        if(Auth::user()->status == "Pegawai") {
+            return view('homepegawai');
+        }elseif(Auth::user()->status == "HR" || Auth::user()->status == "Admin") {
+             $pegawai = \App\Pegawai::all();
+            $jumlah_pegawai = count($pegawai);
 
-        $perjalanan = \App\SuratPerjalanan::all();
-        $jumlah_perjalanan = count($perjalanan);
+            $perjalanan = \App\SuratPerjalanan::all();
+            $jumlah_perjalanan = count($perjalanan);
 
-        $sp = \App\SuratPeringatan::all();
-        $jumlah_sp = count($sp);
+            $sp = \App\SuratPeringatan::all();
+            $jumlah_sp = count($sp);
+            
+            return view('home', compact('jumlah_pegawai','jumlah_perjalanan','jumlah_sp'));
+        }
 
-        return view('home', compact('jumlah_pegawai','jumlah_perjalanan','jumlah_sp'));
     }
 }

@@ -1,6 +1,6 @@
 @section('js')
 <script type="text/javascript">
-      function hapusNo(idpeg,idno) {
+      function hapus(rute) {
         Swal({
             title: 'Apakah Anda Yakin?',
             text: "Tekan 'Hapus' Untuk Meneruskan Penghapusan",
@@ -18,127 +18,7 @@
                     type: 'success'
                 }).then((result) => {
                     if(result.value) {
-                        location.href = 'http://localhost:8000/no-darurat/delete/'+idpeg+'/'+idno;
-                    }
-                })
-            } else if (result.dismiss === swal.DismissReason.cancel) {
-                  swal(
-                    'Batal',
-                    'Anda membatalkan penghapusan',
-                    'error'
-                  )
-            }
-        })
-    }
-    function hapusSer(idpeg,idser) {
-        Swal({
-            title: 'Apakah Anda Yakin?',
-            text: "Tekan 'Hapus' Untuk Meneruskan Penghapusan",
-            type: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#82df39',
-            cancelButtonText: 'Batal',
-            confirmButtonText: 'Hapus'
-        }).then((result) => {
-            if (result.value) {
-                Swal({
-                    title: 'Sukses!',
-                    text: 'Penghapusan Data Berhasil.',
-                    type: 'success'
-                }).then((result) => {
-                    if(result.value) {
-                        location.href = 'http://localhost:8000/pegawai/sertifikat/delete/'+idpeg+'/'+idser;
-                    }
-                })
-            } else if (result.dismiss === swal.DismissReason.cancel) {
-                  swal(
-                    'Batal',
-                    'Anda membatalkan penghapusan',
-                    'error'
-                  )
-            }
-        })
-    }
-    function hapusKontr(idpeg,idkontr) {
-        Swal({
-            title: 'Apakah Anda Yakin?',
-            text: "Tekan 'Hapus' Untuk Meneruskan Penghapusan",
-            type: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#82df39',
-            cancelButtonText: 'Batal',
-            confirmButtonText: 'Hapus'
-        }).then((result) => {
-            if (result.value) {
-                Swal({
-                    title: 'Sukses!',
-                    text: 'Penghapusan Data Berhasil.',
-                    type: 'success'
-                }).then((result) => {
-                    if(result.value) {
-                        location.href = 'http://localhost:8000/pegawai/kontrak/delete/'+idpeg+'/'+idkontr;
-                    }
-                })
-            } else if (result.dismiss === swal.DismissReason.cancel) {
-                  swal(
-                    'Batal',
-                    'Anda membatalkan penghapusan',
-                    'error'
-                  )
-            }
-        })
-    }
-    function hapusPeng(idpeg,idpeng) {
-        Swal({
-            title: 'Apakah Anda Yakin?',
-            text: "Tekan 'Hapus' Untuk Meneruskan Penghapusan",
-            type: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#82df39',
-            cancelButtonText: 'Batal',
-            confirmButtonText: 'Hapus'
-        }).then((result) => {
-            if (result.value) {
-                Swal({
-                    title: 'Sukses!',
-                    text: 'Penghapusan Data Berhasil.',
-                    type: 'success'
-                }).then((result) => {
-                    if(result.value) {
-                        location.href = 'http://localhost:8000/pegawai/pengalaman/delete/'+idpeg+'/'+idpeng;
-                    }
-                })
-            } else if (result.dismiss === swal.DismissReason.cancel) {
-                  swal(
-                    'Batal',
-                    'Anda membatalkan penghapusan',
-                    'error'
-                  )
-            }
-        })
-    }
-    function hapusPel(idpeg,idpel) {
-        Swal({
-            title: 'Apakah Anda Yakin?',
-            text: "Tekan 'Hapus' Untuk Meneruskan Penghapusan",
-            type: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#82df39',
-            cancelButtonText: 'Batal',
-            confirmButtonText: 'Hapus'
-        }).then((result) => {
-            if (result.value) {
-                Swal({
-                    title: 'Sukses!',
-                    text: 'Penghapusan Data Berhasil.',
-                    type: 'success'
-                }).then((result) => {
-                    if(result.value) {
-                        location.href = 'http://localhost:8000/pegawai/pelatihan/delete/'+idpeg+'/'+idpel;
+                        location.href = ''+rute;
                     }
                 })
             } else if (result.dismiss === swal.DismissReason.cancel) {
@@ -180,7 +60,7 @@
       </li>
       <li class="nav-item dropdown" style="margin-left: 10px;">
         <!--<a class="nav-link link-tab active" data-toggle="tab" href="#pengalaman">Pengalaman</a>-->
-          <a class="nav-link dropdown-toggle link-tab" data-toggle="dropdown" href="#" style="color: #1E2639;"><i class="fa fa-briefcase fa-fx"></i> Pengalaman</a>
+          <a class="nav-link dropdown-toggle link-tab" data-toggle="dropdown" href="#"><i class="fa fa-briefcase fa-fx"></i> Pengalaman</a>
           <div class="dropdown-menu">
             <a class="dropdown-item" data-toggle="tab" href="#pengalaman">Pengalaman Kerja</a>
             <a class="dropdown-item" data-toggle="tab" href="#kontrak">Kontrak</a>
@@ -188,7 +68,7 @@
       </li>
       <li class="nav-item dropdown" style="margin-left: 10px;">
         <!--<a class="nav-link link-tab active" data-toggle="tab" href="#pengalaman">Pengalaman</a>-->
-          <a class="nav-link dropdown-toggle link-tab" data-toggle="dropdown" href="#" style="color: #1E2639;"><i class="fa fa-users fa-fx"></i> Keluarga</a>
+          <a class="nav-link dropdown-toggle link-tab" data-toggle="dropdown" href="#"><i class="fa fa-users fa-fx"></i> Keluarga</a>
           <div class="dropdown-menu">
 
 
@@ -225,9 +105,6 @@
   <div class="tab-content shadow">
     <div id="profile" class="container tab-pane active"><br>
       <!-- begin profile-container -->
-      <div class="container">
-        <h4>-- Profile --</h4>
-      </div>
         <div class="profile-container">
                 <!-- begin profile-section -->
           <div class="profile-section">
@@ -239,9 +116,8 @@
                 <a href="index.php?page=form-ganti-foto&amp;id_kar=16" title="ganti foto">
                   <img src="{{ asset('upload/'.$data->image) }}" width="160" height="300"></a>
               </div>
-              <!-- end profile-image -->
-                <div class="m-b-10">
-                <span class="nickname">{{ $data->nama}}</span>
+              <div class="rounded shadow" style="background-color: #0f5b94; color: #fff; text-align: center;">
+                  <span class="nickname">{{$data->nama}}<br>{{$data->jabatan['jabatan']}}</span>
               </div>
             </div>
             <!-- end profile-left -->
@@ -361,7 +237,8 @@
                         </table>
                         <br>
                         <div class="pull-right">
-                          <a class="btn btn-success btn-xs" href="{{ route('pengalaman.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_pengalaman'=>$data->id_pengalaman]) }}"><i class="fa fa-edit fa-fx"></i> Edit</a> &nbsp<a class="btn btn-danger btn-xs" href="#" onclick="hapusPeng('{{$pegawais->id_pegawai}}','{{$data->id_pengalaman}}')"><i class="fa fa-trash fa-fx"></i> Hapus</a>
+                            <?php $rute9 = route('pengalaman.hapus',['id_pegawai'=>$pegawais->id_pegawai,'id_pengalaman'=>$data->id_pengalaman]); ?>
+                          <a class="btn btn-success btn-xs" href="{{ route('pengalaman.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_pengalaman'=>$data->id_pengalaman]) }}"><i class="fa fa-edit fa-fx"></i> Edit</a> &nbsp<a class="btn btn-danger btn-xs" href="#" onclick="hapus('{{$rute9}}')"><i class="fa fa-trash fa-fx"></i> Hapus</a>
                         </div>
                     </div>
                   </section>
@@ -440,7 +317,9 @@
                                   <button class="btn btn-success btn-xs mr-2"><i class="fa fa-edit"></i> Edit</button>
                               </a>
                               <a href="#">
-                                  <button class="btn btn-danger btn-xs" onclick="hapusKontr('{{$pegawais->id_pegawai}}','{{$data->id_kontrak}}')"><i class="fa fa-trash"></i> Hapus</button>
+                            <?php $rute8 = route('kontrak.hapus',['id_pegawai'=>$pegawais->id_pegawai,'id_kontrak'=>$data->id_kontrak]); ?>
+
+                                  <button class="btn btn-danger btn-xs" onclick="hapus('{{$rute8}}')"><i class="fa fa-trash"></i> Hapus</button>
                               </a>
                           </td>
                       </tr>
@@ -482,7 +361,8 @@
                             <a class="btn btn-success btn-xs" href="{{ route('keluarga.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-edit fa-fx"></i> Edit</a>
 
 
-                            <a class="btn btn-success btn-xs" href="{{ route('keluarga.destroy',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-trash fa-fx"></i> Hapus</a>                            
+                            <?php $rute7 = route('keluarga.destroy',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]); ?>
+                              <a class="btn btn-success btn-xs" href="#" onclick="hapus('{{$rute7}}')"><i class="fa fa-trash fa-fx"></i> Hapus</a>                            
                         </div>  
                                
                            
@@ -547,8 +427,8 @@
                             <div class="pull-right">
                               <a class="btn btn-success btn-xs" href="{{ route('keluarga.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-edit fa-fx"></i> Edit</a>
 
-
-                              <a class="btn btn-success btn-xs" href="{{ route('keluarga.destroy',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-trash fa-fx"></i> Hapus</a>                            
+                              <?php $rute6 = route('keluarga.destroy',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]); ?>
+                              <a class="btn btn-success btn-xs" href="#" onclick="hapus('{{$rute6}}')"><i class="fa fa-trash fa-fx"></i> Hapus</a>                            
                             </div>
                             
                        
@@ -614,8 +494,8 @@
                             <div class="pull-right">
                               <a class="btn btn-success btn-xs" href="{{ route('keluarga.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-edit fa-fx"></i> Edit</a>
 
-
-                              <a class="btn btn-success btn-xs" href="{{ route('keluarga.destroy',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-trash fa-fx"></i> Hapus</a>                            
+                              <?php $rute5 = route('keluarga.destroy',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]); ?>
+                              <a class="btn btn-success btn-xs" href="#" onclick="hapus('{{$rute5}}')"><i class="fa fa-trash fa-fx"></i> Hapus</a>                            
                             </div>
                           
                              
@@ -682,8 +562,8 @@
                             <div class="pull-right">
                               <a class="btn btn-success btn-xs" href="{{ route('keluarga.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-edit fa-fx"></i> Edit</a>
 
-
-                              <a class="btn btn-success btn-xs" href="{{ route('keluarga.destroy',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]) }}"><i class="fa fa-trash fa-fx"></i> Hapus</a>                            
+                              <?php $rute4 = route('keluarga.destroy',['id_pegawai'=>$pegawais->id_pegawai,'id_keluarga'=>$keluargas->id_keluarga]); ?>
+                              <a class="btn btn-success btn-xs" href="#" onclick="hapus('{{$rute4}}')"><i class="fa fa-trash fa-fx"></i> Hapus</a>                            
                             </div>
                             
                        
@@ -884,7 +764,8 @@
                         </table>
                         <br>
                         <div class="pull-right">
-                          <a class="btn btn-success btn-xs" href="{{ route('pelatihan.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_pelatihan'=>$data->id_pelatihan]) }}"><i class="fa fa-edit fa-fx"></i> Edit</a> &nbsp<a class="btn btn-danger btn-xs" href="#" onclick="hapusPel('{{$pegawais->id_pegawai}}','{{$data->id_pelatihan}}')"><i class="fa fa-trash fa-fx"></i> Hapus</a>
+                          <?php $rute3 = route('pelatihan.hapus',['id_pegawai'=>$pegawais->id_pegawai,'id_pelatihan'=>$data->id_pelatihan]); ?>
+                          <a class="btn btn-success btn-xs" href="{{ route('pelatihan.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_pelatihan'=>$data->id_pelatihan]) }}"><i class="fa fa-edit fa-fx"></i> Edit</a> &nbsp<a class="btn btn-danger btn-xs" href="#" onclick="hapusPel('{{$rute3}}')"><i class="fa fa-trash fa-fx"></i> Hapus</a>
                         </div>
                     </div>
                   </section>
@@ -935,7 +816,8 @@
                         <a href="{{route('pegawai.sertifikat.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_sertifikat'=>$s->id_sertifikat])}}">
                           <button class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Edit</button>
                         </a>
-                        <a href="#" onclick="hapusSer('{{$pegawais->id_pegawai}}','{{$s->id_sertifikat}}')">
+                        <?php $rute2 = route('pegawai.sertifikat.destroy',['id_pegawai'=>$pegawais->id_pegawai,'id_sertifikat'=>$s->id_sertifikat]); ?>
+                        <a href="#" onclick="hapus('{{$rute2}}')">
                           <button class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</button>
                         </a>
                       </div>
@@ -993,11 +875,11 @@
                           <td align="center" style="font-size: 14px;">{{ $data->nama }}</td>
                           <td align="center" style="font-size: 14px;">{{ $data->nomor }}</td>
                           <td align="center">
-      
                             <a href="{{ route('darurat.edit',['id_pegawai'=>$pegawais->id_pegawai,'id_no_darurat'=>$data->id_no_darurat]) }}">
                                   <button class="btn btn-success btn-xs mr-2"><i class="fa fa-edit"></i> Edit</button>
                               </a>
-                              <a href="#" onclick="hapusNo('{{$pegawais->id_pegawai}}','{{$data->id_no_darurat}}')">
+                              <?php $rute = route('darurat.destroy',['id_pegawai'=>$pegawais->id_pegawai,'id_no_darurat'=>$data->id_no_darurat]); ?>
+                              <a href="#" onclick="hapus('{{$rute}}')">
                                   <button class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</button>
                               </a>
                             
@@ -1014,18 +896,5 @@
     </div>
   </div>
 </div>    
-
-<script type="text/javascript">
-  var nick=document.getElementById("ada").value;
-  var nickname=nick.split(" ");
-  if (nickname.length>=2) {
-    document.getElementById("panggilan").innerHTML=nickname[0]+" "+nickname[1];  
-  }
-  else{
-    document.getElementById("panggilan").innerHTML=nickname[0];
-  }
-  
-</script>
-
 
 @endsection   

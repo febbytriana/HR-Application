@@ -2,7 +2,7 @@
 
 @section('content')
 
- <section role="main" class="content-body">
+ <section role="main" class="content-body" id="main">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb mt-3">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
@@ -35,26 +35,30 @@
               </div>
               <div class="pegawaiview" id="pegawaiview">
                 <div class="form-group">
+                  <label for="nama">Nama Pegawai</label>
+                  <input type="text" class="form-control" name="nama" id="nama" readonly="">
+                </div>
+                <div class="form-group">
                   <label for="inputJabatan">Jabatan</label>
                   <input type="text" class="form-control" name="id_jabatan" id="id_jabatan" disabled="">
                 </div>
                 <div class="form-group">
                   <label for="inputGajiPokok">Gaji Pokok</label>
-                  <input type="text" class="form-control" name="gaji_pokok" id="gaji_pokok" disabled="">
+                  <input type="text" class="form-control" name="gaji_pokok" id="gaji_pokok" readonly="">
                 </div>
 
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <label for="inputSakit">Sakit</label>
-                  <input type="text" class="form-control" id="sakit" disabled="">
+                  <input type="text" class="form-control" id="sakit" readonly="">
                 </div>
                 <div class="form-group col-md-4">
                   <label for="inputIzin">Izin</label>
-                  <input type="text" class="form-control" id="izin" disabled="">
+                  <input type="text" class="form-control" id="izin" readonly="">
                 </div>
                 <div class="form-group col-md-4">
                   <label for="inputIzin">Alfa</label>
-                  <input type="text" class="form-control" id="alfa" disabled="">
+                  <input type="text" class="form-control" id="alfa" readonly="">
                 </div>
               </div>
 
@@ -94,7 +98,7 @@
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <label for="inputAnak">Jumlah Anak</label>
-                  <input type="text" class="form-control" id="jumlah_anak" disabled="">
+                  <input type="text" class="form-control" id="jumlah_anak" readonly="">
                 </div>
                 <div class="form-group col-md-4">
                   <label for="inputTunjanganAnak">Besar tunjangan ( % )</label>
@@ -266,7 +270,10 @@
 
 @section('js')
 <script type="text/javascript">
-
+      document.getElementById('main').addEventListener("load",resetGaji());
+      function resetGaji() {
+        $('#gaji_bersih').val('');
+      }
       function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();

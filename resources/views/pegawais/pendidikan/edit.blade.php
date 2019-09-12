@@ -55,27 +55,27 @@
                         <div class="form-group">
                             <label class="col-md-9 control-label">Nama Sekolah Menengah Kejuruan/Atas<span style="color: #ff1100;font-size: 17px;">*</span></label>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" name="smk" value="<?php if(!empty($pendidikan->smk)){ echo $pendidikan->smk; } ?>" required>
+                                <input type="text" class="form-control" name="smk" value="<?php if(!empty($pendidikan->smk)){ echo $pendidikan->smk; } ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-9 control-label">Tahun Lulus Sekolah Menengah Kejuruan/Atas<span style="color: #ff1100;font-size: 17px;">*</span></label>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" name="lulus_smk" value="<?php if(!empty($pendidikan->lulus_smk)){ echo $pendidikan->lulus_smk; } ?>" required>
+                                <input type="text" class="form-control" name="lulus_smk" value="<?php if(!empty($pendidikan->lulus_smk)){ echo $pendidikan->lulus_smk; } ?>">
                             </div>
                         </div>
                         <h5 style="margin-left:15px; margin-bottom:10px;">PERGURUAN TINGGI</h5>
                         <div class="form-group">
                             <label class="col-md-9 control-label">Nama Universitas<span style="color: #ff1100;font-size: 17px;">*</span></label>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" name="nama_universitas" value="<?php if(!empty($pendidikan->nama_universitas)){ echo $pendidikan->nama_universitas; } ?>" required>
+                                <input type="text" class="form-control" name="nama_universitas" value="<?php if(!empty($pendidikan->nama_universitas)){ echo $pendidikan->nama_universitas; } ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-9 control-label">Tingkat<span style="color: #ff1100;font-size: 17px;">*</span></label>
                             <div class="col-md-12">
                                 @if(!empty($pendidikan->tingkat_pt))
-                                <select name="tingkat_pt" id="tingkat_pt" class="form-control" required>
+                                <select name="tingkat_pt" id="tingkat_pt" class="form-control">
                                     <option value=""></option>
                                     <option value="D1"@if($pendidikan->tingkat_pt=='D1') selected='selected @endif'>D1</option>
                                     <option value="D2"@if($pendidikan->tingkat_pt=='D2') selected='selected @endif'>D2</option>
@@ -85,7 +85,7 @@
                                     <option value="S3"@if($pendidikan->tingkat_pt=='S3') selected='selected @endif'>S3</option>
                                 </select>
                                 @else
-                                <select name="tingkat_pt" id="tingkat_pt" class="form-control" required>
+                                <select name="tingkat_pt" id="tingkat_pt" class="form-control">
                                     <option value=""></option>
                                     <option value="D1">D1</option>
                                     <option value="D2">D2</option>
@@ -100,13 +100,13 @@
                         <div class="form-group">
                             <label class="col-md-9 control-label">Tahun lulus Perguruan Tinggi<span style="color: #ff1100;font-size: 17px;">*</span></label>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" name="lulus_pt" value="<?php if(!empty($pendidikan->lulus_pt)){ echo $pendidikan->lulus_pt; } ?>" required>
+                                <input type="text" class="form-control" name="lulus_pt" value="<?php if(!empty($pendidikan->lulus_pt)){ echo $pendidikan->lulus_pt; } ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-12">
-                                <div class="alert alert-secondary">
-                                    <label class="col-md-9 control-label" style="color: #000;"><span style="color: #ff1100;font-size: 17px;">*</span> Wajib Diisi</label>
+                                <div class="alert alert-info">
+                                    <label class="col-md-9 control-label" style="color: #000;"><i class="fa fa-info-circle"></i> <span style="color: #ff1100;font-size: 17px;">*</span> Wajib Diisi</label>
                                 </div>
                             </div>
                         </div>    

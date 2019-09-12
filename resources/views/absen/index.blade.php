@@ -28,7 +28,7 @@
             <br>    
             <table class="table table-striped table-hover" id="data-id" width="100%">
                 <tr>
-                    <th style="text-align: center;" rowspan="3">No.</th>
+                    <th style="" rowspan="3">No.</th>
                     <th style="text-align: center;" rowspan="3">Nama</th>
                     <th style="text-align: center;" colspan="15">Bulan</th>
                 </tr>

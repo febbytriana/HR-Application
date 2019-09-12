@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\TempKeluarga;
-use App\Keluarga;                                        
+use App\Keluarga;  
+use App\Pegawai;
+use DB;                                      
 
 use Illuminate\Http\Request;
 
@@ -107,4 +109,5 @@ class TempKeluargaController extends Controller
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
         return redirect()->back();
     }
+
 }

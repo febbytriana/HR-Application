@@ -1,4 +1,4 @@
-@if(Auth::user()->status == "Pegawai")
+@if(Auth::user()->status == "HR")
     <script type="text/javascript">location.href = "{{route('home')}}";</script>
 @endif
 <html>
@@ -30,9 +30,7 @@
     <link rel="stylesheet" href="{{ asset('select2/dist/css/select2.min.css') }}">
     
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-    <link rel="stylesheet" href="{{asset('sweetalert2-7.32.4/package/dist/sweetalert2.min.css')}}">
     <!-- modernizr css -->
-    <script src="{{asset('sweetalert2-7.32.4/package/dist/sweetalert2.all.min.js')}}"></script>
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
     <style type="text/css">
         .custom-select {
@@ -122,19 +120,17 @@
                                     <li class="{{Route::is('absen.index') ? 'active' : null}}"><a href="{{ route('absen.index') }}">Absensi</a></li>
                                     <li class="{{Route::is('gaji.create') ? 'active' : null}}"><a href="{{ route('gaji.create') }}">Gaji</a></li>
                                 </ul>
-                            </li>
-
+                            </li>                             
                             <li class="sidebar-items4 {{Route::is('sp.create') ? 'active' : null}}"><a class="waves-effect" anim="ripple" href="{{ route('sp.create') }}"><i class="ti-email"></i> <span>Surat Peringatan</span></a></li>
                             <li class="sidebar-items5 {{Route::is('perjalanan.create') ? 'active' : null}}"><a class="waves-effect" anim="ripple" href="{{ route('perjalanan.create') }}"><i class="ti-email"></i> <span>Surat Perjalanan</span></a></li>
+                            
 
-
-                            <li class="sidebar-items6 @if(Route::is('sp.index') == 1 || Route::is('perjalanan.index') == 1 || Route::is('gaji.laporan') == 1) active @endif">
+                            <li class="sidebar-items6 @if(Route::is('sp.index') == 1 || Route::is('perjalanan.index') == 1) active @endif">
                                 <a class="waves-effect" anim="ripple" href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-printer"></i>
                                     <span>Report</span></a>
                                 <ul class="collapse @if(Route::is('sp.index') == 1 || Route::is('perjalanan.index') == 1) in @endif">
                                     <li class="{{Route::is('sp.index') ? 'active' : null}}"><a href="{{ route('sp.index') }}">Surat SP</a></li>
                                     <li class="{{Route::is('perjalanan.index') ? 'active' : null}}"><a href="{{ route('perjalanan.index') }}">Surat Perjalanan</a></li>
-                                    <li class="{{Route::is('gaji.laporan') ? 'active' : null}}"><a href="{{ route('gaji.laporan')}}">Laporan Gaji</a></li>
                                 </ul>
                             </li> 
                     @endif
