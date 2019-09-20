@@ -39,7 +39,7 @@ class UsersTableSeeder extends Seeder
         	'nama'          => 'Ahmad',
         	'email'         => 'ahmad@gmail.com',
         	'password'      => '$2y$10$2agbYlfLenAtqluoFEcRku9e6F.1MLOwh8ATHvmI8GVOpf/HgEC/i',
-        	'status'        => 'HR',
+        	'status'        => 'Pegawai',
         	'remember_token'=> '1',
         	'created_at'	=> Carbon::now(),
         	'updated_at'	=> Carbon::now(),

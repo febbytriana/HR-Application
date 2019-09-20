@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\TempPengalamanKerja;
+use App\Pegawai;
+use App\PengalamanKerja;
+
 use Illuminate\Http\Request;
 
 class TempPengalamanKerjaController extends Controller
@@ -82,4 +85,5 @@ class TempPengalamanKerjaController extends Controller
     {
         //
     }
+
 }

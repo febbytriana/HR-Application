@@ -30,8 +30,8 @@ class KeluargaController extends Controller
      */
     public function create($id_pegawai)
     {
-        $pegawai = \App\Pegawai::find($id_pegawai);
-        return view('keluargas.create',compact('pegawai'));
+        return view('keluargas.create',compact('pegawa
+        $pegawai = \App\Pegawai::find($id_pegawai);i'));
     }
 
     /**

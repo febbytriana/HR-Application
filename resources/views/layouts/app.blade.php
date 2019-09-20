@@ -1,4 +1,6 @@
-
+@if(Auth::user()->status == "Pegawai")
+    <script type="text/javascript">location.href = "{{route('home')}}";</script>
+@endif
 <html>
 
 <head>
@@ -29,8 +31,11 @@
     <link rel="stylesheet" href="{{ asset('select2/dist/css/select2.min.css') }}">
     
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet" href="{{asset('sweetalert2-7.32.4/package/dist/sweetalert2.min.css')}}">
     <!-- modernizr css -->
+    <script src="{{asset('sweetalert2-7.32.4/package/dist/sweetalert2.all.min.js')}}"></script>
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
+    
     <style type="text/css">
         .custom-select {
             padding-right: 20px;
@@ -66,11 +71,11 @@
                         <ul class="metismenu" id="menu">
                             <li class="sidebar-items1 {{Route::is('home') ? 'active' : null}}"><a class="waves-effect" anim="ripple" href="{{ route('home') }}"><i class="ti-map-alt"></i> <span>Dashboard</span></a></li>
                                 @if(Auth::user()->status == "Pegawai" )
-                                <li class="sidebar-items2">
-                                    <a class="waves-effect" anim="ripple" href=""><i class=""></i> <span>Profil</span></a>
+                                <li class="sidebar-items2 {{Route::is('pegawai.profil') ? 'active' : null}}">
+                                    <a class="waves-effect" anim="ripple" href="{{route('pegawai.profil',Auth::user()->id)}}"><i class="ti-user"></i> <span>Profil</span></a>
                                 </li>
-                                <li class="sidebar-items2">
-                                    <a class="waves-effect" anim="ripple" href="{{ route('absen.index') }}"><i class=""></i> <span>Absensi</span></a>
+                                <li class="sidebar-items2 {{Route::is('absen.index') ? 'active' : null}}">
+                                    <a class="waves-effect" anim="ripple" href="{{ route('absen.index') }}"><i class="ti-calendar"></i> <span>Absensi</span></a>
                                 </li>
 
                                 @endif
@@ -99,7 +104,9 @@
                                 </ul>
                              </li> 
                                 @endif
-                        @if(Auth::user()->status == "Admin" )
+                        
+
+                        @if(Auth::user()->status == "HR" )
                             <li class="sidebar-items3">
                                 <a class="waves-effect" anim="ripple" href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Data Master</span></a>
@@ -107,11 +114,8 @@
                                     <li><a href="{{ route('jabatan.index') }}">Jabatan</a></li>
                                 </ul>
                             </li> 
-                        @endif
-
-                        @if(Auth::user()->status == "HR" )
              
-                            <li class="sidebar-items3 @if(Route::is('pegawai.index') == 1 || Route::is('absen.index') == 1 || Route::is('gaji.create') == 1) active @endif"> 
+                            <li class="sidebar-items3 @if(Route::is('pegawai.index') == 1 || Route::is('absen.index') == 1 || Route::is('gaji.create') == 1 || Route::is('pegawai.detail') == 1) active @endif"> 
                                 <a class="waves-effect" anim="ripple" href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-user"></i>
                                     <span>Pegawai</span></a>
                                 <ul class="collapse @if(Route::is('pegawai.index') == 1 || Route::is('absen.index') == 1) in @endif">
@@ -119,17 +123,19 @@
                                     <li class="{{Route::is('absen.index') ? 'active' : null}}"><a href="{{ route('absenhr.index') }}">Absensi</a></li>
                                     <li class="{{Route::is('gaji.create') ? 'active' : null}}"><a href="{{ route('gaji.create') }}">Gaji</a></li>
                                 </ul>
-                            </li>                             
+                            </li>
+
                             <li class="sidebar-items4 {{Route::is('sp.create') ? 'active' : null}}"><a class="waves-effect" anim="ripple" href="{{ route('sp.create') }}"><i class="ti-email"></i> <span>Surat Peringatan</span></a></li>
                             <li class="sidebar-items5 {{Route::is('perjalanan.create') ? 'active' : null}}"><a class="waves-effect" anim="ripple" href="{{ route('perjalanan.create') }}"><i class="ti-email"></i> <span>Surat Perjalanan</span></a></li>
-                            
 
-                            <li class="sidebar-items6 @if(Route::is('sp.index') == 1 || Route::is('perjalanan.index') == 1) active @endif">
+
+                            <li class="sidebar-items6 @if(Route::is('sp.index') == 1 || Route::is('perjalanan.index') == 1 || Route::is('gaji.laporan') == 1) active @endif">
                                 <a class="waves-effect" anim="ripple" href="javascript:void(0)" aria-expanded="true"><i class="menu-icon ti-printer"></i>
                                     <span>Report</span></a>
-                                <ul class="collapse @if(Route::is('sp.index') == 1 || Route::is('perjalanan.index') == 1) in @endif">
+                                <ul class="collapse @if(Route::is('sp.index') == 1 || Route::is('perjalanan.index') == 1 || Route::is('gaji.laporan') == 1) in @endif">
                                     <li class="{{Route::is('sp.index') ? 'active' : null}}"><a href="{{ route('sp.index') }}">Surat SP</a></li>
                                     <li class="{{Route::is('perjalanan.index') ? 'active' : null}}"><a href="{{ route('perjalanan.index') }}">Surat Perjalanan</a></li>
+                                    <li class="{{Route::is('gaji.laporan') ? 'active' : null}}"><a href="{{ route('gaji.laporan')}}">Laporan Gaji</a></li>
                                 </ul>
                             </li> 
                     @endif
@@ -142,9 +148,7 @@
         <!-- sidebar menu area end -->
         <!-- main content area start -->
 
-        <div class="header" style="border:none;-webkit-box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);
--moz-box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);
-box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);">
+        <div class="header">
            <!-- header area start -->
             <div class="header-area" style="background-color: #0f5b94;border:none;">
                 <div class="row align-items-center">
@@ -160,7 +164,6 @@ box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);">
                     <div class="col-md-6 col-sm-4 clearfix">
                         <ul class="notification-area pull-right">
                             
-
                              <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle waves-effect" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre anim="ripple"> Hai,
                                     {{ Auth::user()->nama }} &nbsp;<span class="caret"><small class="fa fa-angle-down"></small></span>
@@ -168,7 +171,7 @@ box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);">
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 @if (Auth::user()->status == "Admin" || Auth::user()->status == "Pegawai")
-                                    <a class="dropdown-item" href="#"><i class="menu-icon ti-user"></i> Profile
+                                    <a class="dropdown-item" href="{{route('pegawai.profil',Auth::user()->id)}}"><i class="menu-icon ti-user"></i> Profile
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -208,14 +211,13 @@ box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);">
         </div>
 
         <!-- footer area end-->
-        @endif
-    </div>
-
         <footer>
             <div class="footer-area" style="background-color: #fff;">
                 <p style="color: #585858;">&copy;2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
             </div>
         </footer>
+        @endif
+    </div>
     <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}"></script>
     <!-- bootstrap 4 js -->
     <script src="{{ asset('js/popper.min.js') }}"></script>

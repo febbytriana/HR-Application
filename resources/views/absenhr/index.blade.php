@@ -75,6 +75,8 @@
       <br>
 
         <br>
+        
+
 			<div class="card-body">
 				<section class="card mt-1">
 					 <table class="table table-striped table-hover" id="data-tbl" width="100%">
@@ -83,11 +85,12 @@
                           <th style="text-align: center;"  rowspan="2">No</th>
                           <th style="text-align: center;" rowspan="2">Nama</th>
                           <th style="text-align: center;" rowspan="2">Bulan</th>
-                          <th style="text-align: center;" colspan="3">Keterangan</th>
+                          <th style="text-align: center;" colspan="4">Keterangan</th>
                           <th style="text-align: center;" rowspan="2">Detail</th>
                       </tr>
                       <tr>
                       	<th style="text-align: center;">I</th>
+                        <th style="text-align: center;">H</th>
                       	<th style="text-align: center;">S</th>	
                       	<th style="text-align: center;">A</th>
                       </tr>
@@ -107,6 +110,7 @@
                               @endphp
                           </td>
                           <td align="center" style="font-size: 14px;">{{ $sumizin->where('id_pegawai',$data->id_pegawai)->count() }}</td>
+                          <td align="center" style="font-size: 14px;">{{ $sumhadir->where('id_pegawai',$data->id_pegawai)->count() }}</td>
                           <td align="center" style="font-size: 14px;">{{ $sumsakit->where('id_pegawai',$data->id_pegawai)->count() }}</td>
                           <td align="center" style="font-size: 14px;">{{ $sumtp->where('id_pegawai',$data->id_pegawai)->count() }}</td>
                      

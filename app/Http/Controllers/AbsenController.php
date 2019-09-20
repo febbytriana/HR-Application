@@ -94,6 +94,9 @@ class AbsenController extends Controller
             
             $sumizin = Absen::select('id_pegawai','keterangan')->where('id_pegawai', $id_pegawai)->where('keterangan','=','Izin')->where('bulan', $bulanz)->count();
            
+            $sumhadir = Absen::select('id_pegawai','keterangan')->where('id_pegawai', $id_pegawai)->where('keterangan','=','Hadir')->where('bulan', $bulanz)->count();
+           
+           
             $sumtp = Absen::select('id_pegawai','keterangan')->where('id_pegawai', $id_pegawai)->where('keterangan','=','Tanpa Keterangan')->where('bulan', $bulanz)->count();
             
 
@@ -102,12 +105,13 @@ class AbsenController extends Controller
 
             $data = Absen::select('id_absen','id_pegawai')->where('id_pegawai', $id_pegawai)->count();
             
-            $mytime=Carbon::now()->format('d-m-Y');
+            
 
 
 
 
-            return view('absen.index',compact('dataabsen','id_pegawai','pegawai','sumsakit','sumizin','sumtp','data','absen','mytime','qwe'));
+
+            return view('absen.index',compact('dataabsen','id_pegawai','pegawai','sumsakit','sumizin','sumhadir','sumtp','data','absen','qwe','absen'));
         
 
     }
@@ -129,8 +133,9 @@ class AbsenController extends Controller
 
         $absen = Absen::all();
         $pegawais = Pegawai::all();
+        $sekarang = Absen::select('id_absen','id_pegawai','tgl','bulan','tahun','jam_masuk','jam_keluar','keterangan','alasan')->latest()->limit(1)->get();
 
-        return view('absen/create', compact('id_pegawai','dataabsen','absen','pegawais','pegawai'));
+        return view('absen/create', compact('id_pegawai','dataabsen','absen','pegawais','pegawai','sekarang'));
     }
 
     /**
@@ -141,6 +146,24 @@ class AbsenController extends Controller
      */
     public function store(Request $req, $id_pegawai)
     {
+
+        
+        $db = $req->input('db');
+
+        if ($db!=0) {
+            $tanggal=$req->tgl;
+            for ($i=1; $i < $db; $i++) {
+                $tanggal--;
+                Absen::insert([
+                    'id_pegawai' => $id_pegawai,
+                    'tgl'=>$tanggal,
+                    'bulan'=>$req->bulan,
+                    'tahun'=>$req->tahun,
+                    'keterangan' => 'Tanpa Keterangan',
+                ]);
+            }
+        }
+
 
         $absen = new Absen;
 
@@ -160,6 +183,7 @@ class AbsenController extends Controller
         $absen = Absen::select('id_absen','id_pegawai','tgl','bulan','tahun')->latest()->limit(1)->get();
 
 
+        
         session()->flash('success-create', 'Data Absen berhasil disimpan');
         return redirect('/absen/index/');
     }
@@ -220,5 +244,4 @@ class AbsenController extends Controller
         $absen->delete();
         return redirect()->back();
     }
-    
 }

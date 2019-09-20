@@ -58,7 +58,7 @@
     $bulan = date('mmm');
     $jam = date('H:i:s');
 @endphp
-@extends('layouts.app')
+@extends('layouts.apppegawai')
 
 @section('content')
 
@@ -85,7 +85,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Tanggal <span class="required">*</span></label>
                             <div class="col-md-9">
-                                <input id="tanggals" type="text" class="form-control" name="tanggal" value="{{ $absen->tgl }} {{ $absen->bulan }} {{ $absen->tahun }}">
+                                <input readonly="" id="tanggals" type="text" class="form-control" name="tanggal" value="{{ $absen->tgl }} {{ $absen->bulan }} {{ $absen->tahun }}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -120,7 +120,7 @@
                         <div class="form-group">
                             <div class="col-md-9">
                                 <div class="pull-right">
-                                    <button type="submit" class="btn btn-success btn-sm waves-effect" anim="ripple">Ubah</button>
+                                    <button type="submit" class="btn btn-success btn-sm waves-effect" anim="ripple">Absen</button>
                                 </div>
                             </div>
                         </div>     

@@ -57,6 +57,7 @@ class AkunController extends Controller
            $akun->status = $req->status;
            $akun->save();
            session()->flash('success-create', 'Data Akun berhasil disimpan');
+
            return redirect('/akun/index');
     }
     /* store-pegawai */
@@ -78,7 +79,7 @@ class AkunController extends Controller
             $pegawai = Pegawai::find($req->id);
             $pegawai->id_user = $akun_id['id'];
             $pegawai->save();
-            return redirect('/akunpegawais/index');
+            return redirect('/akunpegawai/indexpegawai');
         }
         else{
             

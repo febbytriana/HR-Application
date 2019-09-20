@@ -16,11 +16,13 @@ class CreateTempSertifikatsTable extends Migration
         Schema::create('temp_sertifikats', function (Blueprint $table) {
             $table->increments('id_temp_sertifikat');
             
-            $table->integer('id_sertifikat')->unsigned()->nullable();
-            $table->foreign('id_sertifikat')->references('id_sertifikat')->on('sertifikats')->onUpdate('set null')->onDelete('set null');
+            $table->integer('id_pegawai')->unsigned()->nullable();
+            $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais')->onUpdate('set null')->onDelete('set null');
 
-            $table->string('sertifikat');
-            $table->string('tahun');
+            $table->string('nama_event');
+            $table->date('tahun_event');
+            $table->string('ket_prestasi')->nullable();
+            $table->string('gambar_sertifikat')->nullable();
             $table->timestamps();
         });
     }

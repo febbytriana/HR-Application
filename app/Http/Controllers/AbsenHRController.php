@@ -8,6 +8,9 @@ use App\Absen;
 use Auth;
 use DB;
 use Response;
+use App\Exports\AbsenExport;
+use App\Exports\AbsenAllExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AbsenHRController extends Controller
 {
@@ -91,11 +94,14 @@ class AbsenHRController extends Controller
             $sumizin = $absen->where('keterangan','=','Izin')->where('bulan',$bulanz);
            
             $sumtp = $absen->where('keterangan','=','Tanpa Keterangan')->where('bulan',$bulanz);
+
+            $sumhadir = $absen->where('keterangan','=','Hadir')->where('bulan', $bulanz);
+         
             
 
         $absenhr = Pegawai::all();
         
-        return view('absenhr.index',compact('absenhr','absen','sumtp','sumsakit','sumizin'));
+        return view('absenhr.index',compact('absenhr','absen','sumtp','sumsakit','sumizin','sumhadir'));
     }
 
 
@@ -173,4 +179,17 @@ class AbsenHRController extends Controller
 
         return view('absenhr.detail', compact('pegawai','pegawais','absen','data'));
     }
+    public function export($id_pegawai = NULL) 
+    {
+        if(!empty($id_pegawai)){
+
+        return Excel::download(new AbsenExport($id_pegawai), 'absen.xlsx');
+
+        }else{
+
+        return Excel::download(new AbsenAllExport, 'absenAll.xlsx');
+
+        }
+    }
+
 }

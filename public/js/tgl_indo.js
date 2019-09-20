@@ -1,39 +1,38 @@
- 
-
+    var kel=document.getElementById('jam_kel').value;
     var tanggal=document.getElementById('tanggal').value;
     
     var bulan=tanggal.split("-");
 
     switch(bulan[1]){
         case "Januari":
-         var tanggal="00";
+         var tanggal="0";
         break;
         case "Februari":
-         var tanggal="01";
+         var tanggal="1";
         break;
         case "Maret":
-         var tanggal="02";
+         var tanggal="2";
         break;
         case "April":
-         var tanggal="03";
+         var tanggal="3";
         break;
         case "Mei":
-         var tanggal="04";
+         var tanggal="4";
         break;
         case "Juni":
-         var tanggal="05";
+         var tanggal="5";
         break;
         case "Juli":
-         var tanggal="06";
+         var tanggal="6";
         break;
         case "Agustus":
-         var tanggal="07";
+         var tanggal="7";
         break;
         case "September":
-         var tanggal="08";
+         var tanggal="8";
         break;
         case "Oktober":
-         var tanggal="09";
+         var tanggal="9";
         break;
         case "November":
          var tanggal="10";
@@ -42,36 +41,25 @@
          var tanggal="11";
         break;
     }
-    var database=document.getElementById('database').value=bulan[0]+"-"+tanggal+"-"+bulan[2];
-
-    function cek(){
-    if (bulan[0]!=hari || bulan[1]!=bulan || bulan[2]!=tahun) {
-        var kosong=hari-bulan[0];
-        for (var i=1; i < kosong; i++) { 
-            document.getElementById("alfa").value=i;
-        }
-    }
-}
-
+    
     var date=new Date();
     var hari=date.getDate();
     var month=date.getMonth();
-    var tahun=date.getFullYear();
-    if (hari<10) {
-        hari="0"+hari;
-    }
-    if (month<10) {
-        month="0"+month;
-    }
-
+    
+    var database=document.getElementById('database').value=bulan[0]+"-"+tanggal+"-"+bulan[2];
     var sekarang=document.getElementById('tanggal_sekarang').value=hari+"-"+month+"-"+date.getFullYear();
+    
 
-    if (database==sekarang) {
+
+    if (database==sekarang && kel=="") {
         document.getElementById("tambah").style.display="none";
     }
-    if (database!=sekarang) {
+    if (database==sekarang && kel!="") {
+        document.getElementById("tambah").style.display="none";
         document.getElementById("keluar").style.display="none";
-        cek();
+    }
+    if (database!=sekarang) {
+        document.getElementById("keluar").style.display="none";   
     }
 
   

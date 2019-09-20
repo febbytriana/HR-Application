@@ -57,7 +57,7 @@
 
 @endphp
 
-@extends('layouts.app')
+@extends('layouts.apppegawai')
 
 @section('content')
 
@@ -84,10 +84,9 @@
         <div class="card-body">
             <section class="card mt-1">
                 
-        @if(Auth::user()->status == "Pegawai" )
                 <span>Nama : {{ $pegawai->nama }}</span>
 
-                <span>Nama : {{ $pegawai->jabatan['jabatan']}}</span>
+                <span>Jabatan : {{ $pegawai->jabatan['jabatan']}}</span>
                 sakit :
                 <span>{{ $sumsakit }}</span>
                 izin : 
@@ -96,33 +95,24 @@
                 <span>{{ $sumtp }}</span>
             </section>
             <div class=pull-right>
-
+                @if(count($absen) > 0)
                 @foreach($absen as $absens)
-                    <input hidden="" type="text" id="tanggal" value="{{ $absens['tgl'] }}-{{ $absens['bulan'] }}-{{ $absens['tahun'] }}">
+                    <input hidden="" type="text" id="tanggal" value="@if(!empty($absens)){{$absens['tgl'] }}-{{ $absens['bulan'] }}-{{ $absens['tahun']}}@endif">
                     <input hidden="" type="text" id="tanggal_sekarang" name="">
-                    <input hidden="" type="text" id="database" name="" >
-                    <input type="text" name="alfa" id="alfa">
+                    <input hidden="" type="text" id="database" name="database" >
 
                 <div id="keluar">
                     <a href="{{ route('absen.edit',['id_pegawai'=>$pegawai->id_pegawai,'id_absen'=>$absens->id_absen]) }}"> 
                     <button class="btn btn-info">Keluar</button>
                 </a>
                 </div>
-
+                @endforeach
+                @endif
                 <div id="tambah">
                     <a href="{{ route('absen.create', $pegawai['id_pegawai']) }}"> 
                     <button class="btn btn-info">Absen</button>
-                </a>
                 </div>
-
-                
-                @endforeach
-
-           
-                <input type="" value="{{$qwe}}" name="">
-
-                
-                
+                </a>
             </div>
         
             <br>
@@ -146,12 +136,12 @@
                     <th rowspan="2" style="padding-top: 30px;">Keterangan</th>
                     <th rowspan="2" style="padding-top: 30px;">Alasan</th>
                     <th colspan="2">Jam</th>
+
                 </tr>
                 <tr>
                     <th>Masuk</th>
                     <th>Keluar</th>
                 </tr>
-
                     @foreach($absen as $key => $data)
                 <tr>
                     <td>{{ $key+1 }}</td>
@@ -169,25 +159,22 @@
                     @endif
 
                     <td>{{ $data->jam_masuk }}</td>
-                    <td>{{ $data->jam_keluar }}</td>
+                    <td>
+                        <input style="border: 0px; width: 80px;" type="text" readonly="" name="jam_keluar" id="jam_kel" value="{{$data->jam_keluar}}">
+                    </td>
                 </tr>
 
                     @endforeach
-
+                    
 
             </table>
                 
-        @endif
-
-        @if(Auth::user()->status == "HR" )
-                <span>tidak ada data.</span>
-        @endif
-      </div>
+</div>
 
       
     </section>
 </section>
-
+<script src="{{ asset('js/tgl_indo.js') }}"></script>
 
 
 @endsection

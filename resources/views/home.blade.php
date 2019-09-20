@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 
   <section role="main" class="content-body">
@@ -42,20 +41,48 @@
             @endif
         </section>
 
-        <div class="card-header rounded" style="background-color: #0f5b94; color: #fff;">
-            <h4>Dashboard</h2>
-        </div>
-
-        <div class="card-body">
-          <div class="container">
-              <div class="row">
-                  <div class="col-lg-4 col-xs-6">
-                    Nama   : {{ @Auth::user()->nama }}, <br>
-                    Status : {{ @Auth::user()->status}}
-                  </div>
-              </div>
-          </div>
-        </div>
+        <div class="main-content-inner">
+                <div class="row">
+                    <!-- seo fact area start -->
+                    <div class="col-lg-12 ">
+                        <div class="row">
+                            <div class="col-md-4 mt-5 mb-3">
+                                <div class="card">
+                                    <div class="seo-fact sbg3">
+                                        <div class="p-4 d-flex justify-content-between align-items-center">
+                                            <div class="seofct-icon"><i class="ti-user"></i> Pegawai</div>
+                                            <h2>{{$jumlah_pegawai}}</h2>
+                                        </div>
+                                        <canvas id="seolinechart1" height="25"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-md-5 mb-3">
+                                <div class="card">
+                                    <div class="seo-fact sbg1">
+                                        <div class="p-4 d-flex justify-content-between align-items-center">
+                                            <div class="seofct-icon"><i class="ti-book"></i>Perjalanan</div>
+                                            <h2>{{$jumlah_perjalanan}}</h2>
+                                        </div>
+                                        <canvas id="seolinechart2" height="25"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-md-5 mb-3">
+                                <div class="card">
+                                    <div class="seo-fact sbg2">
+                                        <div class="p-4 d-flex justify-content-between align-items-center">
+                                            <div class="seofct-icon"><i class="ti-book"></i>SP</div>
+                                            <h2>{{$jumlah_sp}}</h2>
+                                        </div>
+                                        <canvas id="seolinechart2" height="25"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+            </div>
     </section>
 </section>
 

@@ -71,7 +71,7 @@
                     <tr>
                         <td align="center">{{  $key+1 }}</td>
                         <td align="center">{{ $jabatan->jabatan }}</td>
-                        <td align="center">{{ $jabatan->gaji_pokok }}</td>
+                        <td align="center">Rp. {{number_format("$jabatan->gaji_pokok",2,",",".")}}</td>
                         <td align="center">{{ $jabatan->jam_masuk }}</td>
                         <td align="center">{{ $jabatan->jam_keluar }}</td>
                         <td align="center">

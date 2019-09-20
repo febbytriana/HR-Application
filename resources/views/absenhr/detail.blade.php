@@ -18,6 +18,15 @@
 			</div>
 			<div class="card-body">
 				<section class="card mt-1">
+		<div class="pull-left">
+			
+         <a href="{{ route('absenhr.exportexcel',$pegawais->id_pegawai)}}" style="margin-left: 7px">
+          <button class="btn btn-success btn-xs"><i class="fa fa-book"></i> EXCEL</button>
+        </a>
+
+		</div>
+       
+        <br>
 					 <table class="table table-striped table-hover" id="data-tbl" width="100%">
 		                  <thead>
 		                     <tr>

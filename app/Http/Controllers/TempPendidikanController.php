@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\TempPendidikan;
+use App\Pendidikan;
+use App\Pegawai;
+
 use Illuminate\Http\Request;
 
 class TempPendidikanController extends Controller
@@ -82,4 +85,5 @@ class TempPendidikanController extends Controller
     {
         //
     }
+
 }

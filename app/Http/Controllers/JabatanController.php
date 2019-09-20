@@ -9,7 +9,6 @@ class JabatanController extends Controller
     public function jabatan()
     {
         $jabatan = \App\Jabatan::orderBy('jabatan','asc')->get();
-
         return view('jabatan.index', compact('jabatan'));
     }
     public function create()

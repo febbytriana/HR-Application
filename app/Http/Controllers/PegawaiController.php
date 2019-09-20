@@ -11,8 +11,14 @@ use App\Keluarga;
 use App\Kontrak;
 use App\PengalamanKerja;
 use App\Pelatihan;
+use App\TempPegawai;
 use DB;
 use Illuminate\Http\Request;
+use App\Exports\PegawaiExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+ 
+use Illuminate\Support\Facades\Auth;
 
 class PegawaiController extends Controller
 {
@@ -21,9 +27,10 @@ class PegawaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $pegawai = \App\Pegawai::all();
+       $pegawai = \App\Pegawai::all();
         $jabatan = \App\Jabatan::all();
         $keluarga = \App\Keluarga::all();
        
@@ -94,7 +101,7 @@ class PegawaiController extends Controller
      */
     public function edit($id_pegawai)
     {
-        $pegawai = Pegawai::find($id_pegawai);
+        $pegawai = Pegawai::find($id_pegawai) ?? abort(404);
         $jabatan = Jabatan::all();
         return view('pegawais/edit',compact('pegawai','jabatan'));
     }
@@ -108,7 +115,8 @@ class PegawaiController extends Controller
      */
     public function update(Request $req, $id_pegawai)
     {
-        $pegawai = Pegawai::find($id_pegawai);
+        $pegawai = Pegawai::find($id_pegawai) ?? abort(404);
+
         $pegawai->nik = $req->nik;
         $pegawai->nama = $req->nama;
         $pegawai->id_jabatan = $req->id_jabatan;
@@ -147,9 +155,9 @@ class PegawaiController extends Controller
      */
     public function destroy($id_pegawai)
     {
-        $pegawai = Pegawai::find($id_pegawai);
+        $pegawai = Pegawai::find($id_pegawai) ?? abort(404);
         $pegawai->delete();
-
+ 
         session()->flash('success-create', 'Data Pegawai '.$pegawai->nama.' telah dihapus');
 
         return redirect('/pegawai/index');
@@ -157,7 +165,8 @@ class PegawaiController extends Controller
 
     public function detail($id_pegawai)
     {
-        $pegawai = Pegawai::where('id_pegawai','=',$id_pegawai)->get();
+        $pegawai = Pegawai::where('id_pegawai','=',$id_pegawai)->get() ?? abort(404);
+        if(count($pegawai) > 0) {
         $pegawais = Pegawai::find($id_pegawai); 
         $keluarga = Keluarga::where('id_pegawai',$id_pegawai)->get();
         $hitunganak = Keluarga::where([['id_pegawai',$id_pegawai],['status','=','Anak']])->get();
@@ -175,15 +184,33 @@ class PegawaiController extends Controller
         $pelatihan = Pelatihan::where('id_pegawai',$id_pegawai)->get();
 
          return view('pegawais/detail',compact('pegawai','keluarga','hitunganak','hitungsuami','hitungistri','hitungortu','pegawais','pendidikan','no_darurat','sertifikat','kontrak','pengalaman','jabatan','pelatihan'));
+        } else {
+            abort(404);
+        }
+
     }
 
        
 
     public function updateJabatan(Request $req,$id_pegawai)
     {
-        $pegawai = Pegawai::find($id_pegawai);
+        $pegawai = Pegawai::find($id_pegawai) ?? abort(404);
         $pegawai->id_jabatan = $req->id_jabatan;
         $pegawai->save();
+    }
+
+    public function export_excel()
+	{
+		return Excel::download(new PegawaiExport, 'pegawai.xlsx');
+	}
+
+    //Akses Pegawai
+    public function profile($id_pegawai)
+    {
+        $pegawai = Pegawai::where('id_user',$id_pegawai)->first() ?? abort(404);
+        $jabatan = Jabatan::all();
+        $checktemp = TempPegawai::where('id_pegawai',$pegawai->id_pegawai)->count();
+        return view('pegawais.profile',compact('pegawai','jabatan','checktemp'));
     }
 
 }

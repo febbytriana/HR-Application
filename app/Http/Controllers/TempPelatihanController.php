@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\TempPelatihan;
+use App\Pegawai;
+use App\Pelatihan;
+
 use Illuminate\Http\Request;
 
 class TempPelatihanController extends Controller
@@ -82,4 +85,5 @@ class TempPelatihanController extends Controller
     {
         //
     }
+    
 }

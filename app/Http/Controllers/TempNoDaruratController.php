@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\TempNoDarurat;
+use App\Pegawai;
+use App\NoDarurat;
+
 use Illuminate\Http\Request;
 
 class TempNoDaruratController extends Controller
@@ -82,4 +85,5 @@ class TempNoDaruratController extends Controller
     {
         //
     }
+
 }

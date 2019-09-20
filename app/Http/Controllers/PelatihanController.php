@@ -7,7 +7,7 @@ use App\Pegawai;
 use Illuminate\Http\Request;
 
 class PelatihanController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
      *
@@ -49,7 +49,7 @@ class PelatihanController extends Controller
 
         $pelatihan->save();
 
-        return redirect('pegawai/detail/'.$id_pegawai);
+        return redirect('pegawai/pelatihan/index/'.$id_pegawai);
     }
 
     /**

@@ -26,11 +26,11 @@
                         <div class="form-group">
                                 <label class="col-md-3 control-label">Status Dalam Keluarga<span class="required">*</span></label>
                                 <div class="col-md-9">
-                                    <select name="status" onchange="ganti(this.value)" id="status" class="custom-select">
+                                    <select name="status" onchange="ganti(this.value)" id="status" class="custom-select select2">
                                         <option value=""></option>
                                         <option value="Anak">Anak</option>
-                                        <option value="Ayah">Ayah</option>
-                                        <option value="Ibu">Ibu</option>
+                                        <option value="Ayah" @if(count($checkayah) == 1) disabled='disabled' @endif >Ayah</option>
+                                        <option value="Ibu" @if(count($checkibu) == 1) disabled='disabled' @endif>Ibu</option>
                                         @if($pegawai->jk=="Laki-laki")
                                             <option value="Istri">Istri</option>
                                         @endif
