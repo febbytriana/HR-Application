@@ -87,9 +87,9 @@
                                 <input type="text" hidden="" name="bulan" id="bulan">
                                 <input type="text" hidden="" name="tahun" id="tahun">
                                 @foreach($sekarang as $data)
-                                    <input type="" value="{{$data->tgl}}" id="db">
+                                    <input type="" hidden="" value="{{$data->tgl}}" id="db">
                                 @endforeach
-                                <input type="text" id="pas" name="db">
+                                <input type="text" hidden="" id="pas" name="db">
                                 
                             </div>
                         </div>
