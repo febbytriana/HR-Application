@@ -17,6 +17,11 @@ class AkunController extends Controller
         $akuns = User::where('status','=','HR')->get();
         return view('akuns/index', compact('akuns'));
     }
+    public function manajerindex()
+    {
+        $akunmanajers = User::where('status','=','Manajer')->get();
+        return view('akunmanajers/index', compact('akunmanajers'));
+    }
     public function indexpegawai()
     {
         $akuns = User::where('status','=','Pegawai')->get();
@@ -33,6 +38,11 @@ class AkunController extends Controller
     {
         $akun = User::all();
          return view('akuns/create', compact('akun'));
+    }
+      public function createmanajer()
+    {
+        $akun = User::all();
+         return view('akunmanajers/create', compact('akun'));
     }
     public function createpegawai()
     {
@@ -59,6 +69,20 @@ class AkunController extends Controller
            session()->flash('success-create', 'Data Akun berhasil disimpan');
 
            return redirect('/akun/index');
+    }
+
+    public function storemanajer(Request $req)
+    {
+        
+           $akun = new User;
+           $akun->nama = $req->nama;
+           $akun->email = $req->email;
+           $akun->password = Hash::make($req->password);
+           $akun->status = $req->status;
+           $akun->save();
+           session()->flash('success-create', 'Data Akun berhasil disimpan');
+
+           return redirect('/akun/manajerindex');
     }
     /* store-pegawai */
     public function storepegawai(Request $req)
@@ -138,11 +162,11 @@ class AkunController extends Controller
             $akun->password = Hash::make($req->password);
             $akun->save();
             session()->flash('success-create', 'Password berhasil diubah');
-            return redirect()->back();
+             return redirect('/akun/manajerindex');
         }
     }
     public function update(Request $req)
-    {
+        {
        $akun = User::find($req->id);   
         $akun->name = $req->name;
         $akun->email = $req->email;

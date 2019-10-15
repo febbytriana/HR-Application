@@ -52,5 +52,7 @@ class JabatanTableSeeder extends Seeder
             'created_at'    => Carbon::now(),
             'updated_at'    => Carbon::now(),
         ]);
+
+         
     }
 }

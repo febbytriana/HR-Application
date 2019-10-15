@@ -18,17 +18,17 @@
                     type: 'success'
                 }).then((result) => {
                     if(result.value) {
-                        location.href = 'http://localhost:8000/pegawai/hapus/'+idpeg;
+                        location.href = ''+idpeg;
                     }
-                })
+                });
             } else if (result.dismiss === swal.DismissReason.cancel) {
                   swal(
                     'Batal',
                     'Anda membatalkan penghapusan',
                     'error'
-                  )
+                  );
             }
-        })
+        });
     }
 </script>
 @stop
@@ -121,7 +121,7 @@
                             <a href="{{ route('pegawai.edit',$value->id_pegawai)}}">
                                 <i class="fa fa-pencil btn-warning" style="padding:8px;border-radius:5px;"></i>
                             </a>
-                            <a href="{{ route('pegawai.hapus', $value->id_pegawai)}}" onclick="hapusPeg('{{$value->id_pegawai}}')">
+                            <a onclick="hapusPeg('{{ route('pegawai.hapus', $value->id_pegawai)}}')" style="cursor: pointer;">
                                 <i class="fa fa-trash btn-danger" style="padding:8px;border-radius:5px;"></i>
                             </a>
                         </td>

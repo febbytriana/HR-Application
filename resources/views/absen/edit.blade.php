@@ -97,12 +97,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Alasan<span class="required">*</span></label>
                             <div class="col-md-9">
-                                @if($absen['alasan']!=NULL)
                                  <input type="text" class="form-control" name="alasan" value="{{ $absen->alasan }}"readonly="">
-                                 @endif
-                                 @if($absen['alasan']==NULL)
-                                 <input type="text" class="form-control" name="alasan" value="-" readonly="">
-                                 @endif
                             </div>
                         </div> 
                         <div class="form-group">

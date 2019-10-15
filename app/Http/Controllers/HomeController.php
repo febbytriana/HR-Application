@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class HomeController extends Controller
 {
@@ -33,8 +34,10 @@ class HomeController extends Controller
 
             $sp = \App\SuratPeringatan::all();
             $jumlah_sp = count($sp);
-            
-            return view('home', compact('jumlah_pegawai','jumlah_perjalanan','jumlah_sp'));
+        
+            $pegawai = DB::table('pegawais')->get();
+
+            return view('home', compact('jumlah_pegawai','jumlah_perjalanan','jumlah_sp','pegawai'));
         }
 
     }

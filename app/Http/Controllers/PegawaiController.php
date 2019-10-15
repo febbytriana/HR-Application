@@ -141,7 +141,7 @@ class PegawaiController extends Controller
 
         $pegawai->save();
 
-        session()->flash('success-create', 'Data Akun berhasil diedit');
+        session()->flash('success-create', 'Data Pegawai berhasil diubah');
            
         return redirect('/pegawai/index');
 

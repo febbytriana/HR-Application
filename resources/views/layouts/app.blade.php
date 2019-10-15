@@ -90,7 +90,15 @@
                                     <li><a href="{{ route('akun.index') }}">HR</a></li>
                                     
                                 </ul>
+                                <ul class="collapse">
+
+                                    
+                                    <li><a href="{{ route('akunmanajer.index') }}">Manajer</a></li>
+                                    
+                                </ul>
+
                              </li> 
+
                                 @endif
 
                                 @if(Auth::user()->status == "HR" )
@@ -211,11 +219,7 @@
         </div>
 
         <!-- footer area end-->
-        <footer>
-            <div class="footer-area" style="background-color: #fff;">
-                <p style="color: #585858;">&copy;2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
-            </div>
-        </footer>
+       
         @endif
     </div>
     <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}"></script>

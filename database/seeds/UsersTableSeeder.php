@@ -14,9 +14,9 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             'id'            => '1',
-        	'nama'          => 'Febby',
-        	'email'         => 'febby@gmail.com',
-        	'password'      => '$2y$10$2agbYlfLenAtqluoFEcRku9e6F.1MLOwh8ATHvmI8GVOpf/HgEC/i',
+        	'nama'          => 'Admin',
+        	'email'         => 'admin@gmail.com',
+        	'password'      => '$2y$10$fqdNPDZ9AjGHrdvVhJpZ2OE6mSklmngVI2vot0Cs.rnKlNJkfd30y', //admin123
         	'status'        => 'Admin',
         	'remember_token'=> '1',
         	'created_at'	=> Carbon::now(),
@@ -25,9 +25,9 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert([
             'id'            => '2',
-        	'nama'          => 'Risma',
-        	'email'         => 'risma@gmail.com',
-        	'password'      => '$2y$10$2agbYlfLenAtqluoFEcRku9e6F.1MLOwh8ATHvmI8GVOpf/HgEC/i',
+        	'nama'          => 'HR',
+        	'email'         => 'hr@gmail.com',
+        	'password'      => '$2y$10$nGT3nJgrepaYxDTMuNQP7u5bHuCTEtMt.9NwRgZzSE1.56Offuh1K', //hr123
         	'status'        => 'HR',
         	'remember_token'=> '1',
         	'created_at'	=> Carbon::now(),
@@ -36,9 +36,9 @@ class UsersTableSeeder extends Seeder
         
         DB::table('users')->insert([
             'id'            => '3',
-        	'nama'          => 'Ahmad',
-        	'email'         => 'ahmad@gmail.com',
-        	'password'      => '$2y$10$2agbYlfLenAtqluoFEcRku9e6F.1MLOwh8ATHvmI8GVOpf/HgEC/i',
+        	'nama'          => 'HR 2',
+        	'email'         => 'hr2@gmail.com',
+        	'password'      => '$2y$10$9X6xTmy8HEjnK4MoFwFVeeGCtfmYXI38e5e6HmjWnn0jskCIlo.Rq', //hrr123
         	'status'        => 'Pegawai',
         	'remember_token'=> '1',
         	'created_at'	=> Carbon::now(),
@@ -49,7 +49,7 @@ class UsersTableSeeder extends Seeder
             'id'            => '4',
             'nama'          => 'Pegawai',
             'email'         => 'pegawai@gmail.com',
-            'password'      => '$2y$10$2agbYlfLenAtqluoFEcRku9e6F.1MLOwh8ATHvmI8GVOpf/HgEC/i',
+            'password'      => '$2y$10$REPQs5uFEgusXdEWwXP5CO2TlTZ2oRGSeuVYy6u9H7l4uxBpF7WbC',//pegawai123
             'status'        => 'Pegawai',
             'remember_token'=> '1',
             'created_at'    => Carbon::now(),

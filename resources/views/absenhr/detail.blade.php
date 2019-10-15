@@ -45,19 +45,9 @@
 			                  		<td style="text-align: center;">{{ $key+1 }}</td>
 			                  		<td style="text-align: center;">{{ $value->tgl }} {{ $value->bulan }} {{ $value->tahun }}</td>
 			                  		<td style="text-align: center;">{{ $value->keterangan }}</td>
-
-				                    @if($value['alasan']!=NULL)
-				                      <td style="text-align: center;">{{ $value->alasan }}<	/td>
-				                    @endif
-
-				                    @if($value['alasan']==NULL)
-				                      <td style="text-align: center;"> Tidak ada alasan. </td>
-				                    @endif
-
+				                    <td style="text-align: center;">{{ $value->alasan }}</td>
 			                  		<td style="text-align: center;">{{ $value->jam_masuk }}</td>
 			                  		<td style="text-align: center;">{{ $value->jam_keluar }}</td>
-
-
 
 		                  	</tr>
 

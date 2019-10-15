@@ -78,30 +78,27 @@ class AbsenHRController extends Controller
             }
             $date=date('Y-m-d')    ;
             $date2=date('Y-M-d')    ;
-            $bulan = date('mmm');
+            $bulan = date('m');
 
-            $hasil = tanggal_indonesia($bulan);
-
-            $bulans =(explode(" ",$hasil));
-               $bulanz = $bulans[1];
+            $hasil = bulan($bulan);
 
              $id_pegawai = Pegawai::select('id_pegawai')->get();
 
              $absen = Absen::all();
         
-            $sumsakit = $absen->where('keterangan','=','Sakit')->where('bulan',$bulanz);
+            $sumsakit = $absen->where('keterangan','=','Sakit')->where('bulan',$hasil);
             
-            $sumizin = $absen->where('keterangan','=','Izin')->where('bulan',$bulanz);
+            $sumizin = $absen->where('keterangan','=','Izin')->where('bulan',$hasil);
            
-            $sumtp = $absen->where('keterangan','=','Tanpa Keterangan')->where('bulan',$bulanz);
+            $sumtp = $absen->where('keterangan','=','Tanpa Keterangan')->where('bulan',$hasil);
 
-            $sumhadir = $absen->where('keterangan','=','Hadir')->where('bulan', $bulanz);
+            $sumhadir = $absen->where('keterangan','=','Hadir')->where('bulan', $hasil);
          
             
 
         $absenhr = Pegawai::all();
         
-        return view('absenhr.index',compact('absenhr','absen','sumtp','sumsakit','sumizin','sumhadir'));
+        return view('absenhr.index',compact('absenhr','absen','sumtp','sumsakit','sumizin','sumhadir','hasil'));
     }
 
 

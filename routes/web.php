@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth','role:HR']], function(){
 	Route::get('/pegawai/edit/{id_pegawai}', 'PegawaiController@edit')->name('pegawai.edit');
 	Route::post('/pegawai/update/{id_pegawai}', 'PegawaiController@update')->name('pegawai.update');
 	Route::get('/pegawai/hapus/{id_pegawai}', 'PegawaiController@destroy')->name('pegawai.hapus');
-Route::get('/pegawai/exportexcel', 'PegawaiController@export_excel')->name('pegawai.exportexcel');
+	Route::get('/pegawai/exportexcel', 'PegawaiController@export_excel')->name('pegawai.exportexcel');
     
 	Route::get('/pegawai/destroy/{id_pegawai}', 'PegawaiController@destroy')->name('pegawai.destroy');
     Route::post('/pegawai/updatejabatan/{id_pegawai}', 'PegawaiController@updateJabatan')->name('pegawai.updatejabatan');
@@ -149,15 +149,24 @@ Route::get('/pegawai/exportexcel', 'PegawaiController@export_excel')->name('pega
 });
 
 Route::group(['middleware' => ['auth','role:Admin']], function(){
-	//akun
+	//akun-hr&manajer
 	Route::get('/akun/index', 'AkunController@index')->name('akun.index');
+	Route::get('/akun/manajerindex', 'AkunController@manajerindex')->name('akunmanajer.index');
 	Route::get('/akun/create', 'AkunController@create')->name('akun.create');
+	Route::get('/akun/createmanajer', 'AkunController@createmanajer')->name('akunmanajer.create');
 	Route::get('/akun/print', 'AkunController@print')->name('akun.print');
 	Route::post('/akun/store', 'AkunController@store')->name('akun.store');
+	Route::post('/akun/storemanajer', 'AkunController@storemanajer')->name('akunmanajer.store');
 	Route::get('/akun/edit/{id}', 'AkunController@edit')->name('akun.edit');
 	Route::post('/akun/update', 'AkunController@update')->name('akun.update');
 	Route::post('/akun/kelola-akun', 'AkunController@updateakun')->name('akun.update-akun');
 	Route::get('/akun/destroy/{id}', 'AkunController@destroy')->name('akun.destroy');
+
+	//key performance indicator
+
+	Route::get('/kpi/index', 'KpiPegawaiController@index')->name('kpi.index');
+
+
 
 });
 

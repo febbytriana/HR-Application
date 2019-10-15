@@ -21,7 +21,7 @@
         break;
         case "Juni":
          var tanggal="5";
-        break;
+        break;w
         case "Juli":
          var tanggal="6";
         break;

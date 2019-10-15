@@ -97,7 +97,7 @@
                    		 <div class="form-group">
                             <label class="col-md-3 control-label">Keterangan <span class="required">*</span></label>
                             <div class="col-md-9">
-                                <select name="keterangan" id="keterangan" class="custom-select">
+                                <select name="keterangan" id="keterangan" class="custom-select" onchange="hilang(this.value)">
                                     <option value=""></option>
                                     <option value="Izin">Izin</option>
                                     <option value="Hadir">Hadir</option>
@@ -105,8 +105,8 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group" >
-                            <label class="col-md-3 control-label">Alasan <span class="required">*</span></label>    
+                        <div class="form-group" id="alasan">
+                            <label class="col-md-3 control-label">Alasan <span class="required"></span></label>    
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="alasan">
                             </div>
@@ -213,6 +213,19 @@
     display_c();
     }
 
+</script>
+
+<script type="text/javascript">
+    function hilang(val){
+
+        var als = document.getElementById("alasan");
+        if(val=="Hadir"){
+            als.style.display="none";
+        }
+        else{
+            als.style.display="block";
+        }
+    }
 </script>
 
 @endsection

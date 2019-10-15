@@ -98,20 +98,13 @@ class AbsenController extends Controller
            
            
             $sumtp = Absen::select('id_pegawai','keterangan')->where('id_pegawai', $id_pegawai)->where('keterangan','=','Tanpa Keterangan')->where('bulan', $bulanz)->count();
-            
 
 
-            $absen = Absen::select('id_absen','id_pegawai','tgl','bulan','tahun','jam_masuk','jam_keluar','keterangan','alasan')->latest()->limit(1)->get();
+            $absen = Absen::select('id_absen','id_pegawai','tgl','bulan','tahun','jam_masuk','jam_keluar','keterangan','alasan')->where('id_pegawai',$id_pegawai)->latest()->limit(1)->get();
 
-            $data = Absen::select('id_absen','id_pegawai')->where('id_pegawai', $id_pegawai)->count();
-            
-            
+            $absensi = Absen::where('id_pegawai',$id_pegawai)->get();
 
-
-
-
-
-            return view('absen.index',compact('dataabsen','id_pegawai','pegawai','sumsakit','sumizin','sumhadir','sumtp','data','absen','qwe','absen'));
+            return view('absen.index',compact('dataabsen','id_pegawai','pegawai','sumsakit','sumizin','sumhadir','sumtp','absen','absensi','qwe'));
         
 
     }
@@ -146,24 +139,6 @@ class AbsenController extends Controller
      */
     public function store(Request $req, $id_pegawai)
     {
-
-        
-        $db = $req->input('db');
-
-        if ($db!=0) {
-            $tanggal=$req->tgl;
-            for ($i=1; $i < $db; $i++) {
-                $tanggal--;
-                Absen::insert([
-                    'id_pegawai' => $id_pegawai,
-                    'tgl'=>$tanggal,
-                    'bulan'=>$req->bulan,
-                    'tahun'=>$req->tahun,
-                    'keterangan' => 'Tanpa Keterangan',
-                ]);
-            }
-        }
-
 
         $absen = new Absen;
 

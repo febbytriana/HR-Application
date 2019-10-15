@@ -101,13 +101,7 @@
                           <td style="text-align: center; font-size: 14px;">{{ $key+1 }}</td>
                           <td align="center" style="font-size: 14px;">{{ $data->nama }}</td>
                           <td align="center" style="font-size: 14px;">
-                             @php
-                              
-                                  {{$hasil= tanggal_indonesia($bulan);
-
-                                      $bulans=(explode(" ",$hasil));
-                                      echo $bulans[1];}}
-                              @endphp
+                                  {{ $hasil }}
                           </td>
                           <td align="center" style="font-size: 14px;">{{ $sumizin->where('id_pegawai',$data->id_pegawai)->count() }}</td>
                           <td align="center" style="font-size: 14px;">{{ $sumhadir->where('id_pegawai',$data->id_pegawai)->count() }}</td>
